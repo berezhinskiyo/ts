@@ -1,0 +1,202 @@
+{
+  "combinations": [
+    {
+      "name": "Optimized_Risk_Adjusted",
+      "description": "Mathematically optimized for risk_adjusted",
+      "weights": {
+        "RSI_Conservative": 1.0061964582551594e-16,
+        "MA_Crossover_Standard": 0.0,
+        "MACD_Trend_Following": 1.523493396402555e-16,
+        "Contrarian_Strategy": 1.409629734639744e-17,
+        "RSI_Momentum_Aggressive": 0.0,
+        "Multi_Signal_Conservative": 0.5100603500090187,
+        "Mean_Reversion_BB": 0.4899396499909812,
+        "Volatility_Breakout": 1.787953123434729e-17,
+        "Swing_Trading": 6.673324173871157e-17,
+        "Risk_Adjusted_Growth": 8.666340327409044e-17,
+        "MA_Crossover_Fast": 5.5479931347105515e-17,
+        "Volume_Momentum": 0.0,
+        "Momentum_Breakout": 3.999545512895306e-17,
+        "High_Risk_High_Reward": 5.5299082102329744e-17,
+        "Multi_Signal_Aggressive": 1.674774481684325e-17,
+        "Trend_Momentum_Combo": 0.0
+      },
+      "performance": {
+        "total_return": 0.07302742748525715,
+        "monthly_return": 0.00589095255026173,
+        "annualized_return": 0.07302742748525715,
+        "volatility": 0.013540597061215064,
+        "sharpe_ratio": 3.7358150801569554,
+        "max_drawdown": -0.005312179483207233,
+        "portfolio_returns": "2023-01-01   -0.000795\n2023-01-02    0.001545\n2023-01-03   -0.000539\n2023-01-04   -0.000894\n2023-01-05    0.000676\n                ...   \n2023-09-05    0.001668\n2023-09-06    0.000109\n2023-09-07    0.000362\n2023-09-08    0.001024\n2023-09-09   -0.001395\nFreq: D, Length: 252, dtype: float64"
+      },
+      "meets_target": "False",
+      "risk_acceptable": "True"
+    },
+    {
+      "name": "Optimized_Return",
+      "description": "Mathematically optimized for return",
+      "weights": {
+        "RSI_Conservative": 0.0,
+        "MA_Crossover_Standard": 2.636779683484747e-16,
+        "MACD_Trend_Following": 0.0,
+        "Contrarian_Strategy": 0.0,
+        "RSI_Momentum_Aggressive": 0.0,
+        "Multi_Signal_Conservative": 0.5096399779165897,
+        "Mean_Reversion_BB": 0.4903600220834102,
+        "Volatility_Breakout": 8.371814409988373e-17,
+        "Swing_Trading": 3.6207114881103867e-17,
+        "Risk_Adjusted_Growth": 0.0,
+        "MA_Crossover_Fast": 5.194489199538666e-17,
+        "Volume_Momentum": 1.1860846626756399e-17,
+        "Momentum_Breakout": 6.536674512468356e-17,
+        "High_Risk_High_Reward": 6.518079436167937e-17,
+        "Multi_Signal_Aggressive": 1.3958497458248694e-16,
+        "Trend_Momentum_Combo": 6.245004513516506e-17
+      },
+      "performance": {
+        "total_return": 0.073026989320369,
+        "monthly_return": 0.005890918321082239,
+        "annualized_return": 0.073026989320369,
+        "volatility": 0.0135415529258203,
+        "sharpe_ratio": 3.7355221659895115,
+        "max_drawdown": -0.005310690223492964,
+        "portfolio_returns": "2023-01-01   -0.000794\n2023-01-02    0.001545\n2023-01-03   -0.000538\n2023-01-04   -0.000893\n2023-01-05    0.000676\n                ...   \n2023-09-05    0.001668\n2023-09-06    0.000109\n2023-09-07    0.000361\n2023-09-08    0.001024\n2023-09-09   -0.001394\nFreq: D, Length: 252, dtype: float64"
+      },
+      "meets_target": "False",
+      "risk_acceptable": "True"
+    },
+    {
+      "name": "Optimized_Sharpe",
+      "description": "Mathematically optimized for sharpe",
+      "weights": {
+        "RSI_Conservative": 0.055276295990364474,
+        "MA_Crossover_Standard": 0.12331703676804692,
+        "MACD_Trend_Following": 0.05268151375578693,
+        "Contrarian_Strategy": 0.040032948986718275,
+        "RSI_Momentum_Aggressive": 0.06812380663044833,
+        "Multi_Signal_Conservative": 0.3487715553171546,
+        "Mean_Reversion_BB": 0.31179684255147716,
+        "Volatility_Breakout": 0.0,
+        "Swing_Trading": 0.0,
+        "Risk_Adjusted_Growth": 0.0,
+        "MA_Crossover_Fast": 1.3666404745217698e-16,
+        "Volume_Momentum": 1.0173411588943732e-15,
+        "Momentum_Breakout": 0.0,
+        "High_Risk_High_Reward": 0.0,
+        "Multi_Signal_Aggressive": 2.238438665753295e-15,
+        "Trend_Momentum_Combo": 2.1627258360926164e-15
+      },
+      "performance": {
+        "total_return": 0.059979204073691283,
+        "monthly_return": 0.00486590769274553,
+        "annualized_return": 0.059979204073691283,
+        "volatility": 0.009568284665257847,
+        "sharpe_ratio": 4.0029749621120985,
+        "max_drawdown": -0.0021040194538783368,
+        "portfolio_returns": "2023-01-01   -0.000686\n2023-01-02    0.000607\n2023-01-03   -0.000068\n2023-01-04   -0.000681\n2023-01-05    0.000362\n                ...   \n2023-09-05    0.001121\n2023-09-06    0.000120\n2023-09-07    0.000160\n2023-09-08    0.000694\n2023-09-09   -0.000628\nFreq: D, Length: 252, dtype: float64"
+      },
+      "meets_target": "False",
+      "risk_acceptable": "True"
+    },
+    {
+      "name": "Risk_Adjusted",
+      "description": "Equal allocation across highest Sharpe ratio strategies",
+      "weights": {
+        "RSI_Conservative": 0.25,
+        "MA_Crossover_Standard": 0.25,
+        "MACD_Trend_Following": 0.25,
+        "Contrarian_Strategy": 0.25
+      },
+      "performance": {
+        "total_return": 0.032420599555793794,
+        "monthly_return": 0.002662383008550373,
+        "annualized_return": 0.032420599555793794,
+        "volatility": 0.009714638671334408,
+        "sharpe_ratio": 1.2306325330663237,
+        "max_drawdown": -0.004917474946880926,
+        "portfolio_returns": "2023-01-01    0.000017\n2023-01-02   -0.000147\n2023-01-03    0.000330\n2023-01-04    0.000107\n2023-01-05   -0.000631\n                ...   \n2023-09-05   -0.000122\n2023-09-06    0.000287\n2023-09-07   -0.000071\n2023-09-08   -0.000435\n2023-09-09    0.001430\nFreq: D, Length: 252, dtype: float64"
+      },
+      "meets_target": "False",
+      "risk_acceptable": "True"
+    },
+    {
+      "name": "Top_Performers",
+      "description": "Equal allocation across top 5 performing strategies",
+      "weights": {
+        "RSI_Conservative": 0.2,
+        "MA_Crossover_Standard": 0.2,
+        "MACD_Trend_Following": 0.2,
+        "Contrarian_Strategy": 0.2,
+        "RSI_Momentum_Aggressive": 0.2
+      },
+      "performance": {
+        "total_return": 0.03188462438211981,
+        "monthly_return": 0.002618995486580067,
+        "annualized_return": 0.03188462438211981,
+        "volatility": 0.008781954366130083,
+        "sharpe_ratio": 1.301215850358888,
+        "max_drawdown": -0.0059889127116393645,
+        "portfolio_returns": "2023-01-01   -0.000320\n2023-01-02   -0.000805\n2023-01-03    0.000458\n2023-01-04    0.000079\n2023-01-05   -0.000256\n                ...   \n2023-09-05    0.000172\n2023-09-06    0.000233\n2023-09-07   -0.000186\n2023-09-08    0.000045\n2023-09-09    0.000985\nFreq: D, Length: 252, dtype: float64"
+      },
+      "meets_target": "False",
+      "risk_acceptable": "True"
+    },
+    {
+      "name": "Conservative",
+      "description": "Equal allocation across lowest drawdown strategies",
+      "weights": {
+        "High_Risk_High_Reward": 0.3333333333333333,
+        "RSI_Conservative": 0.3333333333333333,
+        "MA_Crossover_Standard": 0.3333333333333333
+      },
+      "performance": {
+        "total_return": 0.02594784140322126,
+        "monthly_return": 0.0021370225695529488,
+        "annualized_return": 0.02594784140322126,
+        "volatility": 0.010904023860694258,
+        "sharpe_ratio": 0.5206711848676033,
+        "max_drawdown": -0.007106062232304572,
+        "portfolio_returns": "2023-01-01   -0.000305\n2023-01-02   -0.000286\n2023-01-03    0.000337\n2023-01-04    0.000573\n2023-01-05   -0.000845\n                ...   \n2023-09-05   -0.000307\n2023-09-06    0.000218\n2023-09-07   -0.000153\n2023-09-08   -0.000389\n2023-09-09    0.001339\nFreq: D, Length: 252, dtype: float64"
+      },
+      "meets_target": "False",
+      "risk_acceptable": "True"
+    },
+    {
+      "name": "Equal_Weight_All",
+      "description": "Equal allocation across all filtered strategies",
+      "weights": {
+        "RSI_Conservative": 0.0625,
+        "MA_Crossover_Standard": 0.0625,
+        "MACD_Trend_Following": 0.0625,
+        "Contrarian_Strategy": 0.0625,
+        "RSI_Momentum_Aggressive": 0.0625,
+        "Multi_Signal_Conservative": 0.0625,
+        "Mean_Reversion_BB": 0.0625,
+        "Volatility_Breakout": 0.0625,
+        "Swing_Trading": 0.0625,
+        "Risk_Adjusted_Growth": 0.0625,
+        "MA_Crossover_Fast": 0.0625,
+        "Volume_Momentum": 0.0625,
+        "Momentum_Breakout": 0.0625,
+        "High_Risk_High_Reward": 0.0625,
+        "Multi_Signal_Aggressive": 0.0625,
+        "Trend_Momentum_Combo": 0.0625
+      },
+      "performance": {
+        "total_return": 0.02205953533526217,
+        "monthly_return": 0.0018199661181248494,
+        "annualized_return": 0.02205953533526217,
+        "volatility": 0.004963350004368475,
+        "sharpe_ratio": 0.36929807617800847,
+        "max_drawdown": -0.0026624524048318382,
+        "portfolio_returns": "2023-01-01   -0.000411\n2023-01-02   -0.000422\n2023-01-03    0.000572\n2023-01-04    0.000227\n2023-01-05   -0.000268\n                ...   \n2023-09-05   -0.000196\n2023-09-06    0.000088\n2023-09-07    0.000001\n2023-09-08    0.000425\n2023-09-09    0.000439\nFreq: D, Length: 252, dtype: float64"
+      },
+      "meets_target": "False",
+      "risk_acceptable": "True"
+    }
+  ],
+  "target_return": 0.2,
+  "max_risk": 0.25,
+  "analysis_date": "2025-08-27T07:03:19.807472"
+}
