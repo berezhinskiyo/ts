@@ -1,0 +1,192 @@
+{
+  "summary": {
+    "total_strategies": 20,
+    "successful_strategies": 0,
+    "success_rate": 0.0,
+    "avg_monthly_return": -0.0008703771275554051,
+    "best_strategy": "RSI_Conservative",
+    "best_monthly_return": 0.0022831333328015013
+  },
+  "strategies": [
+    {
+      "name": "RSI_Conservative",
+      "monthly_return": 0.0022831333328015013,
+      "total_return": 0.027744269831452985,
+      "sharpe_ratio": 0.7788883363276832,
+      "max_drawdown": -0.020864536780216877,
+      "total_trades": 12,
+      "win_rate": 0.5
+    },
+    {
+      "name": "MA_Crossover_Standard",
+      "monthly_return": 0.0022831333328015013,
+      "total_return": 0.027744269831452985,
+      "sharpe_ratio": 0.7788883363276832,
+      "max_drawdown": -0.020864536780216877,
+      "total_trades": 12,
+      "win_rate": 0.5
+    },
+    {
+      "name": "MACD_Trend_Following",
+      "monthly_return": 0.0022831333328015013,
+      "total_return": 0.027744269831452985,
+      "sharpe_ratio": 0.7788883363276832,
+      "max_drawdown": -0.020864536780216877,
+      "total_trades": 12,
+      "win_rate": 0.5
+    },
+    {
+      "name": "Contrarian_Strategy",
+      "monthly_return": 0.0022831333328015013,
+      "total_return": 0.027744269831452985,
+      "sharpe_ratio": 0.7788883363276832,
+      "max_drawdown": -0.020864536780216877,
+      "total_trades": 12,
+      "win_rate": 0.5
+    },
+    {
+      "name": "RSI_Momentum_Aggressive",
+      "monthly_return": 0.0020574783685334275,
+      "total_return": 0.024971057805414892,
+      "sharpe_ratio": 0.7444571491529322,
+      "max_drawdown": -0.024338138939307294,
+      "total_trades": 24,
+      "win_rate": 0.25
+    },
+    {
+      "name": "Multi_Signal_Conservative",
+      "monthly_return": 0.0019149838158833976,
+      "total_return": 0.02322339018956176,
+      "sharpe_ratio": 0.5337647920424246,
+      "max_drawdown": -0.03721600341950199,
+      "total_trades": 8,
+      "win_rate": 0.5
+    },
+    {
+      "name": "Mean_Reversion_BB",
+      "monthly_return": 0.0018930802666150548,
+      "total_return": 0.022954989820245828,
+      "sharpe_ratio": 0.6472107540797727,
+      "max_drawdown": -0.02563653611524603,
+      "total_trades": 16,
+      "win_rate": 0.375
+    },
+    {
+      "name": "Volatility_Breakout",
+      "monthly_return": 0.0017789470644111738,
+      "total_return": 0.02155747536484123,
+      "sharpe_ratio": 0.6305350486956001,
+      "max_drawdown": -0.023333572446397523,
+      "total_trades": 18,
+      "win_rate": 0.3333333333333333
+    },
+    {
+      "name": "Swing_Trading",
+      "monthly_return": 0.0016643773482711843,
+      "total_return": 0.020156376344280434,
+      "sharpe_ratio": 0.43038017299467424,
+      "max_drawdown": -0.036860787449379616,
+      "total_trades": 6,
+      "win_rate": 0.6666666666666666
+    },
+    {
+      "name": "Risk_Adjusted_Growth",
+      "monthly_return": 0.0016643773482711843,
+      "total_return": 0.020156376344280434,
+      "sharpe_ratio": 0.44620845506529916,
+      "max_drawdown": -0.036860787449379616,
+      "total_trades": 6,
+      "win_rate": 0.6666666666666666
+    },
+    {
+      "name": "MA_Crossover_Fast",
+      "monthly_return": 0.0015512796207262092,
+      "total_return": 0.018775006524110214,
+      "sharpe_ratio": 0.5253464852881988,
+      "max_drawdown": -0.02563653611524603,
+      "total_trades": 22,
+      "win_rate": 0.2727272727272727
+    },
+    {
+      "name": "Volume_Momentum",
+      "monthly_return": 0.001289910761144153,
+      "total_return": 0.01558921808546118,
+      "sharpe_ratio": 0.658327729935061,
+      "max_drawdown": -0.022134509699046605,
+      "total_trades": 24,
+      "win_rate": 0.25
+    },
+    {
+      "name": "Momentum_Breakout",
+      "monthly_return": 0.0008631191697447971,
+      "total_return": 0.010406740102741896,
+      "sharpe_ratio": 0.423602438037466,
+      "max_drawdown": -0.027029149964240568,
+      "total_trades": 24,
+      "win_rate": 0.25
+    },
+    {
+      "name": "High_Risk_High_Reward",
+      "monthly_return": 0.0004301875006493816,
+      "total_return": 0.0051744815840461525,
+      "sharpe_ratio": 0.2505115204094487,
+      "max_drawdown": -0.02010177468067786,
+      "total_trades": 40,
+      "win_rate": 0.35
+    },
+    {
+      "name": "Multi_Signal_Aggressive",
+      "monthly_return": 0.0003525191756725832,
+      "total_return": 0.004238441558132909,
+      "sharpe_ratio": 0.19699464905127828,
+      "max_drawdown": -0.023189461538300687,
+      "total_trades": 24,
+      "win_rate": 0.25
+    },
+    {
+      "name": "Trend_Momentum_Combo",
+      "monthly_return": 0.0002900712388391735,
+      "total_return": 0.003486413566467818,
+      "sharpe_ratio": 0.1435186616081749,
+      "max_drawdown": -0.023638170685584162,
+      "total_trades": 16,
+      "win_rate": 0.375
+    },
+    {
+      "name": "High_Frequency_Scalper",
+      "monthly_return": -0.0008540526310898411,
+      "total_return": -0.010200627570126818,
+      "sharpe_ratio": -0.5152241335866317,
+      "max_drawdown": -0.021751326594200218,
+      "total_trades": 44,
+      "win_rate": 0.36363636363636365
+    },
+    {
+      "name": "Ultra_High_Frequency",
+      "monthly_return": -0.0019552994367483256,
+      "total_return": -0.023212899708078185,
+      "sharpe_ratio": -1.2559580186127823,
+      "max_drawdown": -0.029460445469067034,
+      "total_trades": 52,
+      "win_rate": 0.2692307692307692
+    },
+    {
+      "name": "Short_Selling_Strategy",
+      "monthly_return": -0.01974052774661883,
+      "total_return": -0.21278643157581245,
+      "sharpe_ratio": -1.940049985392505,
+      "max_drawdown": -0.2135368641733387,
+      "total_trades": 26,
+      "win_rate": 0.38461538461538464
+    },
+    {
+      "name": "Market_Neutral_Pairs",
+      "monthly_return": -0.01974052774661883,
+      "total_return": -0.21278643157581245,
+      "sharpe_ratio": -1.940049985392505,
+      "max_drawdown": -0.2135368641733387,
+      "total_trades": 26,
+      "win_rate": 0.38461538461538464
+    }
+  ]
+}
