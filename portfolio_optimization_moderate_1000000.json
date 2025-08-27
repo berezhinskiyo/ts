@@ -1,0 +1,154 @@
+{
+  "optimization_results": {
+    "risk_adjusted": {
+      "weights": {
+        "RSI_Conservative": 0.25,
+        "MA_Crossover_Standard": 0.2381570226559993,
+        "MACD_Trend_Following": 7.389157147664789e-05,
+        "Contrarian_Strategy": 0.24999986561346757,
+        "RSI_Momentum_Aggressive": 0.05804422639101399,
+        "Multi_Signal_Conservative": 0.0019559768301968456,
+        "Mean_Reversion_BB": 0.05000003733970044,
+        "Volatility_Breakout": 1.2276938679009172e-15,
+        "Swing_Trading": 0.0006650098285681272,
+        "Risk_Adjusted_Growth": 5.614817851862476e-18,
+        "MA_Crossover_Fast": 0.15110396976957555
+      },
+      "performance": {
+        "monthly_return": -0.003229908801128449,
+        "volatility": 0.012017933848504112,
+        "sharpe_ratio": -0.40743904314339346,
+        "max_drawdown": -0.012012816916680356,
+        "trading_costs": 0.0028791513194909068,
+        "monthly_fee": 0.0005,
+        "total_costs": 0.0033791513194909068,
+        "gross_return": 0.00014924251836245794
+      },
+      "optimization_score": -0.13947594949562656,
+      "is_valid": false,
+      "violations": [
+        "Низкий Sharpe ratio: -0.407 < 0.800"
+      ],
+      "capital_efficiency": {
+        "net_return_efficiency": 0,
+        "roi_efficiency": 0,
+        "diversification_score": 0.6,
+        "monthly_profit_rub": -3229.908801128449,
+        "monthly_costs_rub": 3379.1513194909066,
+        "cost_ratio": Infinity
+      },
+      "success": true
+    },
+    "max_sharpe": {
+      "weights": {
+        "RSI_Conservative": 0.24999997645712796,
+        "MA_Crossover_Standard": 0.24999999999998704,
+        "MACD_Trend_Following": 1.2938884433395554e-14,
+        "Contrarian_Strategy": 0.25,
+        "RSI_Momentum_Aggressive": 0.0,
+        "Multi_Signal_Conservative": 1.1023899848764231e-15,
+        "Mean_Reversion_BB": 1.489563543784635e-10,
+        "Volatility_Breakout": 1.339370712625133e-14,
+        "Swing_Trading": 0.07679441300076115,
+        "Risk_Adjusted_Growth": 0.05000000071959329,
+        "MA_Crossover_Fast": 0.12320560967355021
+      },
+      "performance": {
+        "monthly_return": -0.003220560203365553,
+        "volatility": 0.01233514580277772,
+        "sharpe_ratio": -0.3962034132528598,
+        "max_drawdown": -0.01695142551967294,
+        "trading_costs": 0.0024942579230018648,
+        "monthly_fee": 0.0005,
+        "total_costs": 0.0029942579230018648,
+        "gross_return": -0.00022630228036368827
+      },
+      "optimization_score": 0.49620341325285977,
+      "is_valid": false,
+      "violations": [
+        "Низкий Sharpe ratio: -0.396 < 0.800"
+      ],
+      "capital_efficiency": {
+        "net_return_efficiency": 0,
+        "roi_efficiency": 0,
+        "diversification_score": 0.6,
+        "monthly_profit_rub": -3220.560203365553,
+        "monthly_costs_rub": 2994.2579230018646,
+        "cost_ratio": Infinity
+      },
+      "success": true
+    },
+    "target_return": {
+      "weights": {
+        "RSI_Conservative": 0.2008944215258845,
+        "MA_Crossover_Standard": 0.14308813007886556,
+        "MACD_Trend_Following": 1.2623929376267282e-10,
+        "Contrarian_Strategy": 0.030429191483118394,
+        "RSI_Momentum_Aggressive": 0.11688691366443668,
+        "Multi_Signal_Conservative": 2.946882067619527e-18,
+        "Mean_Reversion_BB": 0.1893616704329633,
+        "Volatility_Breakout": 0.06933967268849231,
+        "Swing_Trading": 2.889616701149009e-19,
+        "Risk_Adjusted_Growth": 5.845876153859903e-19,
+        "MA_Crossover_Fast": 0.25
+      },
+      "performance": {
+        "monthly_return": -0.003762386337615901,
+        "volatility": 0.010194071545419216,
+        "sharpe_ratio": -0.532569639137186,
+        "max_drawdown": -0.0053582432721867405,
+        "trading_costs": 0.00341522553636721,
+        "monthly_fee": 0.0005,
+        "total_costs": 0.00391522553636721,
+        "gross_return": 0.0001528391987513089
+      },
+      "optimization_score": 0.14697887288198938,
+      "is_valid": false,
+      "violations": [
+        "Низкий Sharpe ratio: -0.533 < 0.800"
+      ],
+      "capital_efficiency": {
+        "net_return_efficiency": 0,
+        "roi_efficiency": 0,
+        "diversification_score": 0.6,
+        "monthly_profit_rub": -3762.386337615901,
+        "monthly_costs_rub": 3915.2255363672098,
+        "cost_ratio": Infinity
+      },
+      "success": true
+    }
+  },
+  "capital_amount": 1000000,
+  "risk_level": "moderate",
+  "commission_structure": {
+    "rate": 0.002,
+    "monthly_fee": 500,
+    "tier": "medium"
+  },
+  "risk_parameters": {
+    "max_drawdown": 0.2,
+    "max_volatility": 0.25,
+    "max_single_position": 0.25,
+    "min_diversification": 6,
+    "target_sharpe": 0.8,
+    "leverage_limit": 2.0,
+    "rebalance_threshold": 0.08,
+    "expected_return_range": [
+      0.015,
+      0.05
+    ]
+  },
+  "suitable_strategies": [
+    "RSI_Conservative",
+    "MA_Crossover_Standard",
+    "MACD_Trend_Following",
+    "Contrarian_Strategy",
+    "RSI_Momentum_Aggressive",
+    "Multi_Signal_Conservative",
+    "Mean_Reversion_BB",
+    "Volatility_Breakout",
+    "Swing_Trading",
+    "Risk_Adjusted_Growth",
+    "MA_Crossover_Fast"
+  ]
+}

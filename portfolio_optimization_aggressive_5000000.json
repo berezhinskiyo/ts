@@ -1,0 +1,11 @@
+{
+  "success": false,
+  "error": "Insufficient strategies",
+  "optimization_results": {},
+  "commission_structure": {
+    "rate": 0.0015,
+    "monthly_fee": 2000,
+    "tier": "large"
+  },
+  "suitable_strategies": []
+}
