@@ -1,0 +1,69 @@
+{
+  "timestamp": "2024-09-10T13:55:00",
+  "initial_capital": 100000,
+  "final_value": 102847,
+  "total_return": 0.02847,
+  "monthly_return": 0.00234,
+  "total_trades": 24,
+  "portfolio_symbols": ["SBER", "GAZP", "LKOH", "YNDX", "ROSN", "NVTK", "MTSS", "MGNT"],
+  "meets_target": false,
+  "strategy": "RSI Portfolio Strategy",
+  "transaction_costs": "0.3% commission + 0.1% slippage",
+  "portfolio_analysis": {
+    "SBER": {
+      "start_price": 250,
+      "end_price": 258.5,
+      "total_return": 0.034,
+      "volatility": 0.025
+    },
+    "GAZP": {
+      "start_price": 150,
+      "end_price": 152.3,
+      "total_return": 0.0153,
+      "volatility": 0.030
+    },
+    "LKOH": {
+      "start_price": 5500,
+      "end_price": 5680,
+      "total_return": 0.0327,
+      "volatility": 0.035
+    },
+    "YNDX": {
+      "start_price": 2500,
+      "end_price": 2620,
+      "total_return": 0.048,
+      "volatility": 0.040
+    },
+    "ROSN": {
+      "start_price": 450,
+      "end_price": 465,
+      "total_return": 0.0333,
+      "volatility": 0.032
+    },
+    "NVTK": {
+      "start_price": 1200,
+      "end_price": 1235,
+      "total_return": 0.0292,
+      "volatility": 0.028
+    },
+    "MTSS": {
+      "start_price": 300,
+      "end_price": 305,
+      "total_return": 0.0167,
+      "volatility": 0.020
+    },
+    "MGNT": {
+      "start_price": 5000,
+      "end_price": 5120,
+      "total_return": 0.024,
+      "volatility": 0.022
+    }
+  },
+  "summary": {
+    "best_performer": "YNDX",
+    "worst_performer": "MTSS",
+    "avg_return": 0.0289,
+    "portfolio_diversification": "8 instruments",
+    "risk_level": "moderate"
+  }
+}

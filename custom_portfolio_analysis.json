@@ -1,0 +1,106 @@
+{
+  "optimization_result": {
+    "success": true,
+    "allocation_plan": {
+      "Arbitrage_Spread_Trading": {
+        "weight": 0.08000000000000006,
+        "amount": 160000.00000000012,
+        "project_type": "arbitrage",
+        "expected_return": 0.15,
+        "volatility": 0.12
+      },
+      "Momentum_Breakout_Strategy": {
+        "weight": 0.35,
+        "amount": 700000.0,
+        "project_type": "momentum",
+        "expected_return": 0.25,
+        "volatility": 0.28
+      },
+      "RSI_Mean_Reversion": {
+        "weight": 0.13999999999999996,
+        "amount": 279999.99999999994,
+        "project_type": "mean_reversion",
+        "expected_return": 0.18,
+        "volatility": 0.2
+      },
+      "Technical_MACD_Strategy": {
+        "weight": 0.3499999999999999,
+        "amount": 699999.9999999999,
+        "project_type": "technical",
+        "expected_return": 0.2,
+        "volatility": 0.22
+      },
+      "Bollinger_Bands_Strategy": {
+        "weight": 0.08000000000000008,
+        "amount": 160000.00000000017,
+        "project_type": "technical",
+        "expected_return": 0.16,
+        "volatility": 0.18
+      }
+    },
+    "portfolio_metrics": {
+      "expected_return": 0.2075,
+      "volatility": 0.12724998184616773,
+      "sharpe_ratio": 1.3948921439892967,
+      "sortino_ratio": 0,
+      "var_95": -0.0018075941691779729,
+      "cvar_95": -0.054980167309177846,
+      "max_drawdown": 0.06999999999999999,
+      "diversification_ratio": 1.783890234848284
+    },
+    "constraints": "PortfolioConstraints(total_capital=2000000, risk_level=<RiskLevel.MODERATE: 'moderate'>, max_projects=6, min_projects=4, max_single_allocation=0.35, min_single_allocation=0.08, target_return=0.15, max_volatility=0.25, max_drawdown=None, liquidity_requirement=0.75, complexity_limit=0.7)",
+    "objective_type": "utility",
+    "optimization_date": "2025-08-27T17:37:00.181122"
+  },
+  "projects_data": {
+    "Arbitrage_Spread_Trading": {
+      "project_type": "arbitrage",
+      "expected_return": 0.15,
+      "volatility": 0.12,
+      "max_drawdown": 0.08
+    },
+    "Momentum_Breakout_Strategy": {
+      "project_type": "momentum",
+      "expected_return": 0.25,
+      "volatility": 0.28,
+      "max_drawdown": 0.2
+    },
+    "ML_Price_Prediction": {
+      "project_type": "ml_predictive",
+      "expected_return": 0.3,
+      "volatility": 0.35,
+      "max_drawdown": 0.25
+    },
+    "RSI_Mean_Reversion": {
+      "project_type": "mean_reversion",
+      "expected_return": 0.18,
+      "volatility": 0.2,
+      "max_drawdown": 0.15
+    },
+    "Technical_MACD_Strategy": {
+      "project_type": "technical",
+      "expected_return": 0.2,
+      "volatility": 0.22,
+      "max_drawdown": 0.18
+    },
+    "Hedge_Fund_Strategy": {
+      "project_type": "hedge",
+      "expected_return": 0.12,
+      "volatility": 0.1,
+      "max_drawdown": 0.06
+    },
+    "Scalping_HFT_Strategy": {
+      "project_type": "scalping",
+      "expected_return": 0.35,
+      "volatility": 0.45,
+      "max_drawdown": 0.3
+    },
+    "Bollinger_Bands_Strategy": {
+      "project_type": "technical",
+      "expected_return": 0.16,
+      "volatility": 0.18,
+      "max_drawdown": 0.12
+    }
+  },
+  "analysis_date": "2025-08-27T17:37:00.181385"
+}
