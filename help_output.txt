@@ -1,0 +1,34 @@
+
+🚀 TRADING SYSTEM LAUNCHER
+
+Использование:
+    python3 simple_launcher.py <command> [strategy]
+
+Команды:
+    run <strategy>     - Запуск торговой стратегии
+    backtest [engine]  - Запуск бэктестинга
+    monitor           - Запуск системы мониторинга
+    optimize [strategy] - Оптимизация параметров
+    retrain [strategy]  - Переобучение ML моделей
+    status            - Проверка статуса системы
+    help              - Показать эту справку
+
+Стратегии:
+    ml               - Машинное обучение
+    aggressive       - Агрессивная стратегия
+    combined         - Комбинированная стратегия
+    simplified       - Упрощенная система
+
+Движки бэктестинга:
+    quick           - Быстрый тест
+    advanced        - Продвинутый тест
+    real_data       - Тест на реальных данных
+    working         - Рабочий тест
+
+Примеры:
+    python3 simple_launcher.py run ml
+    python3 simple_launcher.py backtest quick
+    python3 simple_launcher.py monitor
+    python3 simple_launcher.py optimize aggressive
+    python3 simple_launcher.py retrain ml
+    python3 simple_launcher.py status
