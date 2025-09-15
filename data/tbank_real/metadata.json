@@ -1,0 +1,157 @@
+{
+  "timestamp": "2025-09-14T21:27:41.681210",
+  "total_instruments": 5,
+  "data_directory": "data/tbank_real",
+  "instruments": [
+    {
+      "ticker": "PIKK",
+      "figi": "BBG004S68BH6",
+      "class_code": "TQBR",
+      "instrument_type": "share",
+      "description": "Фьючерс PIKK - лучший для высокочастотной торговли",
+      "periods": {
+        "1M": {
+          "days": 30,
+          "candles": 31,
+          "first_date": "2025-08-15",
+          "last_date": "2025-09-14",
+          "filename": "PIKK_1M_tbank.csv"
+        },
+        "3M": {
+          "days": 90,
+          "candles": 85,
+          "first_date": "2025-06-16",
+          "last_date": "2025-09-14",
+          "filename": "PIKK_3M_tbank.csv"
+        },
+        "1Y": {
+          "days": 365,
+          "candles": 298,
+          "first_date": "2024-09-16",
+          "last_date": "2025-09-14",
+          "filename": "PIKK_1Y_tbank.csv"
+        }
+      }
+    },
+    {
+      "ticker": "IRAO",
+      "figi": "BBG004S68473",
+      "class_code": "TQBR",
+      "instrument_type": "share",
+      "description": "Фьючерс IRAO - отличные данные",
+      "periods": {
+        "1M": {
+          "days": 30,
+          "candles": 31,
+          "first_date": "2025-08-15",
+          "last_date": "2025-09-14",
+          "filename": "IRAO_1M_tbank.csv"
+        },
+        "3M": {
+          "days": 90,
+          "candles": 85,
+          "first_date": "2025-06-16",
+          "last_date": "2025-09-14",
+          "filename": "IRAO_3M_tbank.csv"
+        },
+        "1Y": {
+          "days": 365,
+          "candles": 296,
+          "first_date": "2024-09-16",
+          "last_date": "2025-09-14",
+          "filename": "IRAO_1Y_tbank.csv"
+        }
+      }
+    },
+    {
+      "ticker": "SGZH",
+      "figi": "BBG0100R9963",
+      "class_code": "TQBR",
+      "instrument_type": "share",
+      "description": "Фьючерс SGZH - хорошие данные",
+      "periods": {
+        "1M": {
+          "days": 30,
+          "candles": 31,
+          "first_date": "2025-08-15",
+          "last_date": "2025-09-14",
+          "filename": "SGZH_1M_tbank.csv"
+        },
+        "3M": {
+          "days": 90,
+          "candles": 85,
+          "first_date": "2025-06-16",
+          "last_date": "2025-09-14",
+          "filename": "SGZH_3M_tbank.csv"
+        },
+        "1Y": {
+          "days": 365,
+          "candles": 298,
+          "first_date": "2024-09-16",
+          "last_date": "2025-09-14",
+          "filename": "SGZH_1Y_tbank.csv"
+        }
+      }
+    },
+    {
+      "ticker": "GAZP",
+      "figi": "BBG004730RP0",
+      "class_code": "TQBR",
+      "instrument_type": "share",
+      "description": "Акция Газпром - популярная российская акция",
+      "periods": {
+        "1M": {
+          "days": 30,
+          "candles": 31,
+          "first_date": "2025-08-15",
+          "last_date": "2025-09-14",
+          "filename": "GAZP_1M_tbank.csv"
+        },
+        "3M": {
+          "days": 90,
+          "candles": 85,
+          "first_date": "2025-06-16",
+          "last_date": "2025-09-14",
+          "filename": "GAZP_3M_tbank.csv"
+        },
+        "1Y": {
+          "days": 365,
+          "candles": 298,
+          "first_date": "2024-09-16",
+          "last_date": "2025-09-14",
+          "filename": "GAZP_1Y_tbank.csv"
+        }
+      }
+    },
+    {
+      "ticker": "SBER",
+      "figi": "BBG004730N88",
+      "class_code": "TQBR",
+      "instrument_type": "share",
+      "description": "Акция Сбербанк - ликвидная акция",
+      "periods": {
+        "1M": {
+          "days": 30,
+          "candles": 31,
+          "first_date": "2025-08-15",
+          "last_date": "2025-09-14",
+          "filename": "SBER_1M_tbank.csv"
+        },
+        "3M": {
+          "days": 90,
+          "candles": 85,
+          "first_date": "2025-06-16",
+          "last_date": "2025-09-14",
+          "filename": "SBER_3M_tbank.csv"
+        },
+        "1Y": {
+          "days": 365,
+          "candles": 298,
+          "first_date": "2024-09-16",
+          "last_date": "2025-09-14",
+          "filename": "SBER_1Y_tbank.csv"
+        }
+      }
+    }
+  ]
+}

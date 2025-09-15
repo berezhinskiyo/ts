@@ -2,8 +2,8 @@ import asyncio
 import logging
 from datetime import datetime, timedelta
 from typing import List, Dict, Optional, Any
-from tinkoff.invest import Client, RequestError, InstrumentIdType
-from tinkoff.invest.schemas import (
+from tinkoff_invest import Client, RequestError, InstrumentIdType
+from tinkoff_invest.schemas import (
     OrderDirection, OrderType, CandleInterval, 
     HistoricCandle, Quotation
 )

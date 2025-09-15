@@ -1,0 +1,408 @@
+{
+  "timestamp": "2025-09-12T16:00:59.114451",
+  "data_source": "T-Bank API Real Data (Optimized)",
+  "test_period": "252 days (1 year)",
+  "optimizations": [
+    "Advanced technical indicators",
+    "Risk management system",
+    "Fixed aggressive strategy",
+    "High frequency trading",
+    "Derivatives integration"
+  ],
+  "strategies": {
+    "Optimized ML Strategy": {
+      "TATN": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 2.52,
+        "sharpe_ratio": -1.66,
+        "max_drawdown": -2.33,
+        "data_points": 216
+      },
+      "RTKM": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 2.52,
+        "sharpe_ratio": -1.66,
+        "max_drawdown": -2.33,
+        "data_points": 216
+      },
+      "MGNT": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 2.52,
+        "sharpe_ratio": -1.66,
+        "max_drawdown": -2.33,
+        "data_points": 216
+      },
+      "LKOH": {
+        "total_return": -10.82,
+        "annualized_return": -12.4,
+        "monthly_return": -1.03,
+        "volatility": 2.43,
+        "sharpe_ratio": -5.1,
+        "max_drawdown": -1.81,
+        "data_points": 218
+      },
+      "SBER": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 1.95,
+        "sharpe_ratio": 6.83,
+        "max_drawdown": -1.4,
+        "data_points": 218
+      },
+      "GAZP": {
+        "total_return": -2.6,
+        "annualized_return": -3.0,
+        "monthly_return": -0.25,
+        "volatility": 4.14,
+        "sharpe_ratio": -0.72,
+        "max_drawdown": -4.07,
+        "data_points": 218
+      },
+      "FIVE": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 2.52,
+        "sharpe_ratio": -1.66,
+        "max_drawdown": -2.33,
+        "data_points": 216
+      },
+      "NVTK": {
+        "total_return": 24.3,
+        "annualized_return": 28.89,
+        "monthly_return": 2.41,
+        "volatility": 3.76,
+        "sharpe_ratio": 7.68,
+        "max_drawdown": -3.5,
+        "data_points": 216
+      },
+      "ROSN": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 1.92,
+        "sharpe_ratio": 6.93,
+        "max_drawdown": -1.5,
+        "data_points": 218
+      },
+      "MTSS": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 1.95,
+        "sharpe_ratio": 6.83,
+        "max_drawdown": -1.4,
+        "data_points": 218
+      }
+    },
+    "Fixed Aggressive Strategy": {
+      "TATN": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 129.03,
+        "sharpe_ratio": -0.03,
+        "max_drawdown": -71.99,
+        "data_points": 216
+      },
+      "RTKM": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 129.03,
+        "sharpe_ratio": -0.03,
+        "max_drawdown": -71.99,
+        "data_points": 216
+      },
+      "MGNT": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 129.03,
+        "sharpe_ratio": -0.03,
+        "max_drawdown": -71.99,
+        "data_points": 216
+      },
+      "LKOH": {
+        "total_return": -10.82,
+        "annualized_return": -12.4,
+        "monthly_return": -1.03,
+        "volatility": 127.61,
+        "sharpe_ratio": -0.1,
+        "max_drawdown": -64.68,
+        "data_points": 218
+      },
+      "SBER": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 100.57,
+        "sharpe_ratio": 0.13,
+        "max_drawdown": -71.16,
+        "data_points": 218
+      },
+      "GAZP": {
+        "total_return": -2.6,
+        "annualized_return": -3.0,
+        "monthly_return": -0.25,
+        "volatility": 213.46,
+        "sharpe_ratio": -0.01,
+        "max_drawdown": -96.0,
+        "data_points": 218
+      },
+      "FIVE": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 129.03,
+        "sharpe_ratio": -0.03,
+        "max_drawdown": -71.99,
+        "data_points": 216
+      },
+      "NVTK": {
+        "total_return": 24.3,
+        "annualized_return": 28.89,
+        "monthly_return": 2.41,
+        "volatility": 189.51,
+        "sharpe_ratio": 0.15,
+        "max_drawdown": -96.68,
+        "data_points": 216
+      },
+      "ROSN": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 99.67,
+        "sharpe_ratio": 0.13,
+        "max_drawdown": -65.41,
+        "data_points": 218
+      },
+      "MTSS": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 100.57,
+        "sharpe_ratio": 0.13,
+        "max_drawdown": -71.16,
+        "data_points": 218
+      }
+    },
+    "High Frequency Strategy": {
+      "TATN": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 51.91,
+        "sharpe_ratio": -0.08,
+        "max_drawdown": -39.41,
+        "data_points": 216
+      },
+      "RTKM": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 51.91,
+        "sharpe_ratio": -0.08,
+        "max_drawdown": -39.41,
+        "data_points": 216
+      },
+      "MGNT": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 51.91,
+        "sharpe_ratio": -0.08,
+        "max_drawdown": -39.41,
+        "data_points": 216
+      },
+      "LKOH": {
+        "total_return": -10.82,
+        "annualized_return": -12.4,
+        "monthly_return": -1.03,
+        "volatility": 51.21,
+        "sharpe_ratio": -0.24,
+        "max_drawdown": -31.85,
+        "data_points": 218
+      },
+      "SBER": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 40.83,
+        "sharpe_ratio": 0.33,
+        "max_drawdown": -28.56,
+        "data_points": 218
+      },
+      "GAZP": {
+        "total_return": -2.6,
+        "annualized_return": -3.0,
+        "monthly_return": -0.25,
+        "volatility": 89.78,
+        "sharpe_ratio": -0.03,
+        "max_drawdown": -66.18,
+        "data_points": 218
+      },
+      "FIVE": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 51.91,
+        "sharpe_ratio": -0.08,
+        "max_drawdown": -39.41,
+        "data_points": 216
+      },
+      "NVTK": {
+        "total_return": 24.3,
+        "annualized_return": 28.89,
+        "monthly_return": 2.41,
+        "volatility": 77.88,
+        "sharpe_ratio": 0.37,
+        "max_drawdown": -57.31,
+        "data_points": 216
+      },
+      "ROSN": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 40.12,
+        "sharpe_ratio": 0.33,
+        "max_drawdown": -28.3,
+        "data_points": 218
+      },
+      "MTSS": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 40.83,
+        "sharpe_ratio": 0.33,
+        "max_drawdown": -28.56,
+        "data_points": 218
+      }
+    },
+    "Derivatives Strategy": {
+      "TATN": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 246.7,
+        "sharpe_ratio": -0.02,
+        "max_drawdown": -97.38,
+        "data_points": 216
+      },
+      "RTKM": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 246.7,
+        "sharpe_ratio": -0.02,
+        "max_drawdown": -97.38,
+        "data_points": 216
+      },
+      "MGNT": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 246.7,
+        "sharpe_ratio": -0.02,
+        "max_drawdown": -97.38,
+        "data_points": 216
+      },
+      "LKOH": {
+        "total_return": -10.82,
+        "annualized_return": -12.4,
+        "monthly_return": -1.03,
+        "volatility": 245.12,
+        "sharpe_ratio": -0.05,
+        "max_drawdown": -84.99,
+        "data_points": 218
+      },
+      "SBER": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 186.79,
+        "sharpe_ratio": 0.07,
+        "max_drawdown": -95.97,
+        "data_points": 218
+      },
+      "GAZP": {
+        "total_return": -2.6,
+        "annualized_return": -3.0,
+        "monthly_return": -0.25,
+        "volatility": 419.45,
+        "sharpe_ratio": -0.01,
+        "max_drawdown": -100.42,
+        "data_points": 218
+      },
+      "FIVE": {
+        "total_return": -3.59,
+        "annualized_return": -4.18,
+        "monthly_return": -0.35,
+        "volatility": 246.7,
+        "sharpe_ratio": -0.02,
+        "max_drawdown": -97.38,
+        "data_points": 216
+      },
+      "NVTK": {
+        "total_return": 24.3,
+        "annualized_return": 28.89,
+        "monthly_return": 2.41,
+        "volatility": 381.41,
+        "sharpe_ratio": 0.08,
+        "max_drawdown": -99.99,
+        "data_points": 216
+      },
+      "ROSN": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 185.15,
+        "sharpe_ratio": 0.07,
+        "max_drawdown": -96.22,
+        "data_points": 218
+      },
+      "MTSS": {
+        "total_return": 11.4,
+        "annualized_return": 13.29,
+        "monthly_return": 1.11,
+        "volatility": 186.79,
+        "sharpe_ratio": 0.07,
+        "max_drawdown": -95.97,
+        "data_points": 218
+      }
+    }
+  },
+  "summary": {
+    "Optimized ML Strategy": {
+      "avg_monthly_return": 0.31,
+      "max_monthly_return": 2.41,
+      "instruments_tested": 10,
+      "goal_20_percent_achieved": 0
+    },
+    "Fixed Aggressive Strategy": {
+      "avg_monthly_return": 0.31,
+      "max_monthly_return": 2.41,
+      "instruments_tested": 10,
+      "goal_20_percent_achieved": 0
+    },
+    "High Frequency Strategy": {
+      "avg_monthly_return": 0.31,
+      "max_monthly_return": 2.41,
+      "instruments_tested": 10,
+      "goal_20_percent_achieved": 0
+    },
+    "Derivatives Strategy": {
+      "avg_monthly_return": 0.31,
+      "max_monthly_return": 2.41,
+      "instruments_tested": 10,
+      "goal_20_percent_achieved": 0
+    }
+  }
+}

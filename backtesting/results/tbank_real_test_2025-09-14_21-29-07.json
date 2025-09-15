@@ -1,0 +1,452 @@
+{
+  "PIKK_1M": {
+    "conservative": {
+      "symbol": "PIKK",
+      "monthly_return": -3.651197053761257,
+      "total_return": -4.993874447740188,
+      "volatility": 9.394230875833516,
+      "sharpe_ratio": -5.389599226588094,
+      "max_drawdown": -4.993874447740192,
+      "win_rate": 0.0,
+      "total_trades": 4,
+      "period_start": "2025-08-17",
+      "period_end": "2025-09-14",
+      "period_days": 28,
+      "final_equity": 95006.12555225981
+    },
+    "momentum": {
+      "symbol": "PIKK",
+      "monthly_return": 0.0,
+      "total_return": -0.33348491738669495,
+      "volatility": 20.711068668645165,
+      "sharpe_ratio": -0.3038123459549056,
+      "max_drawdown": -5.305349074478929,
+      "win_rate": 0.0,
+      "total_trades": 1,
+      "period_start": "2025-08-20",
+      "period_end": "2025-09-14",
+      "period_days": 25,
+      "final_equity": 99666.5150826133
+    }
+  },
+  "GAZP_1M": {
+    "conservative": {
+      "symbol": "GAZP",
+      "monthly_return": -1.8041237113401998,
+      "total_return": -3.376311408103938,
+      "volatility": 19.15856656610053,
+      "sharpe_ratio": -1.7798691947841343,
+      "max_drawdown": -5.036085852349008,
+      "win_rate": 0.0,
+      "total_trades": 3,
+      "period_start": "2025-08-17",
+      "period_end": "2025-09-14",
+      "period_days": 28,
+      "final_equity": 96623.68859189606
+    },
+    "momentum": {
+      "symbol": "GAZP",
+      "monthly_return": 0.0,
+      "total_return": 0.0,
+      "volatility": 0.0,
+      "sharpe_ratio": 0.0,
+      "max_drawdown": 0.0,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "period_start": "2025-08-20",
+      "period_end": "2025-09-14",
+      "period_days": 25,
+      "final_equity": 100000.0
+    }
+  },
+  "SGZH_3M": {
+    "conservative": {
+      "symbol": "SGZH",
+      "monthly_return": -5.590060929312424,
+      "total_return": -16.556617109529558,
+      "volatility": 38.93415848718323,
+      "sharpe_ratio": -1.36137501514915,
+      "max_drawdown": -22.07918601784561,
+      "win_rate": 18.181818181818183,
+      "total_trades": 11,
+      "period_start": "2025-06-18",
+      "period_end": "2025-09-14",
+      "period_days": 88,
+      "final_equity": 83443.38289047044
+    },
+    "momentum": {
+      "symbol": "SGZH",
+      "monthly_return": 2.7018548470116936,
+      "total_return": 12.070141866801753,
+      "volatility": 39.21541541205926,
+      "sharpe_ratio": 0.9943737062398699,
+      "max_drawdown": -12.838781971447357,
+      "win_rate": 50.0,
+      "total_trades": 4,
+      "period_start": "2025-06-23",
+      "period_end": "2025-09-14",
+      "period_days": 83,
+      "final_equity": 112070.14186680174
+    }
+  },
+  "SGZH_1Y": {
+    "conservative": {
+      "symbol": "SGZH",
+      "monthly_return": -3.128715413944102,
+      "total_return": -33.23837370676921,
+      "volatility": 77.0555474183705,
+      "sharpe_ratio": -0.18444806985216322,
+      "max_drawdown": -49.79403796473516,
+      "win_rate": 21.951219512195124,
+      "total_trades": 41,
+      "period_start": "2024-09-18",
+      "period_end": "2025-09-14",
+      "period_days": 361,
+      "final_equity": 66761.62629323079
+    },
+    "momentum": {
+      "symbol": "SGZH",
+      "monthly_return": -1.1628119385567237,
+      "total_return": -44.855480423337035,
+      "volatility": 92.60031064088753,
+      "sharpe_ratio": -0.17356641011480103,
+      "max_drawdown": -75.39270509454073,
+      "win_rate": 44.44444444444444,
+      "total_trades": 18,
+      "period_start": "2024-09-23",
+      "period_end": "2025-09-14",
+      "period_days": 356,
+      "final_equity": 55144.51957666297
+    }
+  },
+  "GAZP_1Y": {
+    "conservative": {
+      "symbol": "GAZP",
+      "monthly_return": 6.267581049285538,
+      "total_return": 125.22682167513324,
+      "volatility": 41.78369606343188,
+      "sharpe_ratio": 1.7420223580966845,
+      "max_drawdown": -16.775160010704944,
+      "win_rate": 41.935483870967744,
+      "total_trades": 31,
+      "period_start": "2024-09-18",
+      "period_end": "2025-09-14",
+      "period_days": 361,
+      "final_equity": 225226.82167513322
+    },
+    "momentum": {
+      "symbol": "GAZP",
+      "monthly_return": 4.8639037435789945,
+      "total_return": 67.27355920794973,
+      "volatility": 47.06878126167721,
+      "sharpe_ratio": 1.0670213754189597,
+      "max_drawdown": -31.616057903615165,
+      "win_rate": 57.14285714285714,
+      "total_trades": 14,
+      "period_start": "2024-09-23",
+      "period_end": "2025-09-14",
+      "period_days": 356,
+      "final_equity": 167273.55920794973
+    }
+  },
+  "PIKK_1Y": {
+    "conservative": {
+      "symbol": "PIKK",
+      "monthly_return": 0.3103227379931933,
+      "total_return": -16.629016418343756,
+      "volatility": 58.28815989653664,
+      "sharpe_ratio": -0.08679384125211628,
+      "max_drawdown": -59.64880329150678,
+      "win_rate": 24.324324324324326,
+      "total_trades": 37,
+      "period_start": "2024-09-18",
+      "period_end": "2025-09-14",
+      "period_days": 361,
+      "final_equity": 83370.98358165624
+    },
+    "momentum": {
+      "symbol": "PIKK",
+      "monthly_return": 4.318541003612724,
+      "total_return": 39.670228304233056,
+      "volatility": 64.61402776610076,
+      "sharpe_ratio": 0.6769996778955902,
+      "max_drawdown": -46.68197519411295,
+      "win_rate": 43.75,
+      "total_trades": 16,
+      "period_start": "2024-09-23",
+      "period_end": "2025-09-14",
+      "period_days": 356,
+      "final_equity": 139670.22830423305
+    }
+  },
+  "PIKK_3M": {
+    "conservative": {
+      "symbol": "PIKK",
+      "monthly_return": -1.1805668818973936,
+      "total_return": 0.6028853947920743,
+      "volatility": 21.491984928878594,
+      "sharpe_ratio": -0.04102489946157863,
+      "max_drawdown": -13.369393799677876,
+      "win_rate": 30.0,
+      "total_trades": 10,
+      "period_start": "2025-06-18",
+      "period_end": "2025-09-14",
+      "period_days": 88,
+      "final_equity": 100602.88539479207
+    },
+    "momentum": {
+      "symbol": "PIKK",
+      "monthly_return": 1.8814480609627944,
+      "total_return": 18.470208140052335,
+      "volatility": 37.359237180191926,
+      "sharpe_ratio": 1.4915545635924154,
+      "max_drawdown": -9.55594603187432,
+      "win_rate": 50.0,
+      "total_trades": 4,
+      "period_start": "2025-06-23",
+      "period_end": "2025-09-14",
+      "period_days": 83,
+      "final_equity": 118470.20814005235
+    }
+  },
+  "GAZP_3M": {
+    "conservative": {
+      "symbol": "GAZP",
+      "monthly_return": 3.6067143697936546,
+      "total_return": 14.7115137187517,
+      "volatility": 28.599116586573093,
+      "sharpe_ratio": 1.4390983668982829,
+      "max_drawdown": -10.673950068376726,
+      "win_rate": 28.57142857142857,
+      "total_trades": 7,
+      "period_start": "2025-06-18",
+      "period_end": "2025-09-14",
+      "period_days": 88,
+      "final_equity": 114711.51371875171
+    },
+    "momentum": {
+      "symbol": "GAZP",
+      "monthly_return": 6.106380187670476,
+      "total_return": 19.05675001306044,
+      "volatility": 31.705521594235563,
+      "sharpe_ratio": 1.7496724611477334,
+      "max_drawdown": -5.666343981929669,
+      "win_rate": 100.0,
+      "total_trades": 2,
+      "period_start": "2025-06-23",
+      "period_end": "2025-09-14",
+      "period_days": 83,
+      "final_equity": 119056.75001306045
+    }
+  },
+  "SGZH_1M": {
+    "conservative": {
+      "symbol": "SGZH",
+      "monthly_return": -4.8780487804877986,
+      "total_return": -14.244628100802814,
+      "volatility": 48.60511438534017,
+      "sharpe_ratio": -2.6979497602085054,
+      "max_drawdown": -22.07918601784559,
+      "win_rate": 0.0,
+      "total_trades": 4,
+      "period_start": "2025-08-17",
+      "period_end": "2025-09-14",
+      "period_days": 28,
+      "final_equity": 85755.37189919718
+    },
+    "momentum": {
+      "symbol": "SGZH",
+      "monthly_return": 0.0,
+      "total_return": -8.765859284890443,
+      "volatility": 40.4863026880229,
+      "sharpe_ratio": -2.1961704645216504,
+      "max_drawdown": -11.649365628604384,
+      "win_rate": 0.0,
+      "total_trades": 1,
+      "period_start": "2025-08-20",
+      "period_end": "2025-09-14",
+      "period_days": 25,
+      "final_equity": 91234.14071510956
+    }
+  },
+  "SBER_1M": {
+    "conservative": {
+      "symbol": "SBER",
+      "monthly_return": -1.9627273599079342,
+      "total_return": -3.4765930322273486,
+      "volatility": 7.279621059096572,
+      "sharpe_ratio": -5.023263788815786,
+      "max_drawdown": -3.4765930322273486,
+      "win_rate": 0.0,
+      "total_trades": 3,
+      "period_start": "2025-08-17",
+      "period_end": "2025-09-14",
+      "period_days": 28,
+      "final_equity": 96523.40696777265
+    },
+    "momentum": {
+      "symbol": "SBER",
+      "monthly_return": 0.0,
+      "total_return": 0.0,
+      "volatility": 0.0,
+      "sharpe_ratio": 0.0,
+      "max_drawdown": 0.0,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "period_start": "2025-08-20",
+      "period_end": "2025-09-14",
+      "period_days": 25,
+      "final_equity": 100000.0
+    }
+  },
+  "IRAO_1Y": {
+    "conservative": {
+      "symbol": "IRAO",
+      "monthly_return": -0.2483051909729611,
+      "total_return": -6.5294700385686415,
+      "volatility": 20.739221519621452,
+      "sharpe_ratio": -0.41723987167639776,
+      "max_drawdown": -26.831490747872795,
+      "win_rate": 27.027027027027028,
+      "total_trades": 37,
+      "period_start": "2024-09-18",
+      "period_end": "2025-09-14",
+      "period_days": 361,
+      "final_equity": 93470.52996143136
+    },
+    "momentum": {
+      "symbol": "IRAO",
+      "monthly_return": -3.595021529427347,
+      "total_return": -40.0791882159176,
+      "volatility": 26.601755689735796,
+      "sharpe_ratio": -1.716400168675701,
+      "max_drawdown": -40.51803456404636,
+      "win_rate": 16.666666666666664,
+      "total_trades": 12,
+      "period_start": "2024-09-23",
+      "period_end": "2025-09-14",
+      "period_days": 356,
+      "final_equity": 59920.811784082405
+    }
+  },
+  "IRAO_3M": {
+    "conservative": {
+      "symbol": "IRAO",
+      "monthly_return": 2.880964346706731,
+      "total_return": 12.119530151813795,
+      "volatility": 14.816725353659452,
+      "sharpe_ratio": 2.109191884882021,
+      "max_drawdown": -3.636363390363543,
+      "win_rate": 37.5,
+      "total_trades": 8,
+      "period_start": "2025-06-18",
+      "period_end": "2025-09-14",
+      "period_days": 88,
+      "final_equity": 112119.53015181379
+    },
+    "momentum": {
+      "symbol": "IRAO",
+      "monthly_return": -2.0123619112807316,
+      "total_return": -6.087069376590226,
+      "volatility": 9.478393611217701,
+      "sharpe_ratio": -2.5930372921235834,
+      "max_drawdown": -6.774866244140372,
+      "win_rate": 33.33333333333333,
+      "total_trades": 3,
+      "period_start": "2025-06-23",
+      "period_end": "2025-09-14",
+      "period_days": 83,
+      "final_equity": 93912.93062340977
+    }
+  },
+  "IRAO_1M": {
+    "conservative": {
+      "symbol": "IRAO",
+      "monthly_return": -0.41831399775111855,
+      "total_return": -0.8259216545613346,
+      "volatility": 11.361390552875648,
+      "sharpe_ratio": -1.0417897052588385,
+      "max_drawdown": -2.553579571363413,
+      "win_rate": 33.33333333333333,
+      "total_trades": 3,
+      "period_start": "2025-08-17",
+      "period_end": "2025-09-14",
+      "period_days": 28,
+      "final_equity": 99174.07834543867
+    },
+    "momentum": {
+      "symbol": "IRAO",
+      "monthly_return": 0.0,
+      "total_return": 0.0,
+      "volatility": 0.0,
+      "sharpe_ratio": 0.0,
+      "max_drawdown": 0.0,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "period_start": "2025-08-20",
+      "period_end": "2025-09-14",
+      "period_days": 25,
+      "final_equity": 100000.0
+    }
+  },
+  "SBER_1Y": {
+    "conservative": {
+      "symbol": "SBER",
+      "monthly_return": -0.9054812337033757,
+      "total_return": -11.10783671570016,
+      "volatility": 25.04286275284613,
+      "sharpe_ratio": -0.4776984822877138,
+      "max_drawdown": -26.809201071465644,
+      "win_rate": 27.906976744186046,
+      "total_trades": 43,
+      "period_start": "2024-09-18",
+      "period_end": "2025-09-14",
+      "period_days": 361,
+      "final_equity": 88892.16328429984
+    },
+    "momentum": {
+      "symbol": "SBER",
+      "monthly_return": 1.7981310375782027,
+      "total_return": 16.963791383891923,
+      "volatility": 30.993345454359144,
+      "sharpe_ratio": 0.42825888893057323,
+      "max_drawdown": -17.108713291165525,
+      "win_rate": 36.36363636363637,
+      "total_trades": 11,
+      "period_start": "2024-09-23",
+      "period_end": "2025-09-14",
+      "period_days": 356,
+      "final_equity": 116963.79138389192
+    }
+  },
+  "SBER_3M": {
+    "conservative": {
+      "symbol": "SBER",
+      "monthly_return": -4.573502277484095,
+      "total_return": -12.05740557017444,
+      "volatility": 22.679153266337128,
+      "sharpe_ratio": -1.8421993539609949,
+      "max_drawdown": -16.261299061026783,
+      "win_rate": 25.0,
+      "total_trades": 12,
+      "period_start": "2025-06-18",
+      "period_end": "2025-09-14",
+      "period_days": 88,
+      "final_equity": 87942.59442982556
+    },
+    "momentum": {
+      "symbol": "SBER",
+      "monthly_return": -2.695678096652128,
+      "total_return": -7.950869793652937,
+      "volatility": 22.033428561484847,
+      "sharpe_ratio": -1.310519536092522,
+      "max_drawdown": -10.979311645142895,
+      "win_rate": 0.0,
+      "total_trades": 2,
+      "period_start": "2025-06-23",
+      "period_end": "2025-09-14",
+      "period_days": 83,
+      "final_equity": 92049.13020634706
+    }
+  }
+}

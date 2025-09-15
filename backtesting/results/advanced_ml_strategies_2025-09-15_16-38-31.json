@@ -1,0 +1,392 @@
+{
+  "SGZH_1Y": {
+    "ARIMA_Strategy": {
+      "symbol": "SGZH",
+      "strategy": "ARIMA_Strategy",
+      "monthly_return": 1.2823470040971952,
+      "total_return": 9.692287,
+      "volatility": 4.8907930450087065,
+      "sharpe_ratio": 1.4098084518365348,
+      "max_drawdown": -1.5559614724326056,
+      "win_rate": 70.37037037037037,
+      "total_trades": 27,
+      "final_equity": 109692.287,
+      "method_stats": {
+        "ARIMA": {
+          "trades": 27,
+          "pnl": 1508.2289999999957
+        }
+      },
+      "period_days": 221
+    },
+    "Ensemble_ML_Strategy": {
+      "symbol": "SGZH",
+      "strategy": "Ensemble_ML_Strategy",
+      "monthly_return": 1.4291544398726153,
+      "total_return": 10.851889000000003,
+      "volatility": 4.286970752287016,
+      "sharpe_ratio": 1.914362830489139,
+      "max_drawdown": -1.530429499602381,
+      "win_rate": 70.58823529411765,
+      "total_trades": 17,
+      "final_equity": 110851.88900000001,
+      "method_stats": {
+        "Ensemble_ML": {
+          "trades": 17,
+          "pnl": 7680.844000000003
+        }
+      },
+      "period_days": 221
+    },
+    "SARIMA_Strategy": {
+      "symbol": "SGZH",
+      "strategy": "SARIMA_Strategy",
+      "monthly_return": 1.4032990398560319,
+      "total_return": 10.646898999999998,
+      "volatility": 5.1900867818641405,
+      "sharpe_ratio": 1.543955751355459,
+      "max_drawdown": -1.1173608851047516,
+      "win_rate": 63.33333333333333,
+      "total_trades": 30,
+      "final_equity": 110646.899,
+      "method_stats": {
+        "SARIMA": {
+          "trades": 30,
+          "pnl": 5038.573
+        }
+      },
+      "period_days": 221
+    },
+    "LSTM_Strategy": {
+      "symbol": "SGZH",
+      "strategy": "LSTM_Strategy",
+      "monthly_return": 0.9896288374087847,
+      "total_return": 6.511676,
+      "volatility": 3.8874187296563485,
+      "sharpe_ratio": 1.0308958635599972,
+      "max_drawdown": -1.1666428044361696,
+      "win_rate": 60.0,
+      "total_trades": 10,
+      "final_equity": 106511.676,
+      "method_stats": {
+        "LSTM": {
+          "trades": 10,
+          "pnl": 1881.0769999999957
+        }
+      },
+      "period_days": 195
+    }
+  },
+  "GAZP_1Y": {
+    "ARIMA_Strategy": {
+      "symbol": "GAZP",
+      "strategy": "ARIMA_Strategy",
+      "monthly_return": 0.5786654316363382,
+      "total_return": 4.27808999999999,
+      "volatility": 3.2362436344302323,
+      "sharpe_ratio": 0.11870157082947158,
+      "max_drawdown": -1.0350496346502456,
+      "win_rate": 57.692307692307686,
+      "total_trades": 26,
+      "final_equity": 104278.09,
+      "method_stats": {
+        "ARIMA": {
+          "trades": 26,
+          "pnl": -3376.5800000000027
+        }
+      },
+      "period_days": 221
+    },
+    "Ensemble_ML_Strategy": {
+      "symbol": "GAZP",
+      "strategy": "Ensemble_ML_Strategy",
+      "monthly_return": 0.2932253496743309,
+      "total_return": 2.1485100000000035,
+      "volatility": 4.14793705753884,
+      "sharpe_ratio": -0.5325228842004148,
+      "max_drawdown": -1.9581275041980948,
+      "win_rate": 26.666666666666668,
+      "total_trades": 15,
+      "final_equity": 102148.51,
+      "method_stats": {
+        "Ensemble_ML": {
+          "trades": 15,
+          "pnl": -6303.719999999993
+        }
+      },
+      "period_days": 221
+    },
+    "SARIMA_Strategy": {
+      "symbol": "GAZP",
+      "strategy": "SARIMA_Strategy",
+      "monthly_return": 0.6853751066917324,
+      "total_return": 5.083989999999949,
+      "volatility": 3.6466853599168383,
+      "sharpe_ratio": 0.3779256953706505,
+      "max_drawdown": -1.4573953109624949,
+      "win_rate": 56.25,
+      "total_trades": 32,
+      "final_equity": 105083.98999999995,
+      "method_stats": {
+        "SARIMA": {
+          "trades": 32,
+          "pnl": -3864.0399999999977
+        }
+      },
+      "period_days": 221
+    },
+    "LSTM_Strategy": {
+      "symbol": "GAZP",
+      "strategy": "LSTM_Strategy",
+      "monthly_return": 0.5405520596965641,
+      "total_return": 3.5138000000000114,
+      "volatility": 4.155674889420379,
+      "sharpe_ratio": -0.005909011685668325,
+      "max_drawdown": -1.610789475977021,
+      "win_rate": 58.333333333333336,
+      "total_trades": 12,
+      "final_equity": 103513.8,
+      "method_stats": {
+        "LSTM": {
+          "trades": 12,
+          "pnl": -2051.3300000000036
+        }
+      },
+      "period_days": 195
+    }
+  },
+  "PIKK_1Y": {
+    "ARIMA_Strategy": {
+      "symbol": "PIKK",
+      "strategy": "ARIMA_Strategy",
+      "monthly_return": 1.3129440346534293,
+      "total_return": 9.933099999999984,
+      "volatility": 4.233565089174983,
+      "sharpe_ratio": 1.6876455645870991,
+      "max_drawdown": -0.9028748166930525,
+      "win_rate": 65.51724137931035,
+      "total_trades": 29,
+      "final_equity": 109933.09999999999,
+      "method_stats": {
+        "ARIMA": {
+          "trades": 29,
+          "pnl": 323.8000000000079
+        }
+      },
+      "period_days": 221
+    },
+    "Ensemble_ML_Strategy": {
+      "symbol": "PIKK",
+      "strategy": "Ensemble_ML_Strategy",
+      "monthly_return": 0.3585583211737742,
+      "total_return": 2.6326000000000294,
+      "volatility": 5.061012516375065,
+      "sharpe_ratio": -0.3092140171336412,
+      "max_drawdown": -2.4390999999999914,
+      "win_rate": 31.25,
+      "total_trades": 16,
+      "final_equity": 102632.60000000002,
+      "method_stats": {
+        "Ensemble_ML": {
+          "trades": 16,
+          "pnl": -4781.099999999995
+        }
+      },
+      "period_days": 221
+    },
+    "SARIMA_Strategy": {
+      "symbol": "PIKK",
+      "strategy": "SARIMA_Strategy",
+      "monthly_return": 2.1574635456360847,
+      "total_return": 16.762300000000007,
+      "volatility": 5.285408259263128,
+      "sharpe_ratio": 2.8133031226204643,
+      "max_drawdown": -0.921413901629691,
+      "win_rate": 65.9090909090909,
+      "total_trades": 44,
+      "final_equity": 116762.3,
+      "method_stats": {
+        "SARIMA": {
+          "trades": 44,
+          "pnl": 5465.700000000003
+        }
+      },
+      "period_days": 221
+    },
+    "LSTM_Strategy": {
+      "symbol": "PIKK",
+      "strategy": "LSTM_Strategy",
+      "monthly_return": 0.7914204408071557,
+      "total_return": 5.179599999999995,
+      "volatility": 3.341389402158353,
+      "sharpe_ratio": 0.6600912296901558,
+      "max_drawdown": -0.8891857817945197,
+      "win_rate": 77.77777777777779,
+      "total_trades": 9,
+      "final_equity": 105179.6,
+      "method_stats": {
+        "LSTM": {
+          "trades": 9,
+          "pnl": 1912.7000000000064
+        }
+      },
+      "period_days": 195
+    }
+  },
+  "IRAO_1Y": {
+    "ARIMA_Strategy": {
+      "symbol": "IRAO",
+      "strategy": "ARIMA_Strategy",
+      "monthly_return": 0.020755475048850336,
+      "total_return": 0.1507864999999997,
+      "volatility": 1.9770351246849938,
+      "sharpe_ratio": -2.4212220862508382,
+      "max_drawdown": -0.8475032967325784,
+      "win_rate": 57.14285714285714,
+      "total_trades": 7,
+      "final_equity": 100150.7865,
+      "method_stats": {
+        "ARIMA": {
+          "trades": 7,
+          "pnl": 60.94850000000045
+        }
+      },
+      "period_days": 221
+    },
+    "Ensemble_ML_Strategy": {
+      "symbol": "IRAO",
+      "strategy": "Ensemble_ML_Strategy",
+      "monthly_return": 0.27151481993368254,
+      "total_return": 1.988080499999989,
+      "volatility": 2.9940414472161323,
+      "sharpe_ratio": -0.8097054336353341,
+      "max_drawdown": -1.0034281108973517,
+      "win_rate": 50.0,
+      "total_trades": 4,
+      "final_equity": 101988.0805,
+      "method_stats": {
+        "Ensemble_ML": {
+          "trades": 4,
+          "pnl": 553.0615000000008
+        }
+      },
+      "period_days": 221
+    },
+    "SARIMA_Strategy": {
+      "symbol": "IRAO",
+      "strategy": "SARIMA_Strategy",
+      "monthly_return": -0.014635946899010932,
+      "total_return": -0.1062110000000005,
+      "volatility": 2.0829574211897146,
+      "sharpe_ratio": -2.455682575537062,
+      "max_drawdown": -1.3302343116171504,
+      "win_rate": 50.0,
+      "total_trades": 12,
+      "final_equity": 99893.789,
+      "method_stats": {
+        "SARIMA": {
+          "trades": 12,
+          "pnl": -1358.5880000000013
+        }
+      },
+      "period_days": 221
+    },
+    "LSTM_Strategy": {
+      "symbol": "IRAO",
+      "strategy": "LSTM_Strategy",
+      "monthly_return": 0.20193414244211727,
+      "total_return": 1.3006810000000035,
+      "volatility": 2.1354928711848973,
+      "sharpe_ratio": -1.464284245691826,
+      "max_drawdown": -0.9649953827020201,
+      "win_rate": 75.0,
+      "total_trades": 4,
+      "final_equity": 101300.681,
+      "method_stats": {
+        "LSTM": {
+          "trades": 4,
+          "pnl": 549.0794999999988
+        }
+      },
+      "period_days": 195
+    }
+  },
+  "SBER_1Y": {
+    "ARIMA_Strategy": {
+      "symbol": "SBER",
+      "strategy": "ARIMA_Strategy",
+      "monthly_return": 0.12526354500337344,
+      "total_return": 0.9130100000000141,
+      "volatility": 1.7739578024141125,
+      "sharpe_ratio": -2.1576608395311783,
+      "max_drawdown": -0.8597746751723543,
+      "win_rate": 66.66666666666666,
+      "total_trades": 6,
+      "final_equity": 100913.01000000002,
+      "method_stats": {
+        "ARIMA": {
+          "trades": 6,
+          "pnl": -249.83999999999725
+        }
+      },
+      "period_days": 221
+    },
+    "Ensemble_ML_Strategy": {
+      "symbol": "SBER",
+      "strategy": "Ensemble_ML_Strategy",
+      "monthly_return": 0.05356576928994272,
+      "total_return": 0.38954999999998297,
+      "volatility": 1.5403233683859578,
+      "sharpe_ratio": -2.9171676062947705,
+      "max_drawdown": -0.9345707537329727,
+      "win_rate": 75.0,
+      "total_trades": 4,
+      "final_equity": 100389.54999999999,
+      "method_stats": {
+        "Ensemble_ML": {
+          "trades": 4,
+          "pnl": 962.2199999999964
+        }
+      },
+      "period_days": 221
+    },
+    "SARIMA_Strategy": {
+      "symbol": "SBER",
+      "strategy": "SARIMA_Strategy",
+      "monthly_return": 0.46565619806919756,
+      "total_return": 3.4304300000000287,
+      "volatility": 2.5903471013775223,
+      "sharpe_ratio": -0.26002188992028874,
+      "max_drawdown": -0.8825768601524016,
+      "win_rate": 71.42857142857143,
+      "total_trades": 14,
+      "final_equity": 103430.43000000002,
+      "method_stats": {
+        "SARIMA": {
+          "trades": 14,
+          "pnl": 24.779999999999063
+        }
+      },
+      "period_days": 221
+    },
+    "LSTM_Strategy": {
+      "symbol": "SBER",
+      "strategy": "LSTM_Strategy",
+      "monthly_return": 0.3834405801869556,
+      "total_return": 2.4819399999999936,
+      "volatility": 1.671153659164225,
+      "sharpe_ratio": -0.9065818713134494,
+      "max_drawdown": -0.5428848143465397,
+      "win_rate": 81.81818181818183,
+      "total_trades": 11,
+      "final_equity": 102481.93999999999,
+      "method_stats": {
+        "LSTM": {
+          "trades": 11,
+          "pnl": 2407.3600000000038
+        }
+      },
+      "period_days": 195
+    }
+  }
+}

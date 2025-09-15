@@ -1,0 +1,157 @@
+{
+  "timestamp": "2025-09-14T11:54:44.029780",
+  "data_source": "T-Bank API Real Data Only",
+  "total_instruments": 10,
+  "results": {
+    "TATN": {
+      "conservative": {
+        "total_return": -0.251,
+        "monthly_return": -0.0648098776901529,
+        "volatility": 1.1273356203925202,
+        "sharpe_ratio": -5.125109530620637,
+        "max_drawdown": -0.494836703887717,
+        "win_rate": 0.0,
+        "total_trades": 7,
+        "data_points": 168,
+        "period_days": 118,
+        "start_date": "2025-03-12",
+        "end_date": "2025-09-12"
+      }
+    },
+    "RTKM": {
+      "conservative": {
+        "total_return": -0.251,
+        "monthly_return": -0.0648098776901529,
+        "volatility": 1.1273356203925202,
+        "sharpe_ratio": -5.125109530620637,
+        "max_drawdown": -0.494836703887717,
+        "win_rate": 0.0,
+        "total_trades": 7,
+        "data_points": 168,
+        "period_days": 118,
+        "start_date": "2025-03-12",
+        "end_date": "2025-09-12"
+      }
+    },
+    "MGNT": {
+      "conservative": {
+        "total_return": -0.251,
+        "monthly_return": -0.0648098776901529,
+        "volatility": 1.1273356203925202,
+        "sharpe_ratio": -5.125109530620637,
+        "max_drawdown": -0.494836703887717,
+        "win_rate": 0.0,
+        "total_trades": 7,
+        "data_points": 168,
+        "period_days": 118,
+        "start_date": "2025-03-12",
+        "end_date": "2025-09-12"
+      }
+    },
+    "LKOH": {
+      "conservative": {
+        "total_return": 0.581,
+        "monthly_return": 0.14706187467452558,
+        "volatility": 0.8421837459881966,
+        "sharpe_ratio": -3.8415102634277583,
+        "max_drawdown": -0.26,
+        "win_rate": 0.0,
+        "total_trades": 7,
+        "data_points": 170,
+        "period_days": 120,
+        "start_date": "2025-03-12",
+        "end_date": "2025-09-12"
+      }
+    },
+    "SBER": {
+      "conservative": {
+        "total_return": -0.9169999999999999,
+        "monthly_return": -0.23341259426541416,
+        "volatility": 1.157306746226028,
+        "sharpe_ratio": -6.740608016520976,
+        "max_drawdown": -1.1384498722860792,
+        "win_rate": 0.0,
+        "total_trades": 8,
+        "data_points": 170,
+        "period_days": 120,
+        "start_date": "2025-03-12",
+        "end_date": "2025-09-12"
+      }
+    },
+    "GAZP": {
+      "conservative": {
+        "total_return": -0.523,
+        "monthly_return": -0.13292738018180206,
+        "volatility": 1.2238649849734335,
+        "sharpe_ratio": -5.388771345823564,
+        "max_drawdown": -1.219403207387915,
+        "win_rate": 0.0,
+        "total_trades": 5,
+        "data_points": 170,
+        "period_days": 120,
+        "start_date": "2025-03-12",
+        "end_date": "2025-09-12"
+      }
+    },
+    "FIVE": {
+      "conservative": {
+        "total_return": -0.251,
+        "monthly_return": -0.0648098776901529,
+        "volatility": 1.1273356203925202,
+        "sharpe_ratio": -5.125109530620637,
+        "max_drawdown": -0.494836703887717,
+        "win_rate": 0.0,
+        "total_trades": 7,
+        "data_points": 168,
+        "period_days": 118,
+        "start_date": "2025-03-12",
+        "end_date": "2025-09-12"
+      }
+    },
+    "NVTK": {
+      "conservative": {
+        "total_return": -0.629,
+        "monthly_return": -0.1626407342204761,
+        "volatility": 1.3524738361127355,
+        "sharpe_ratio": -5.139980253241849,
+        "max_drawdown": -1.209,
+        "win_rate": 0.0,
+        "total_trades": 5,
+        "data_points": 168,
+        "period_days": 118,
+        "start_date": "2025-03-12",
+        "end_date": "2025-09-12"
+      }
+    },
+    "ROSN": {
+      "conservative": {
+        "total_return": -0.49899999999999994,
+        "monthly_return": -0.12681605788754657,
+        "volatility": 1.1244206210592822,
+        "sharpe_ratio": -5.800136152347133,
+        "max_drawdown": -0.7758354191804865,
+        "win_rate": 0.0,
+        "total_trades": 8,
+        "data_points": 170,
+        "period_days": 120,
+        "start_date": "2025-03-12",
+        "end_date": "2025-09-12"
+      }
+    },
+    "MTSS": {
+      "conservative": {
+        "total_return": -0.9169999999999999,
+        "monthly_return": -0.23341259426541416,
+        "volatility": 1.157306746226028,
+        "sharpe_ratio": -6.740608016520976,
+        "max_drawdown": -1.1384498722860792,
+        "win_rate": 0.0,
+        "total_trades": 8,
+        "data_points": 170,
+        "period_days": 120,
+        "start_date": "2025-03-12",
+        "end_date": "2025-09-12"
+      }
+    }
+  }
+}

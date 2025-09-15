@@ -1,0 +1,862 @@
+{
+  "SGZH_3M": {
+    "Conservative_RiskManaged": {
+      "symbol": "SGZH",
+      "strategy": "Conservative_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -1.5363420000000017,
+      "volatility": 2.832249636871881,
+      "sharpe_ratio": -7.048526520133756,
+      "max_drawdown": 1.890929763828984,
+      "win_rate": 0.0,
+      "total_trades": 1,
+      "stop_loss_trades": 1,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 98463.658,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Momentum_RiskManaged": {
+      "symbol": "SGZH",
+      "strategy": "Momentum_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -1.2873789999999996,
+      "volatility": 4.690349577770507,
+      "sharpe_ratio": -2.9244079035229675,
+      "max_drawdown": 1.8980300534972578,
+      "win_rate": 0.0,
+      "total_trades": 1,
+      "stop_loss_trades": 1,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 98712.621,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Aggressive_RiskManaged": {
+      "symbol": "SGZH",
+      "strategy": "Aggressive_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": 0.5978229999999973,
+      "volatility": 14.138016733842903,
+      "sharpe_ratio": -0.1526372384179359,
+      "max_drawdown": 6.245018106779408,
+      "win_rate": 33.33333333333333,
+      "total_trades": 3,
+      "stop_loss_trades": 2,
+      "take_profit_trades": 1,
+      "risk_management_active": true,
+      "final_equity": 100597.82299999999,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "ML_RiskManaged": {
+      "symbol": "SGZH",
+      "strategy": "ML_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.3552389999999961,
+      "volatility": 1.8608779741387367,
+      "sharpe_ratio": -5.214263822024176,
+      "max_drawdown": 0.6826371523077945,
+      "win_rate": 0.0,
+      "total_trades": 1,
+      "stop_loss_trades": 1,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99644.761,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    }
+  },
+  "SGZH_1Y": {
+    "Conservative_RiskManaged": {
+      "symbol": "SGZH",
+      "strategy": "Conservative_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.47055599999999975,
+      "volatility": 8.824933887167477,
+      "sharpe_ratio": -1.7505767250129627,
+      "max_drawdown": 1.5682667702796884,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99529.444,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Momentum_RiskManaged": {
+      "symbol": "SGZH",
+      "strategy": "Momentum_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -4.375273000000002,
+      "volatility": 15.36559864206243,
+      "sharpe_ratio": -1.7167678510127402,
+      "max_drawdown": 8.744195732554347,
+      "win_rate": 14.285714285714285,
+      "total_trades": 7,
+      "stop_loss_trades": 6,
+      "take_profit_trades": 1,
+      "risk_management_active": true,
+      "final_equity": 95624.727,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Aggressive_RiskManaged": {
+      "symbol": "SGZH",
+      "strategy": "Aggressive_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": 7.278926999999991,
+      "volatility": 35.6996899601953,
+      "sharpe_ratio": 1.3057183712751317,
+      "max_drawdown": 10.851309773516814,
+      "win_rate": 44.44444444444444,
+      "total_trades": 9,
+      "stop_loss_trades": 5,
+      "take_profit_trades": 4,
+      "risk_management_active": true,
+      "final_equity": 107278.927,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "ML_RiskManaged": {
+      "symbol": "SGZH",
+      "strategy": "ML_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -1.8624750000000079,
+      "volatility": 19.573575410635424,
+      "sharpe_ratio": -2.025827138441637,
+      "max_drawdown": 4.977294303437752,
+      "win_rate": 0.0,
+      "total_trades": 1,
+      "stop_loss_trades": 1,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 98137.525,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    }
+  },
+  "GAZP_1Y": {
+    "Conservative_RiskManaged": {
+      "symbol": "GAZP",
+      "strategy": "Conservative_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -1.887939999999999,
+      "volatility": 7.825627798983518,
+      "sharpe_ratio": -1.696354272316012,
+      "max_drawdown": 4.911457275986568,
+      "win_rate": 0.0,
+      "total_trades": 1,
+      "stop_loss_trades": 1,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 98112.06,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Momentum_RiskManaged": {
+      "symbol": "GAZP",
+      "strategy": "Momentum_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -2.4852499999999833,
+      "volatility": 6.295619376570798,
+      "sharpe_ratio": -2.73809343166887,
+      "max_drawdown": 3.976447754594999,
+      "win_rate": 0.0,
+      "total_trades": 3,
+      "stop_loss_trades": 3,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 97514.75000000001,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Aggressive_RiskManaged": {
+      "symbol": "GAZP",
+      "strategy": "Aggressive_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -1.1066299999999862,
+      "volatility": 16.846837034120608,
+      "sharpe_ratio": -0.5928408632478626,
+      "max_drawdown": 6.284683949236262,
+      "win_rate": 33.33333333333333,
+      "total_trades": 3,
+      "stop_loss_trades": 2,
+      "take_profit_trades": 1,
+      "risk_management_active": true,
+      "final_equity": 98893.37000000001,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "ML_RiskManaged": {
+      "symbol": "GAZP",
+      "strategy": "ML_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.35960000000000436,
+      "volatility": 1.6388580189512063,
+      "sharpe_ratio": -10.955234355461288,
+      "max_drawdown": 0.35960000000000586,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99640.4,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    }
+  },
+  "PIKK_1Y": {
+    "Conservative_RiskManaged": {
+      "symbol": "PIKK",
+      "strategy": "Conservative_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -1.989200000000002,
+      "volatility": 3.5708169623243045,
+      "sharpe_ratio": -6.834653067344732,
+      "max_drawdown": 1.9891999999999972,
+      "win_rate": 0.0,
+      "total_trades": 2,
+      "stop_loss_trades": 2,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 98010.8,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Momentum_RiskManaged": {
+      "symbol": "PIKK",
+      "strategy": "Momentum_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -2.0504999999999995,
+      "volatility": 2.9354354500933675,
+      "sharpe_ratio": -6.494666155901389,
+      "max_drawdown": 2.0505,
+      "win_rate": 0.0,
+      "total_trades": 2,
+      "stop_loss_trades": 2,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 97949.5,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Aggressive_RiskManaged": {
+      "symbol": "PIKK",
+      "strategy": "Aggressive_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -12.849899999999991,
+      "volatility": 16.302743892788733,
+      "sharpe_ratio": -6.466659174559161,
+      "max_drawdown": 12.977996389314919,
+      "win_rate": 0.0,
+      "total_trades": 4,
+      "stop_loss_trades": 4,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 87150.1,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "ML_RiskManaged": {
+      "symbol": "PIKK",
+      "strategy": "ML_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": 6.734299999999993,
+      "volatility": 7.883049010309409,
+      "sharpe_ratio": 0.715173542555899,
+      "max_drawdown": 3.573322282163163,
+      "win_rate": 42.857142857142854,
+      "total_trades": 7,
+      "stop_loss_trades": 4,
+      "take_profit_trades": 3,
+      "risk_management_active": true,
+      "final_equity": 106734.29999999999,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    }
+  },
+  "PIKK_3M": {
+    "Conservative_RiskManaged": {
+      "symbol": "PIKK",
+      "strategy": "Conservative_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": 1.9055999999999962,
+      "volatility": 5.827328096918631,
+      "sharpe_ratio": 0.7405729087628671,
+      "max_drawdown": 1.991412610227928,
+      "win_rate": 50.0,
+      "total_trades": 2,
+      "stop_loss_trades": 1,
+      "take_profit_trades": 1,
+      "risk_management_active": true,
+      "final_equity": 101905.6,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Momentum_RiskManaged": {
+      "symbol": "PIKK",
+      "strategy": "Momentum_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": 1.871299999999998,
+      "volatility": 5.471322913800605,
+      "sharpe_ratio": 0.2517645050071099,
+      "max_drawdown": 1.647693837381558,
+      "win_rate": 50.0,
+      "total_trades": 2,
+      "stop_loss_trades": 1,
+      "take_profit_trades": 1,
+      "risk_management_active": true,
+      "final_equity": 101871.3,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Aggressive_RiskManaged": {
+      "symbol": "PIKK",
+      "strategy": "Aggressive_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": 10.935399999999994,
+      "volatility": 15.409134032747716,
+      "sharpe_ratio": 3.701659673410432,
+      "max_drawdown": 1.7590085370030688,
+      "win_rate": 100.0,
+      "total_trades": 2,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 2,
+      "risk_management_active": true,
+      "final_equity": 110935.4,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "ML_RiskManaged": {
+      "symbol": "PIKK",
+      "strategy": "ML_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.3905999999999965,
+      "volatility": 6.280989983743847,
+      "sharpe_ratio": -1.5138366899972377,
+      "max_drawdown": 1.9598182352434803,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99609.40000000001,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    }
+  },
+  "GAZP_3M": {
+    "Conservative_RiskManaged": {
+      "symbol": "GAZP",
+      "strategy": "Conservative_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -1.4395200000000052,
+      "volatility": 3.247106067631538,
+      "sharpe_ratio": -4.833030332129848,
+      "max_drawdown": 2.179861932946687,
+      "win_rate": 0.0,
+      "total_trades": 1,
+      "stop_loss_trades": 1,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 98560.48,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Momentum_RiskManaged": {
+      "symbol": "GAZP",
+      "strategy": "Momentum_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": 3.1914,
+      "volatility": 3.7118275093543858,
+      "sharpe_ratio": 1.3715101585647487,
+      "max_drawdown": 1.260314312483762,
+      "win_rate": 100.0,
+      "total_trades": 1,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 1,
+      "risk_management_active": true,
+      "final_equity": 103191.4,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Aggressive_RiskManaged": {
+      "symbol": "GAZP",
+      "strategy": "Aggressive_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": 3.2649600000000056,
+      "volatility": 11.774842772567071,
+      "sharpe_ratio": 0.6017321135408774,
+      "max_drawdown": 3.1194647855685464,
+      "win_rate": 33.33333333333333,
+      "total_trades": 3,
+      "stop_loss_trades": 2,
+      "take_profit_trades": 1,
+      "risk_management_active": true,
+      "final_equity": 103264.96,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "ML_RiskManaged": {
+      "symbol": "GAZP",
+      "strategy": "ML_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.6374199999999997,
+      "volatility": 2.1617374123349444,
+      "sharpe_ratio": -5.851803624230697,
+      "max_drawdown": 1.0181536719010251,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99362.58,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    }
+  },
+  "IRAO_1Y": {
+    "Conservative_RiskManaged": {
+      "symbol": "IRAO",
+      "strategy": "Conservative_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.1926959999999922,
+      "volatility": 3.165681906179157,
+      "sharpe_ratio": -3.271196076902488,
+      "max_drawdown": 0.611962448649615,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99807.304,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Momentum_RiskManaged": {
+      "symbol": "IRAO",
+      "strategy": "Momentum_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.5253000000000063,
+      "volatility": 2.5632885644654726,
+      "sharpe_ratio": -12.290693827073833,
+      "max_drawdown": 0.5686499999999941,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99474.7,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Aggressive_RiskManaged": {
+      "symbol": "IRAO",
+      "strategy": "Aggressive_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.248085000000009,
+      "volatility": 5.762273593747344,
+      "sharpe_ratio": -1.0298274097557254,
+      "max_drawdown": 3.083360813566878,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99751.915,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "ML_RiskManaged": {
+      "symbol": "IRAO",
+      "strategy": "ML_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.3380454999999949,
+      "volatility": 2.0980370198800924,
+      "sharpe_ratio": -9.151213800295976,
+      "max_drawdown": 0.36118611633040243,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99661.9545,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    }
+  },
+  "IRAO_3M": {
+    "Conservative_RiskManaged": {
+      "symbol": "IRAO",
+      "strategy": "Conservative_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.17404749999999636,
+      "volatility": 1.0369485734299901,
+      "sharpe_ratio": -13.283016734810422,
+      "max_drawdown": 0.24366650000000664,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99825.9525,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Momentum_RiskManaged": {
+      "symbol": "IRAO",
+      "strategy": "Momentum_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.5913120000000105,
+      "volatility": 1.4265886198367186,
+      "sharpe_ratio": -12.226365872112867,
+      "max_drawdown": 0.5943600000000006,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99408.688,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Aggressive_RiskManaged": {
+      "symbol": "IRAO",
+      "strategy": "Aggressive_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": 0.0,
+      "volatility": 0.0,
+      "sharpe_ratio": 0.0,
+      "max_drawdown": 0.0,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 100000.0,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "ML_RiskManaged": {
+      "symbol": "IRAO",
+      "strategy": "ML_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.2843750000000034,
+      "volatility": 0.7551242884119289,
+      "sharpe_ratio": -12.207801607448452,
+      "max_drawdown": 0.284375,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99715.625,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    }
+  },
+  "SBER_1Y": {
+    "Conservative_RiskManaged": {
+      "symbol": "SBER",
+      "strategy": "Conservative_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.2064599999999972,
+      "volatility": 2.849256605775447,
+      "sharpe_ratio": -3.772945527287432,
+      "max_drawdown": 0.5075837470312307,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99793.54000000001,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Momentum_RiskManaged": {
+      "symbol": "SBER",
+      "strategy": "Momentum_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.3416399999999986,
+      "volatility": 2.7257177810566513,
+      "sharpe_ratio": -8.149211838334741,
+      "max_drawdown": 0.39200999999999475,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99658.36,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Aggressive_RiskManaged": {
+      "symbol": "SBER",
+      "strategy": "Aggressive_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.6826500000000069,
+      "volatility": 2.2119815967776844,
+      "sharpe_ratio": -4.614177658040928,
+      "max_drawdown": 0.975600001999593,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99317.34999999999,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "ML_RiskManaged": {
+      "symbol": "SBER",
+      "strategy": "ML_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.5662799999999968,
+      "volatility": 2.6584971528166585,
+      "sharpe_ratio": -4.020966074287943,
+      "max_drawdown": 0.9333220418350002,
+      "win_rate": 0.0,
+      "total_trades": 1,
+      "stop_loss_trades": 1,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99433.72,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    }
+  },
+  "SBER_3M": {
+    "Conservative_RiskManaged": {
+      "symbol": "SBER",
+      "strategy": "Conservative_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.12351999999999919,
+      "volatility": 2.1706585704209034,
+      "sharpe_ratio": -2.916900378330539,
+      "max_drawdown": 0.643670257468111,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99876.48,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Momentum_RiskManaged": {
+      "symbol": "SBER",
+      "strategy": "Momentum_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.6764199999999998,
+      "volatility": 3.559681642048525,
+      "sharpe_ratio": -3.043976322902811,
+      "max_drawdown": 1.115317512189153,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99323.58,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "Aggressive_RiskManaged": {
+      "symbol": "SBER",
+      "strategy": "Aggressive_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.5983999999999989,
+      "volatility": 3.119847390450871,
+      "sharpe_ratio": -2.8631159287433543,
+      "max_drawdown": 1.4481464996502742,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99401.6,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    },
+    "ML_RiskManaged": {
+      "symbol": "SBER",
+      "strategy": "ML_RiskManaged",
+      "monthly_return": 0.0,
+      "total_return": -0.6764199999999998,
+      "volatility": 5.193179633397273,
+      "sharpe_ratio": -3.290469826589746,
+      "max_drawdown": 1.115317512189153,
+      "win_rate": 0.0,
+      "total_trades": 0,
+      "stop_loss_trades": 0,
+      "take_profit_trades": 0,
+      "risk_management_active": true,
+      "final_equity": 99323.58,
+      "risk_parameters": {
+        "max_risk_per_trade": 0.02,
+        "stop_loss_pct": 0.05,
+        "take_profit_pct": 0.15,
+        "max_drawdown": 0.25
+      }
+    }
+  }
+}

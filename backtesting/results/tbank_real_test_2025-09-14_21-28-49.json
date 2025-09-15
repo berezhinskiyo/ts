@@ -1,0 +1,59 @@
+{
+  "PIKK_1M": {
+    "conservative": {
+      "symbol": "PIKK",
+      "monthly_return": -3.651197053761257,
+      "total_return": -4.993874447740188,
+      "volatility": 9.394230875833516,
+      "sharpe_ratio": -5.389599226588094,
+      "max_drawdown": -4.993874447740192,
+      "win_rate": 0.0,
+      "total_trades": 4,
+      "period_start": "2025-08-17",
+      "period_end": "2025-09-14",
+      "period_days": 28,
+      "final_equity": 95006.12555225981
+    },
+    "momentum": {
+      "symbol": "PIKK",
+      "monthly_return": 0.0,
+      "total_return": -0.33348491738669495,
+      "volatility": 20.711068668645165,
+      "sharpe_ratio": -0.3038123459549056,
+      "max_drawdown": -5.305349074478929,
+      "win_rate": 0.0,
+      "total_trades": 1,
+      "period_start": "2025-08-20",
+      "period_end": "2025-09-14",
+      "period_days": 25,
+      "final_equity": 99666.5150826133
+    }
+  },
+  "GAZP_1M": {
+    "conservative": {
+      "symbol": "GAZP",
+      "monthly_return": -1.8041237113401998,
+      "total_return": -3.376311408103938,
+      "volatility": 19.15856656610053,
+      "sharpe_ratio": -1.7798691947841343,
+      "max_drawdown": -5.036085852349008,
+      "win_rate": 0.0,
+      "total_trades": 3,
+      "period_start": "2025-08-17",
+      "period_end": "2025-09-14",
+      "period_days": 28,
+      "final_equity": 96623.68859189606
+    },
+    "momentum": {
+      "symbol": "GAZP",
+      "monthly_return": 0.0,
+      "total_return": 0.0,
+      "volatility": 0.0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0.0,
+      "win_rate": 0,
+      "total_trades": 0,
+      "period_start": "2025-08-20",
+      "period_end": "2025-09-14",
+      "period_days": 25,
+      "final_equity": 

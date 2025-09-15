@@ -121,87 +121,55 @@ class DataProvider:
             logger.error(f"Error getting Yahoo data for {symbol}: {e}")
             return pd.DataFrame()
     
-    def generate_synthetic_data(self, symbol: str, start_date: str, end_date: str,
-                              initial_price: float = 100, volatility: float = 0.02) -> pd.DataFrame:
-        """Generate synthetic price data for testing"""
-        try:
-            dates = pd.date_range(start=start_date, end=end_date, freq='D')
-            n_days = len(dates)
-            
-            # Generate random returns
-            np.random.seed(42)  # For reproducibility
-            returns = np.random.normal(0.0005, volatility, n_days)  # Small positive drift
-            
-            # Calculate prices
-            prices = [initial_price]
-            for ret in returns[1:]:
-                prices.append(prices[-1] * (1 + ret))
-            
-            # Generate OHLC data
-            data = []
-            for i, (date, price) in enumerate(zip(dates, prices)):
-                # Generate intraday volatility
-                daily_vol = volatility * np.random.uniform(0.5, 1.5)
-                
-                # Open price (previous close with gap)
-                if i == 0:
-                    open_price = price
-                else:
-                    gap = np.random.normal(0, volatility * 0.5)
-                    open_price = prices[i-1] * (1 + gap)
-                
-                # High and low
-                high_mult = 1 + abs(np.random.normal(0, daily_vol))
-                low_mult = 1 - abs(np.random.normal(0, daily_vol))
-                
-                high = max(open_price, price) * high_mult
-                low = min(open_price, price) * low_mult
-                
-                # Volume (random with some correlation to price movement)
-                base_volume = 1000000
-                vol_multiplier = 1 + abs(returns[i]) * 10  # Higher volume on big moves
-                volume = int(base_volume * vol_multiplier * np.random.uniform(0.5, 2.0))
-                
-                data.append({
-                    'open': open_price,
-                    'high': high,
-                    'low': low,
-                    'close': price,
-                    'volume': volume
-                })
-            
-            df = pd.DataFrame(data, index=dates)
-            return df
-            
-        except Exception as e:
-            logger.error(f"Error generating synthetic data for {symbol}: {e}")
-            return pd.DataFrame()
+    # REMOVED: generate_synthetic_data - using only real data from T-Bank API
     
     async def get_multiple_symbols_data(self, symbols: List[str], start_date: str, 
-                                      end_date: str, use_synthetic: bool = False) -> Dict[str, pd.DataFrame]:
-        """Get historical data for multiple symbols"""
+                                      end_date: str) -> Dict[str, pd.DataFrame]:
+        """Get historical data for multiple symbols - ONLY REAL DATA"""
         data = {}
+        
+        # FIGI mapping for Russian stocks
+        figi_mapping = {
+            'SBER': 'BBG004730N88',   # Сбербанк
+            'GAZP': 'BBG004730ZJ9',   # Газпром
+            'LKOH': 'BBG004730JJ5',   # ЛУКОЙЛ
+            'YNDX': 'BBG006L8G4H1',   # Яндекс
+            'ROSN': 'BBG0047315Y7',   # Роснефть
+            'NVTK': 'BBG00475KKY8',   # НОВАТЭК
+            'TATN': 'BBG004RVFFC0',   # Татнефть
+            'MTSS': 'BBG004RVFFC0',   # МТС
+            'MGNT': 'BBG004S681W1',   # Магнит
+            'RTKM': 'BBG004S681W1',   # Ростелеком
+            'OZON': 'BBG00Y91R9T3',   # OZON
+            'FIVE': 'BBG00Y91R9T3',   # X5 Retail Group
+            'TCSG': 'BBG00Y91R9T3',   # TCS Group
+            'MAIL': 'BBG00Y91R9T3',   # VK
+            'PHOR': 'BBG00Y91R9T3',   # ФосАгро
+            'NLMK': 'BBG00Y91R9T3',   # НЛМК
+            'CHMF': 'BBG00Y91R9T3',   # Северсталь
+            'SNGS': 'BBG00Y91R9T3',   # Сургутнефтегаз
+            'VTBR': 'BBG00Y91R9T3',   # ВТБ
+            'AFLT': 'BBG00Y91R9T3'    # Аэрофлот
+        }
         
         for symbol in symbols:
             try:
-                if use_synthetic:
-                    # Generate synthetic data
-                    initial_prices = {
-                        'SBER': 250, 'GAZP': 150, 'LKOH': 5500, 'YNDX': 2500,
-                        'ROSN': 450, 'NVTK': 1200, 'TATN': 650, 'MTSS': 300,
-                        'MGNT': 5000, 'RTKM': 60, 'OZON': 1500, 'FIVE': 2000
-                    }
-                    initial_price = initial_prices.get(symbol, 100)
+                df = None
+                
+                # Try T-Bank API first (preferred)
+                if self.tbank_client and symbol in figi_mapping:
+                    figi = figi_mapping[symbol]
+                    start_dt = datetime.strptime(start_date, '%Y-%m-%d')
+                    end_dt = datetime.strptime(end_date, '%Y-%m-%d')
                     
-                    df = self.generate_synthetic_data(symbol, start_date, end_date, initial_price)
-                else:
-                    # Try Yahoo Finance first
+                    df = await self.get_historical_data_tbank(figi, start_dt, end_dt, 'day')
+                    logger.info(f"Loaded T-Bank data for {symbol}: {len(df)} rows")
+                
+                # Fallback to Yahoo Finance if T-Bank fails
+                if df is None or df.empty:
                     df = self.get_historical_data_yahoo(symbol, start_date, end_date)
-                    
-                    # If Yahoo fails and we have T-Bank client, try T-Bank
-                    if df.empty and self.tbank_client:
-                        # Note: would need FIGI mapping for real implementation
-                        logger.info(f"Yahoo Finance failed for {symbol}, skipping T-Bank for now")
+                    if not df.empty:
+                        logger.info(f"Loaded Yahoo Finance data for {symbol}: {len(df)} rows")
                 
                 if not df.empty:
                     # Add some basic validation
@@ -212,12 +180,12 @@ class DataProvider:
                     else:
                         logger.warning(f"Data validation failed for {symbol}")
                 else:
-                    logger.warning(f"No data available for {symbol}")
+                    logger.warning(f"No real data available for {symbol}")
                     
             except Exception as e:
-                logger.error(f"Error loading data for {symbol}: {e}")
+                logger.error(f"Error loading real data for {symbol}: {e}")
         
-        logger.info(f"Loaded data for {len(data)} symbols out of {len(symbols)} requested")
+        logger.info(f"Loaded real data for {len(data)} symbols out of {len(symbols)} requested")
         return data
     
     def _validate_and_clean_data(self, df: pd.DataFrame, symbol: str) -> pd.DataFrame:
