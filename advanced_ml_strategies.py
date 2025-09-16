@@ -13,6 +13,15 @@ import logging
 import warnings
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
+import asyncio
+
+# Импорт системы уведомлений
+try:
+    from telegram_notifications import TradingNotifier
+    TELEGRAM_AVAILABLE = True
+except ImportError:
+    TELEGRAM_AVAILABLE = False
+    print("Telegram notifications не доступны. Установите aiohttp для поддержки уведомлений.")
 
 # ML библиотеки
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
@@ -408,7 +417,8 @@ class IndicatorOptimizer:
 class AdvancedMLStrategies:
     """Продвинутые ML стратегии для торговли"""
     
-    def __init__(self, initial_capital=100000, optimize_indicators=True, max_indicators=20):
+    def __init__(self, initial_capital=100000, optimize_indicators=True, max_indicators=20, 
+                 enable_telegram=True):
         self.initial_capital = initial_capital
         self.current_capital = initial_capital
         self.positions = {}
@@ -435,6 +445,17 @@ class AdvancedMLStrategies:
         self.indicator_optimizer = IndicatorOptimizer() if optimize_indicators else None
         self.optimized_indicators = None
         self.indicator_scores = {}
+        
+        # Система уведомлений
+        self.enable_telegram = enable_telegram and TELEGRAM_AVAILABLE
+        self.telegram_notifier = None
+        if self.enable_telegram:
+            try:
+                self.telegram_notifier = TradingNotifier()
+                logger.info("Telegram уведомления включены")
+            except Exception as e:
+                logger.warning(f"Не удалось инициализировать Telegram уведомления: {e}")
+                self.enable_telegram = False
         
     def create_technical_features(self, data: pd.DataFrame, selected_indicators: List[str] = None) -> pd.DataFrame:
         """Создание технических индикаторов с возможностью выбора"""
@@ -730,6 +751,58 @@ class AdvancedMLStrategies:
         # Если нет оптимизированных, возвращаем базовые
         return ['sma_20', 'ema_20', 'rsi_14', 'macd_12_26_9', 'bb_20_2', 'stoch_14_3']
     
+    async def _send_trade_notification(self, symbol: str, action: str, quantity: int, 
+                                     price: float, strategy: str, pnl: float = None,
+                                     reason: str = None, confidence: float = None):
+        """Отправка уведомления о сделке"""
+        if not self.enable_telegram or not self.telegram_notifier:
+            return
+        
+        try:
+            await self.telegram_notifier.notify_trade(
+                symbol=symbol,
+                action=action,
+                quantity=quantity,
+                price=price,
+                strategy=strategy,
+                pnl=pnl,
+                reason=reason,
+                confidence=confidence
+            )
+        except Exception as e:
+            logger.error(f"Ошибка отправки уведомления о сделке: {e}")
+    
+    async def _send_portfolio_notification(self, total_value: float, total_pnl: float,
+                                         positions_count: int, daily_pnl: float = 0.0):
+        """Отправка уведомления об обновлении портфеля"""
+        if not self.enable_telegram or not self.telegram_notifier:
+            return
+        
+        try:
+            await self.telegram_notifier.notify_portfolio_update(
+                total_value=total_value,
+                total_pnl=total_pnl,
+                positions_count=positions_count,
+                daily_pnl=daily_pnl
+            )
+        except Exception as e:
+            logger.error(f"Ошибка отправки уведомления о портфеле: {e}")
+    
+    async def _send_alert(self, alert_type: str, title: str, message: str, severity: str = 'INFO'):
+        """Отправка алерта"""
+        if not self.enable_telegram or not self.telegram_notifier:
+            return
+        
+        try:
+            await self.telegram_notifier.notify_alert(
+                alert_type=alert_type,
+                title=title,
+                message=message,
+                severity=severity
+            )
+        except Exception as e:
+            logger.error(f"Ошибка отправки алерта: {e}")
+    
     def arima_strategy(self, symbol: str, data: pd.DataFrame) -> Optional[Dict]:
         """ARIMA стратегия для прогнозирования цен"""
         try:
@@ -804,6 +877,17 @@ class AdvancedMLStrategies:
                                     'method': 'ARIMA'
                                 }
                                 logger.info(f"ARIMA покупка {symbol}: {position_size} акций по {current_price:.2f}₽ (прогноз: {predicted_price:.2f}₽)")
+                                
+                                # Отправка уведомления о покупке
+                                if self.enable_telegram:
+                                    asyncio.create_task(self._send_trade_notification(
+                                        symbol=symbol,
+                                        action="BUY",
+                                        quantity=position_size,
+                                        price=current_price,
+                                        strategy="ARIMA",
+                                        confidence=confidence
+                                    ))
                         
                         # Продажа при прогнозе падения > 1%
                         elif price_change_pct < -0.01 and symbol in positions:
@@ -825,6 +909,18 @@ class AdvancedMLStrategies:
                             current_capital += pnl
                             del positions[symbol]
                             logger.info(f"ARIMA продажа {symbol}: PnL={pnl:.2f}₽")
+                            
+                            # Отправка уведомления о продаже
+                            if self.enable_telegram:
+                                asyncio.create_task(self._send_trade_notification(
+                                    symbol=symbol,
+                                    action="SELL",
+                                    quantity=position['size'],
+                                    price=exit_price,
+                                    strategy="ARIMA",
+                                    pnl=pnl,
+                                    reason="SIGNAL"
+                                ))
                 
                 except Exception as e:
                     logger.debug(f"Ошибка ARIMA для {symbol}: {e}")

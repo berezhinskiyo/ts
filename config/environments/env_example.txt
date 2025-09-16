@@ -1,0 +1,30 @@
+# Telegram Bot Configuration
+# Получите токен у @BotFather в Telegram
+TELEGRAM_BOT_TOKEN=123456789:ABCdefGHIjklMNOpqrsTUVwxyz
+
+# Получите Chat ID через @userinfobot или getUpdates API
+TELEGRAM_CHAT_ID=123456789
+
+# T-Bank API Configuration
+# Получите токены в личном кабинете Тинькофф Инвестиций
+TBANK_TOKEN=your_tbank_token_here
+TBANK_SANDBOX_TOKEN=your_sandbox_token_here
+TBANK_APP_NAME=AutoTrader
+
+# Trading Configuration
+INITIAL_CAPITAL=100000
+MAX_RISK_PER_TRADE=0.02
+USE_SANDBOX=true
+
+# Risk Management
+MAX_PORTFOLIO_RISK=0.20
+STOP_LOSS_PERCENTAGE=0.05
+TAKE_PROFIT_PERCENTAGE=0.15
+
+# Database (optional)
+DATABASE_URL=sqlite:///trading_data.db
+
+# Backtesting Configuration
+BACKTEST_START_DATE=2023-01-01
+BACKTEST_END_DATE=2023-12-31
+
