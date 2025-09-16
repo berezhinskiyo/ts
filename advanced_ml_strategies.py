@@ -1473,6 +1473,16 @@ class AdvancedMLStrategies:
             logger.error(f"Директория {data_dir} не найдена")
             return market_data
         
+        # Получаем настройки из переменных окружения
+        trading_symbols = os.getenv('TRADING_SYMBOLS', 'GAZP,SBER,PIKK,IRAO,SGZH').split(',')
+        trading_period = os.getenv('TRADING_PERIOD', '1Y')
+        min_data_days = int(os.getenv('MIN_DATA_DAYS', '100'))
+        
+        logger.info(f"Настройки торговли:")
+        logger.info(f"  Инструменты: {trading_symbols}")
+        logger.info(f"  Период: {trading_period}")
+        logger.info(f"  Минимум дней: {min_data_days}")
+        
         for filename in os.listdir(data_dir):
             if filename.endswith('_tbank.csv'):
                 symbol_period = filename.replace('_tbank.csv', '')
@@ -1481,16 +1491,29 @@ class AdvancedMLStrategies:
                     symbol = parts[0]
                     period = parts[1]
                     
+                    # Проверяем, включен ли инструмент в список для торговли
+                    if symbol not in trading_symbols:
+                        logger.debug(f"Инструмент {symbol} не включен в список для торговли")
+                        continue
+                    
+                    # Проверяем, соответствует ли период
+                    if period != trading_period:
+                        logger.debug(f"Период {period} не соответствует настройке {trading_period}")
+                        continue
+                    
                     filepath = os.path.join(data_dir, filename)
                     try:
                         df = pd.read_csv(filepath, index_col='date', parse_dates=True)
-                        if not df.empty and len(df) >= 100:  # Минимум 100 дней для ML
+                        if not df.empty and len(df) >= min_data_days:
                             key = f"{symbol}_{period}"
                             market_data[key] = df
-                            logger.info(f"Загружены данные {key}: {len(df)} дней")
+                            logger.info(f"✅ Загружены данные {key}: {len(df)} дней")
+                        else:
+                            logger.warning(f"⚠️ Недостаточно данных для {symbol}_{period}: {len(df) if not df.empty else 0} дней (требуется {min_data_days})")
                     except Exception as e:
                         logger.error(f"Ошибка загрузки {filename}: {e}")
         
+        logger.info(f"Итого загружено инструментов: {len(market_data)}")
         return market_data
     
     def run_advanced_ml_testing(self):
