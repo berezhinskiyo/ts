@@ -1,0 +1,939 @@
+{
+  "results": {
+    "basic": {
+      "name": "Базовая конфигурация",
+      "indicators": [
+        "sma_20",
+        "ema_20",
+        "rsi_14",
+        "macd",
+        "bb_20",
+        "atr_14",
+        "volume_ratio"
+      ],
+      "results": {
+        "GAZP": {
+          "symbol": "GAZP",
+          "total_features": 28,
+          "selected_features": 15,
+          "selected_feature_names": [
+            "sma_20",
+            "rsi_14",
+            "macd",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "quarter",
+            "close_lag_1",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 69.05757375496286,
+            "mae": 7.134579259259255,
+            "r2": -2.0067669790942078,
+            "rmse": 8.05294508918856
+          },
+          "feature_importance": {
+            "sma_20": 0.02260277363649937,
+            "rsi_14": 0.00411757464789779,
+            "macd": 0.00265224620433235,
+            "macd_signal": 0.017805891240857078,
+            "macd_histogram": 0.009718338056328848,
+            "bb_20_upper": 0.0022944012680318547,
+            "bb_20_lower": 0.003567634942342857,
+            "bb_20_width": 0.004544072792664352,
+            "bb_20_position": 0.012273746878761378,
+            "atr_14": 0.003900079812806761,
+            "month": 0.0009466414593371091,
+            "quarter": 0.01674911421759755,
+            "close_lag_1": 0.8709625398422285,
+            "close_lag_5": 0.020981075675125246,
+            "close_to_sma20": 0.006883869325189026
+          },
+          "data_points": 180
+        },
+        "PIKK": {
+          "symbol": "PIKK",
+          "total_features": 28,
+          "selected_features": 13,
+          "selected_feature_names": [
+            "sma_20",
+            "rsi_14",
+            "macd",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "quarter",
+            "close_lag_1",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 1509.0959818370327,
+            "mae": 28.817170370370345,
+            "r2": -0.09831588793360509,
+            "rmse": 36.523030475531456
+          },
+          "feature_importance": {
+            "sma_20": 0.006206477001197211,
+            "rsi_14": 0.005751627509300557,
+            "macd": 0.031171429643552136,
+            "macd_histogram": 0.0051910025536881415,
+            "bb_20_upper": 0.004824077494563407,
+            "bb_20_width": 0.007617872565993282,
+            "bb_20_position": 0.015054673044049722,
+            "atr_14": 0.004548998361044617,
+            "month": 0.004550604959452789,
+            "quarter": 0.0001267026973856948,
+            "close_lag_1": 0.903948102319332,
+            "close_lag_5": 0.0059622215565169065,
+            "close_to_sma20": 0.005046210293923505
+          },
+          "data_points": 180
+        },
+        "SGZH": {
+          "symbol": "SGZH",
+          "total_features": 28,
+          "selected_features": 16,
+          "selected_feature_names": [
+            "sma_20",
+            "rsi_14",
+            "macd",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "quarter",
+            "close_lag_1",
+            "close_lag_3",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 0.005679698020740714,
+            "mae": 0.052133333333333205,
+            "r2": -0.5792511017692495,
+            "rmse": 0.06663224687749267
+          },
+          "feature_importance": {
+            "sma_20": 0.005827585996099683,
+            "rsi_14": 0.024896536379124257,
+            "macd": 0.028471804539486886,
+            "macd_signal": 0.021678390511359943,
+            "macd_histogram": 0.006746720109375126,
+            "bb_20_upper": 0.018593957015022214,
+            "bb_20_lower": 0.008742463860509954,
+            "bb_20_width": 0.004333934312150565,
+            "bb_20_position": 0.026760600166553867,
+            "atr_14": 0.01183098732681675,
+            "month": 0.00399180316582106,
+            "quarter": 0.0006906696559373418,
+            "close_lag_1": 0.741831956524179,
+            "close_lag_3": 0.07550205361952489,
+            "close_lag_5": 0.0062124785610892285,
+            "close_to_sma20": 0.013888058256949061
+          },
+          "data_points": 180
+        },
+        "SBER": {
+          "symbol": "SBER",
+          "total_features": 28,
+          "selected_features": 18,
+          "selected_feature_names": [
+            "sma_20",
+            "ema_20",
+            "rsi_14",
+            "macd",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "quarter",
+            "close_lag_1",
+            "close_lag_2",
+            "close_lag_3",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 24.811463470814903,
+            "mae": 3.7624355555555624,
+            "r2": -0.02518209957793442,
+            "rmse": 4.794794681121361
+          },
+          "feature_importance": {
+            "sma_20": 0.030755453382612936,
+            "ema_20": 0.013865783814270356,
+            "rsi_14": 0.017560770369868407,
+            "macd": 0.06286738888760034,
+            "macd_signal": 0.025876594405840093,
+            "macd_histogram": 0.012019659035710041,
+            "bb_20_upper": 0.13867373774272923,
+            "bb_20_lower": 0.009011285137527062,
+            "bb_20_width": 0.010934609620613324,
+            "bb_20_position": 0.12934925568051883,
+            "atr_14": 0.008364696513036129,
+            "month": 0.007064802837235678,
+            "quarter": 0.0021227911721142727,
+            "close_lag_1": 0.42684532002978487,
+            "close_lag_2": 0.039027475099748396,
+            "close_lag_3": 0.011420598453495688,
+            "close_lag_5": 0.009530449315939516,
+            "close_to_sma20": 0.04470932850135479
+          },
+          "data_points": 180
+        },
+        "IRAO": {
+          "symbol": "IRAO",
+          "total_features": 28,
+          "selected_features": 14,
+          "selected_feature_names": [
+            "sma_20",
+            "rsi_14",
+            "macd",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "quarter",
+            "close_lag_1",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 0.047432106870370444,
+            "mae": 0.15632792592592612,
+            "r2": -22.804620242801448,
+            "rmse": 0.1670727839277861
+          },
+          "feature_importance": {
+            "sma_20": 0.13722255309849282,
+            "rsi_14": 0.004855230946158331,
+            "macd": 0.003897436582558172,
+            "macd_signal": 0.006418883284937138,
+            "macd_histogram": 0.001599698560216909,
+            "bb_20_upper": 0.0022300903240969187,
+            "bb_20_lower": 0.6071856527704268,
+            "bb_20_width": 0.0015379772527986883,
+            "bb_20_position": 0.010911486850015178,
+            "atr_14": 0.0018152792753192547,
+            "month": 0.01714089512366569,
+            "quarter": 8.847765917406274e-06,
+            "close_lag_1": 0.19169474701643657,
+            "close_to_sma20": 0.013481221148960205
+          },
+          "data_points": 180
+        }
+      }
+    },
+    "extended": {
+      "name": "Расширенная конфигурация",
+      "indicators": [
+        "sma_5",
+        "sma_10",
+        "sma_20",
+        "sma_50",
+        "sma_100",
+        "sma_200",
+        "ema_5",
+        "ema_10",
+        "ema_20",
+        "ema_50",
+        "ema_100",
+        "wma_10",
+        "wma_20",
+        "hma_10",
+        "hma_20",
+        "rsi_14",
+        "rsi_21",
+        "rsi_7",
+        "macd",
+        "macd_fast",
+        "stoch_k",
+        "stoch_d",
+        "williams_r",
+        "cci",
+        "roc_5",
+        "roc_10",
+        "roc_20"
+      ],
+      "results": {}
+    },
+    "full": {
+      "name": "Полная конфигурация",
+      "indicators": [
+        "sma_5",
+        "sma_10",
+        "sma_20",
+        "sma_50",
+        "sma_100",
+        "sma_200",
+        "ema_5",
+        "ema_10",
+        "ema_20",
+        "ema_50",
+        "ema_100",
+        "wma_10",
+        "wma_20",
+        "hma_10",
+        "hma_20",
+        "rsi_14",
+        "rsi_21",
+        "rsi_7",
+        "macd",
+        "macd_fast",
+        "stoch_k",
+        "stoch_d",
+        "williams_r",
+        "cci",
+        "roc_5",
+        "roc_10",
+        "roc_20",
+        "bb_20",
+        "bb_10",
+        "bb_50",
+        "atr_14",
+        "atr_21",
+        "keltner",
+        "donchian",
+        "volume_sma",
+        "volume_ratio",
+        "obv",
+        "vwap",
+        "mfi",
+        "price_change",
+        "price_change_5",
+        "price_change_10",
+        "high_low_ratio",
+        "close_open_ratio",
+        "gap_up",
+        "gap_down",
+        "support_level",
+        "resistance_level"
+      ],
+      "results": {}
+    },
+    "optimized": {
+      "name": "Оптимизированная конфигурация",
+      "indicators": [
+        "sma_20",
+        "ema_20",
+        "hma_10",
+        "hma_20",
+        "rsi_14",
+        "rsi_7",
+        "macd",
+        "bb_20",
+        "atr_14",
+        "volume_ratio",
+        "price_change_5"
+      ],
+      "results": {
+        "GAZP": {
+          "symbol": "GAZP",
+          "total_features": 32,
+          "selected_features": 13,
+          "selected_feature_names": [
+            "sma_20",
+            "hma_10",
+            "rsi_7",
+            "macd",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_width",
+            "atr_14",
+            "month",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 84.66458901757589,
+            "mae": 7.857721212121216,
+            "r2": -1.4053459623325146,
+            "rmse": 8.702883497568331
+          },
+          "feature_importance": {
+            "sma_20": 0.036032332492715306,
+            "hma_10": 0.8016225380670129,
+            "rsi_7": 0.01579297704424144,
+            "macd": 0.007251732620964046,
+            "macd_signal": 0.02606188495433859,
+            "macd_histogram": 0.013775832908680424,
+            "bb_20_upper": 0.00326136728894989,
+            "bb_20_lower": 0.004329485805635786,
+            "bb_20_width": 0.0067735377587290055,
+            "atr_14": 0.006542533309334393,
+            "month": 0.0018230153721285774,
+            "close_lag_5": 0.06375140348096034,
+            "close_to_sma20": 0.012981358896309386
+          },
+          "data_points": 177
+        },
+        "PIKK": {
+          "symbol": "PIKK",
+          "total_features": 32,
+          "selected_features": 11,
+          "selected_feature_names": [
+            "sma_20",
+            "hma_10",
+            "macd",
+            "bb_20_upper",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "quarter",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 1631.4983552424217,
+            "mae": 32.45374242424242,
+            "r2": -0.20116515583307637,
+            "rmse": 37.90033503893057
+          },
+          "feature_importance": {
+            "sma_20": 0.016168820794687767,
+            "hma_10": 0.8677807684542318,
+            "macd": 0.04387110825358324,
+            "bb_20_upper": 0.008241078947606473,
+            "bb_20_width": 0.006057558906709236,
+            "bb_20_position": 0.02567002444790845,
+            "atr_14": 0.006530505732163357,
+            "month": 0.006441066658542487,
+            "quarter": 0.0006392711287637249,
+            "close_lag_5": 0.009244559653571377,
+            "close_to_sma20": 0.009355237022232177
+          },
+          "data_points": 177
+        },
+        "SGZH": {
+          "symbol": "SGZH",
+          "total_features": 32,
+          "selected_features": 13,
+          "selected_feature_names": [
+            "sma_20",
+            "hma_10",
+            "macd",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "quarter",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 0.006217026948484836,
+            "mae": 0.0554086363636363,
+            "r2": -0.7319218463914187,
+            "rmse": 0.06865806315346373
+          },
+          "feature_importance": {
+            "sma_20": 0.04580966505047697,
+            "hma_10": 0.7280505166055492,
+            "macd": 0.034806847094376515,
+            "macd_signal": 0.034266292629061716,
+            "macd_histogram": 0.008016752149017368,
+            "bb_20_upper": 0.04110173690143384,
+            "bb_20_lower": 0.009789112801959966,
+            "bb_20_position": 0.04467057908588919,
+            "atr_14": 0.01692461909440306,
+            "month": 0.001771307553599226,
+            "quarter": 0.00012013766257829852,
+            "close_lag_5": 0.017491617633733178,
+            "close_to_sma20": 0.01718081573792149
+          },
+          "data_points": 177
+        },
+        "SBER": {
+          "symbol": "SBER",
+          "total_features": 32,
+          "selected_features": 17,
+          "selected_feature_names": [
+            "sma_20",
+            "hma_10",
+            "rsi_14",
+            "rsi_7",
+            "macd",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "close_lag_1",
+            "close_lag_3",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 22.869814736969857,
+            "mae": 3.5542090909091115,
+            "r2": 0.1036413878643817,
+            "rmse": 4.578147552841418
+          },
+          "feature_importance": {
+            "sma_20": 0.03385008706536794,
+            "hma_10": 0.1834678094839321,
+            "rsi_14": 0.019034523966826294,
+            "rsi_7": 0.028333806316134483,
+            "macd": 0.04273624432716946,
+            "macd_signal": 0.026526749367227858,
+            "macd_histogram": 0.019085594935239165,
+            "bb_20_upper": 0.10401332283578288,
+            "bb_20_lower": 0.013624862477346247,
+            "bb_20_width": 0.017832099598700864,
+            "bb_20_position": 0.10577400165030537,
+            "atr_14": 0.009598302148584394,
+            "month": 0.0025833685379600822,
+            "close_lag_1": 0.3162241792604486,
+            "close_lag_3": 0.010398050921554184,
+            "close_lag_5": 0.008096695911948486,
+            "close_to_sma20": 0.058820301195471714
+          },
+          "data_points": 177
+        },
+        "IRAO": {
+          "symbol": "IRAO",
+          "total_features": 32,
+          "selected_features": 13,
+          "selected_feature_names": [
+            "sma_20",
+            "hma_10",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "quarter",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 0.044627977212878846,
+            "mae": 0.15490007575757592,
+            "r2": -19.562618685134613,
+            "rmse": 0.1730000397926099
+          },
+          "feature_importance": {
+            "sma_20": 0.18520098377363417,
+            "hma_10": 0.0652098515496906,
+            "macd_signal": 0.005614075689342398,
+            "macd_histogram": 0.0033653935670249257,
+            "bb_20_upper": 0.003089422644229399,
+            "bb_20_lower": 0.6793579552017277,
+            "bb_20_width": 0.001900882953207403,
+            "bb_20_position": 0.012581082527046717,
+            "atr_14": 0.001825086163840821,
+            "month": 0.018038085802038736,
+            "quarter": 1.970322597553873e-05,
+            "close_lag_5": 0.004122044006461885,
+            "close_to_sma20": 0.01967543289577971
+          },
+          "data_points": 177
+        }
+      }
+    },
+    "minimal": {
+      "name": "Минимальная конфигурация",
+      "indicators": [
+        "sma_20",
+        "ema_20",
+        "rsi_14",
+        "macd",
+        "atr_14",
+        "bb_20",
+        "volume_ratio",
+        "price_change_5"
+      ],
+      "results": {
+        "GAZP": {
+          "symbol": "GAZP",
+          "total_features": 29,
+          "selected_features": 15,
+          "selected_feature_names": [
+            "sma_20",
+            "rsi_14",
+            "macd",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "quarter",
+            "close_lag_1",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 69.05757375496286,
+            "mae": 7.134579259259255,
+            "r2": -2.0067669790942078,
+            "rmse": 8.05294508918856
+          },
+          "feature_importance": {
+            "sma_20": 0.02260277363649937,
+            "rsi_14": 0.00411757464789779,
+            "macd": 0.00265224620433235,
+            "macd_signal": 0.017805891240857078,
+            "macd_histogram": 0.009718338056328848,
+            "bb_20_upper": 0.0022944012680318547,
+            "bb_20_lower": 0.003567634942342857,
+            "bb_20_width": 0.004544072792664352,
+            "bb_20_position": 0.012273746878761378,
+            "atr_14": 0.003900079812806761,
+            "month": 0.0009466414593371091,
+            "quarter": 0.01674911421759755,
+            "close_lag_1": 0.8709625398422285,
+            "close_lag_5": 0.020981075675125246,
+            "close_to_sma20": 0.006883869325189026
+          },
+          "data_points": 180
+        },
+        "PIKK": {
+          "symbol": "PIKK",
+          "total_features": 29,
+          "selected_features": 13,
+          "selected_feature_names": [
+            "sma_20",
+            "rsi_14",
+            "macd",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "quarter",
+            "close_lag_1",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 1509.0959818370327,
+            "mae": 28.817170370370345,
+            "r2": -0.09831588793360509,
+            "rmse": 36.523030475531456
+          },
+          "feature_importance": {
+            "sma_20": 0.006206477001197211,
+            "rsi_14": 0.005751627509300557,
+            "macd": 0.031171429643552136,
+            "macd_histogram": 0.0051910025536881415,
+            "bb_20_upper": 0.004824077494563407,
+            "bb_20_width": 0.007617872565993282,
+            "bb_20_position": 0.015054673044049722,
+            "atr_14": 0.004548998361044617,
+            "month": 0.004550604959452789,
+            "quarter": 0.0001267026973856948,
+            "close_lag_1": 0.903948102319332,
+            "close_lag_5": 0.0059622215565169065,
+            "close_to_sma20": 0.005046210293923505
+          },
+          "data_points": 180
+        },
+        "SGZH": {
+          "symbol": "SGZH",
+          "total_features": 29,
+          "selected_features": 16,
+          "selected_feature_names": [
+            "sma_20",
+            "rsi_14",
+            "macd",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_position",
+            "atr_14",
+            "price_change_5",
+            "month",
+            "quarter",
+            "close_lag_1",
+            "close_lag_3",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 0.005110358245925906,
+            "mae": 0.04962814814814803,
+            "r2": -0.41802978273340347,
+            "rmse": 0.0635559641669974
+          },
+          "feature_importance": {
+            "sma_20": 0.00523318220364434,
+            "rsi_14": 0.023322936143800117,
+            "macd": 0.027406666805560503,
+            "macd_signal": 0.022654380210523684,
+            "macd_histogram": 0.006388070623814466,
+            "bb_20_upper": 0.017021146291702736,
+            "bb_20_lower": 0.00827933550321457,
+            "bb_20_position": 0.02287128011320541,
+            "atr_14": 0.010238041524076587,
+            "price_change_5": 0.016090638563278494,
+            "month": 0.004158076324247887,
+            "quarter": 0.0006321559872686871,
+            "close_lag_1": 0.7404609162598097,
+            "close_lag_3": 0.0751473664655933,
+            "close_lag_5": 0.004793026850409758,
+            "close_to_sma20": 0.015302780129849843
+          },
+          "data_points": 180
+        },
+        "SBER": {
+          "symbol": "SBER",
+          "total_features": 29,
+          "selected_features": 18,
+          "selected_feature_names": [
+            "sma_20",
+            "ema_20",
+            "rsi_14",
+            "macd",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "price_change_5",
+            "month",
+            "close_lag_1",
+            "close_lag_2",
+            "close_lag_3",
+            "close_lag_5",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 24.336985949629778,
+            "mae": 3.687226666666684,
+            "r2": -0.007314346906881338,
+            "rmse": 4.706214239872952
+          },
+          "feature_importance": {
+            "sma_20": 0.029964398724694065,
+            "ema_20": 0.012724273296063753,
+            "rsi_14": 0.014990777287420513,
+            "macd": 0.06050951197975933,
+            "macd_signal": 0.024895111015747727,
+            "macd_histogram": 0.010789215024653999,
+            "bb_20_upper": 0.14084940758478726,
+            "bb_20_lower": 0.008788118057037936,
+            "bb_20_width": 0.010479741815618341,
+            "bb_20_position": 0.1260032549029935,
+            "atr_14": 0.007726513802622084,
+            "price_change_5": 0.021469551824958445,
+            "month": 0.009962566691477565,
+            "close_lag_1": 0.42438363428363696,
+            "close_lag_2": 0.03680453103781342,
+            "close_lag_3": 0.010397041696306338,
+            "close_lag_5": 0.007591928659242917,
+            "close_to_sma20": 0.0416704223151657
+          },
+          "data_points": 180
+        },
+        "IRAO": {
+          "symbol": "IRAO",
+          "total_features": 29,
+          "selected_features": 14,
+          "selected_feature_names": [
+            "sma_20",
+            "rsi_14",
+            "macd",
+            "macd_signal",
+            "macd_histogram",
+            "bb_20_upper",
+            "bb_20_lower",
+            "bb_20_width",
+            "bb_20_position",
+            "atr_14",
+            "month",
+            "quarter",
+            "close_lag_1",
+            "close_to_sma20"
+          ],
+          "scores": {
+            "mse": 0.047432106870370444,
+            "mae": 0.15632792592592612,
+            "r2": -22.804620242801448,
+            "rmse": 0.1670727839277861
+          },
+          "feature_importance": {
+            "sma_20": 0.13722255309849282,
+            "rsi_14": 0.004855230946158331,
+            "macd": 0.003897436582558172,
+            "macd_signal": 0.006418883284937138,
+            "macd_histogram": 0.001599698560216909,
+            "bb_20_upper": 0.0022300903240969187,
+            "bb_20_lower": 0.6071856527704268,
+            "bb_20_width": 0.0015379772527986883,
+            "bb_20_position": 0.010911486850015178,
+            "atr_14": 0.0018152792753192547,
+            "month": 0.01714089512366569,
+            "quarter": 8.847765917406274e-06,
+            "close_lag_1": 0.19169474701643657,
+            "close_to_sma20": 0.013481221148960205
+          },
+          "data_points": 180
+        }
+      }
+    }
+  },
+  "analysis": {
+    "summary": {
+      "basic": {
+        "name": "Базовая конфигурация",
+        "avg_r2": -5.102827262235289,
+        "avg_rmse": 9.92089505532933,
+        "avg_mae": 7.984529288888885,
+        "avg_features": 15.2,
+        "indicators_count": 7
+      },
+      "optimized": {
+        "name": "Оптимизированная конфигурация",
+        "avg_r2": -4.359482052365449,
+        "avg_rmse": 10.284604838457279,
+        "avg_mae": 8.815196287878793,
+        "avg_features": 13.4,
+        "indicators_count": 11
+      },
+      "minimal": {
+        "name": "Минимальная конфигурация",
+        "avg_r2": -5.067009447893909,
+        "avg_rmse": 9.90256371053755,
+        "avg_mae": 7.968986474074072,
+        "avg_features": 15.2,
+        "indicators_count": 8
+      }
+    },
+    "best_configuration": {
+      "name": "optimized",
+      "config_name": "Оптимизированная конфигурация",
+      "r2": -4.359482052365449,
+      "rmse": 10.284604838457279
+    },
+    "feature_analysis": {
+      "top_features": [
+        [
+          "close_lag_1",
+          0.5984506167921685
+        ],
+        [
+          "hma_10",
+          0.5292262968320833
+        ],
+        [
+          "bb_20_lower",
+          0.16361909952254153
+        ],
+        [
+          "sma_20",
+          0.048060407797087465
+        ],
+        [
+          "bb_20_position",
+          0.04072570658000528
+        ],
+        [
+          "close_lag_2",
+          0.03791600306878091
+        ],
+        [
+          "close_lag_3",
+          0.03657302223129488
+        ],
+        [
+          "bb_20_upper",
+          0.032902821028375225
+        ],
+        [
+          "macd",
+          0.0273831092406704
+        ],
+        [
+          "rsi_7",
+          0.022063391680187963
+        ],
+        [
+          "macd_signal",
+          0.019668585652919204
+        ],
+        [
+          "close_to_sma20",
+          0.018960422432478623
+        ],
+        [
+          "price_change_5",
+          0.018780095194118468
+        ],
+        [
+          "close_lag_5",
+          0.01420929219512623
+        ],
+        [
+          "ema_20",
+          0.013295028555167055
+        ],
+        [
+          "rsi_14",
+          0.011750400941250266
+        ],
+        [
+          "macd_histogram",
+          0.008086094049570237
+        ],
+        [
+          "month",
+          0.006740691735197498
+        ],
+        [
+          "atr_14",
+          0.006674000034214591
+        ],
+        [
+          "bb_20_width",
+          0.0065932469375878
+        ]
+      ],
+      "total_unique_features": 21
+    },
+    "recommendations": [
+      "Низкое качество прогнозов. Рекомендуется увеличить количество данных или изменить подход."
+    ]
+  },
+  "timestamp": "2025-09-15_22-44-55"
+}

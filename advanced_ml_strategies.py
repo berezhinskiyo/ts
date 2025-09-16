@@ -53,10 +53,362 @@ class PredictionResult:
     features_used: List[str]
     model_score: float
 
+class IndicatorOptimizer:
+    """Оптимизатор технических индикаторов"""
+    
+    def __init__(self):
+        self.performance_scores = {}
+        self.correlation_matrix = None
+        self.selected_indicators = []
+    
+    def evaluate_indicators(self, data: pd.DataFrame, target_column: str = 'close') -> Dict[str, float]:
+        """Оценка эффективности индикаторов"""
+        scores = {}
+        
+        # Создаем все возможные индикаторы
+        all_indicators = self.get_all_available_indicators()
+        df_with_indicators = self.create_technical_features(data, all_indicators)
+        
+        # Удаляем NaN значения
+        df_clean = df_with_indicators.dropna()
+        
+        if len(df_clean) < 50:
+            return scores
+        
+        # Рассчитываем корреляцию с целевой переменной
+        target = df_clean[target_column].pct_change().shift(-1).dropna()
+        
+        for col in df_clean.columns:
+            if col in ['open', 'high', 'low', 'close', 'volume']:
+                continue
+                
+            try:
+                # Корреляция с будущим изменением цены
+                correlation = abs(df_clean[col].corr(target))
+                
+                # Информационный коэффициент (IC)
+                ic = correlation
+                
+                # Коэффициент Шарпа для сигналов
+                signals = np.where(df_clean[col] > df_clean[col].rolling(20).mean(), 1, -1)
+                returns = signals * target
+                sharpe = returns.mean() / returns.std() if returns.std() > 0 else 0
+                
+                # Комбинированная оценка
+                score = 0.4 * ic + 0.3 * abs(sharpe) + 0.3 * correlation
+                scores[col] = score
+                
+            except Exception as e:
+                continue
+        
+        return scores
+    
+    def select_best_indicators(self, scores: Dict[str, float], top_n: int = 20, 
+                              min_correlation: float = 0.1) -> List[str]:
+        """Выбор лучших индикаторов"""
+        # Фильтруем по минимальной корреляции
+        filtered_scores = {k: v for k, v in scores.items() if v >= min_correlation}
+        
+        # Сортируем по убыванию
+        sorted_indicators = sorted(filtered_scores.items(), key=lambda x: x[1], reverse=True)
+        
+        # Выбираем топ-N
+        selected = [indicator for indicator, score in sorted_indicators[:top_n]]
+        
+        # Убираем коррелированные индикаторы
+        final_selected = self._remove_correlated_indicators(selected, min_correlation=0.8)
+        
+        return final_selected[:top_n]
+    
+    def _remove_correlated_indicators(self, indicators: List[str], min_correlation: float = 0.8) -> List[str]:
+        """Удаление коррелированных индикаторов"""
+        if len(indicators) <= 1:
+            return indicators
+        
+        # Создаем тестовые данные для расчета корреляции
+        test_data = pd.DataFrame({
+            'open': np.random.randn(100),
+            'high': np.random.randn(100),
+            'low': np.random.randn(100),
+            'close': np.random.randn(100),
+            'volume': np.random.randn(100)
+        })
+        
+        try:
+            df_with_indicators = self.create_technical_features(test_data, indicators)
+            df_clean = df_with_indicators.dropna()
+            
+            if len(df_clean) < 10:
+                return indicators
+            
+            # Рассчитываем корреляционную матрицу
+            corr_matrix = df_clean[indicators].corr().abs()
+            
+            # Удаляем высоко коррелированные
+            to_remove = set()
+            for i in range(len(indicators)):
+                for j in range(i+1, len(indicators)):
+                    if corr_matrix.iloc[i, j] > min_correlation:
+                        # Удаляем тот, у которого меньше индекс (приоритет)
+                        to_remove.add(indicators[j])
+            
+            return [ind for ind in indicators if ind not in to_remove]
+            
+        except Exception:
+            return indicators
+    
+    def get_all_available_indicators(self) -> List[str]:
+        """Получить список всех доступных индикаторов"""
+        return [
+            # Moving Averages
+            'sma_5', 'sma_10', 'sma_20', 'sma_50', 'sma_100', 'sma_200',
+            'ema_5', 'ema_10', 'ema_20', 'ema_50', 'ema_100',
+            
+            # RSI
+            'rsi_14', 'rsi_21', 'rsi_30',
+            
+            # MACD
+            'macd_12_26_9', 'macd_5_35_5', 'macd_8_21_5',
+            
+            # Bollinger Bands
+            'bb_20_2', 'bb_20_2.5', 'bb_20_3', 'bb_30_2', 'bb_50_2',
+            
+            # Stochastic
+            'stoch_14_3', 'stoch_21_5', 'stoch_30_10',
+            
+            # Williams %R
+            'williams_14', 'williams_21', 'williams_30',
+            
+            # CCI
+            'cci_20', 'cci_30', 'cci_50',
+            
+            # ADX
+            'adx_14', 'adx_21', 'adx_30',
+            
+            # Volume
+            'volume_sma_10', 'volume_sma_20', 'volume_sma_50', 'obv', 'vpt',
+            
+            # Momentum
+            'momentum_1', 'momentum_3', 'momentum_5', 'momentum_10', 'momentum_20', 'momentum_50',
+            
+            # Volatility
+            'volatility_5', 'volatility_10', 'volatility_20', 'volatility_30', 'volatility_50',
+            'atr_14', 'atr_21', 'atr_30',
+            
+            # Patterns
+            'pattern',
+            
+            # Trend
+            'psar', 'ichimoku'
+        ]
+    
+    def create_technical_features(self, data: pd.DataFrame, selected_indicators: List[str] = None) -> pd.DataFrame:
+        """Создание технических индикаторов с возможностью выбора"""
+        try:
+            df = data.copy()
+            
+            # Если не указаны индикаторы, используем все
+            if selected_indicators is None:
+                selected_indicators = self.get_all_available_indicators()
+            
+            # Простые скользящие средние
+            if any('sma' in ind for ind in selected_indicators):
+                for period in [5, 10, 20, 50, 100, 200]:
+                    if f'sma_{period}' in selected_indicators:
+                        df[f'sma_{period}'] = df['close'].rolling(window=period).mean()
+            
+            # Экспоненциальные скользящие средние
+            if any('ema' in ind for ind in selected_indicators):
+                for period in [5, 10, 20, 50, 100]:
+                    if f'ema_{period}' in selected_indicators:
+                        df[f'ema_{period}'] = df['close'].ewm(span=period).mean()
+            
+            # RSI (разные периоды)
+            if any('rsi' in ind for ind in selected_indicators):
+                for period in [14, 21, 30]:
+                    if f'rsi_{period}' in selected_indicators:
+                        delta = df['close'].diff()
+                        gain = (delta.where(delta > 0, 0)).rolling(window=period).mean()
+                        loss = (-delta.where(delta < 0, 0)).rolling(window=period).mean()
+                        rs = gain / loss
+                        df[f'rsi_{period}'] = 100 - (100 / (1 + rs))
+            
+            # MACD (разные параметры)
+            if any('macd' in ind for ind in selected_indicators):
+                for fast, slow, signal in [(12, 26, 9), (5, 35, 5), (8, 21, 5)]:
+                    if f'macd_{fast}_{slow}_{signal}' in selected_indicators:
+                        ema_fast = df['close'].ewm(span=fast).mean()
+                        ema_slow = df['close'].ewm(span=slow).mean()
+                        df[f'macd_{fast}_{slow}_{signal}'] = ema_fast - ema_slow
+                        df[f'macd_signal_{fast}_{slow}_{signal}'] = df[f'macd_{fast}_{slow}_{signal}'].ewm(span=signal).mean()
+                        df[f'macd_hist_{fast}_{slow}_{signal}'] = df[f'macd_{fast}_{slow}_{signal}'] - df[f'macd_signal_{fast}_{slow}_{signal}']
+            
+            # Bollinger Bands (разные периоды и стандартные отклонения)
+            if any('bb' in ind for ind in selected_indicators):
+                for period in [20, 30, 50]:
+                    for std_dev in [2, 2.5, 3]:
+                        if f'bb_{period}_{std_dev}' in selected_indicators:
+                            df[f'bb_middle_{period}'] = df['close'].rolling(window=period).mean()
+                            bb_std = df['close'].rolling(window=period).std()
+                            df[f'bb_upper_{period}_{std_dev}'] = df[f'bb_middle_{period}'] + (bb_std * std_dev)
+                            df[f'bb_lower_{period}_{std_dev}'] = df[f'bb_middle_{period}'] - (bb_std * std_dev)
+                            df[f'bb_width_{period}_{std_dev}'] = (df[f'bb_upper_{period}_{std_dev}'] - df[f'bb_lower_{period}_{std_dev}']) / df[f'bb_middle_{period}']
+                            df[f'bb_position_{period}_{std_dev}'] = (df['close'] - df[f'bb_lower_{period}_{std_dev}']) / (df[f'bb_upper_{period}_{std_dev}'] - df[f'bb_lower_{period}_{std_dev}'])
+            
+            # Stochastic (разные периоды)
+            if any('stoch' in ind for ind in selected_indicators):
+                for k_period, d_period in [(14, 3), (21, 5), (30, 10)]:
+                    if f'stoch_{k_period}_{d_period}' in selected_indicators:
+                        low_k = df['low'].rolling(window=k_period).min()
+                        high_k = df['high'].rolling(window=k_period).max()
+                        df[f'stoch_k_{k_period}'] = 100 * ((df['close'] - low_k) / (high_k - low_k))
+                        df[f'stoch_d_{k_period}_{d_period}'] = df[f'stoch_k_{k_period}'].rolling(window=d_period).mean()
+            
+            # Williams %R
+            if any('williams' in ind for ind in selected_indicators):
+                for period in [14, 21, 30]:
+                    if f'williams_{period}' in selected_indicators:
+                        high_period = df['high'].rolling(window=period).max()
+                        low_period = df['low'].rolling(window=period).min()
+                        df[f'williams_{period}'] = -100 * ((high_period - df['close']) / (high_period - low_period))
+            
+            # CCI (Commodity Channel Index)
+            if any('cci' in ind for ind in selected_indicators):
+                for period in [20, 30, 50]:
+                    if f'cci_{period}' in selected_indicators:
+                        typical_price = (df['high'] + df['low'] + df['close']) / 3
+                        sma_tp = typical_price.rolling(window=period).mean()
+                        mad = typical_price.rolling(window=period).apply(lambda x: np.mean(np.abs(x - x.mean())))
+                        df[f'cci_{period}'] = (typical_price - sma_tp) / (0.015 * mad)
+            
+            # ADX (Average Directional Index)
+            if any('adx' in ind for ind in selected_indicators):
+                for period in [14, 21, 30]:
+                    if f'adx_{period}' in selected_indicators:
+                        high_diff = df['high'].diff()
+                        low_diff = df['low'].diff()
+                        plus_dm = high_diff.where((high_diff > low_diff) & (high_diff > 0), 0)
+                        minus_dm = -low_diff.where((low_diff > high_diff) & (low_diff > 0), 0)
+                        
+                        atr = self._calculate_atr(df, period)
+                        plus_di = 100 * (plus_dm.rolling(window=period).mean() / atr)
+                        minus_di = 100 * (minus_dm.rolling(window=period).mean() / atr)
+                        
+                        dx = 100 * abs(plus_di - minus_di) / (plus_di + minus_di)
+                        df[f'adx_{period}'] = dx.rolling(window=period).mean()
+            
+            # Volume indicators (расширенные)
+            if any('volume' in ind for ind in selected_indicators):
+                for period in [10, 20, 50]:
+                    if f'volume_sma_{period}' in selected_indicators:
+                        df[f'volume_sma_{period}'] = df['volume'].rolling(window=period).mean()
+                        df[f'volume_ratio_{period}'] = df['volume'] / df[f'volume_sma_{period}']
+                
+                # OBV (On Balance Volume)
+                if 'obv' in selected_indicators:
+                    df['obv'] = (df['volume'] * np.where(df['close'] > df['close'].shift(1), 1, 
+                                                         np.where(df['close'] < df['close'].shift(1), -1, 0))).cumsum()
+                
+                # Volume Price Trend
+                if 'vpt' in selected_indicators:
+                    df['vpt'] = (df['volume'] * df['close'].pct_change()).cumsum()
+            
+            # Price momentum (расширенные)
+            if any('momentum' in ind for ind in selected_indicators):
+                for period in [1, 3, 5, 10, 20, 50]:
+                    if f'momentum_{period}' in selected_indicators:
+                        df[f'momentum_{period}'] = df['close'].pct_change(period)
+                        df[f'momentum_abs_{period}'] = df[f'momentum_{period}'].abs()
+            
+            # Volatility indicators (расширенные)
+            if any('volatility' in ind for ind in selected_indicators):
+                for period in [5, 10, 20, 30, 50]:
+                    if f'volatility_{period}' in selected_indicators:
+                        df[f'volatility_{period}'] = df['close'].rolling(window=period).std()
+                        df[f'volatility_ratio_{period}'] = df[f'volatility_{period}'] / df[f'volatility_{period}'].rolling(window=period*2).mean()
+                
+                # ATR (Average True Range)
+                for period in [14, 21, 30]:
+                    if f'atr_{period}' in selected_indicators:
+                        df[f'atr_{period}'] = self._calculate_atr(df, period)
+                        df[f'atr_ratio_{period}'] = df[f'atr_{period}'] / df['close']
+            
+            # Price patterns (расширенные)
+            if any('pattern' in ind for ind in selected_indicators):
+                df['price_change'] = df['close'].pct_change()
+                df['price_change_abs'] = df['price_change'].abs()
+                df['high_low_ratio'] = df['high'] / df['low']
+                df['close_open_ratio'] = df['close'] / df['open']
+                df['body_size'] = abs(df['close'] - df['open']) / df['open']
+                df['upper_shadow'] = (df['high'] - df[['open', 'close']].max(axis=1)) / df['open']
+                df['lower_shadow'] = (df[['open', 'close']].min(axis=1) - df['low']) / df['open']
+            
+            # Trend indicators
+            if any('trend' in ind for ind in selected_indicators):
+                # Parabolic SAR
+                if 'psar' in selected_indicators:
+                    df['psar'] = self._calculate_psar(df)
+                
+                # Ichimoku Cloud
+                if 'ichimoku' in selected_indicators:
+                    df['tenkan_sen'] = (df['high'].rolling(window=9).max() + df['low'].rolling(window=9).min()) / 2
+                    df['kijun_sen'] = (df['high'].rolling(window=26).max() + df['low'].rolling(window=26).min()) / 2
+                    df['senkou_span_a'] = ((df['tenkan_sen'] + df['kijun_sen']) / 2).shift(26)
+                    df['senkou_span_b'] = ((df['high'].rolling(window=52).max() + df['low'].rolling(window=52).min()) / 2).shift(26)
+                    df['chikou_span'] = df['close'].shift(-26)
+            
+            return df
+            
+        except Exception as e:
+            logger.error(f"Ошибка создания технических индикаторов: {e}")
+            return data
+    
+    def _calculate_atr(self, df: pd.DataFrame, period: int) -> pd.Series:
+        """Расчет Average True Range"""
+        high_low = df['high'] - df['low']
+        high_close = np.abs(df['high'] - df['close'].shift())
+        low_close = np.abs(df['low'] - df['close'].shift())
+        
+        true_range = np.maximum(high_low, np.maximum(high_close, low_close))
+        return true_range.rolling(window=period).mean()
+    
+    def _calculate_psar(self, df: pd.DataFrame, af_start: float = 0.02, af_increment: float = 0.02, af_maximum: float = 0.2) -> pd.Series:
+        """Расчет Parabolic SAR"""
+        psar = pd.Series(index=df.index, dtype=float)
+        af = af_start
+        ep = df['low'].iloc[0]
+        trend = 1
+        
+        for i in range(1, len(df)):
+            if trend == 1:
+                psar.iloc[i] = psar.iloc[i-1] + af * (ep - psar.iloc[i-1])
+                if df['low'].iloc[i] < psar.iloc[i]:
+                    trend = -1
+                    psar.iloc[i] = ep
+                    ep = df['high'].iloc[i]
+                    af = af_start
+                else:
+                    if df['high'].iloc[i] > ep:
+                        ep = df['high'].iloc[i]
+                        af = min(af + af_increment, af_maximum)
+            else:
+                psar.iloc[i] = psar.iloc[i-1] + af * (ep - psar.iloc[i-1])
+                if df['high'].iloc[i] > psar.iloc[i]:
+                    trend = 1
+                    psar.iloc[i] = ep
+                    ep = df['low'].iloc[i]
+                    af = af_start
+                else:
+                    if df['low'].iloc[i] < ep:
+                        ep = df['low'].iloc[i]
+                        af = min(af + af_increment, af_maximum)
+        
+        return psar
+
 class AdvancedMLStrategies:
     """Продвинутые ML стратегии для торговли"""
     
-    def __init__(self, initial_capital=100000):
+    def __init__(self, initial_capital=100000, optimize_indicators=True, max_indicators=20):
         self.initial_capital = initial_capital
         self.current_capital = initial_capital
         self.positions = {}
@@ -77,69 +429,167 @@ class AdvancedMLStrategies:
         self.lookback_window = 20
         self.forecast_horizon = 5
         
-    def create_technical_features(self, data: pd.DataFrame) -> pd.DataFrame:
-        """Создание технических индикаторов"""
+        # Оптимизатор индикаторов
+        self.optimize_indicators = optimize_indicators
+        self.max_indicators = max_indicators
+        self.indicator_optimizer = IndicatorOptimizer() if optimize_indicators else None
+        self.optimized_indicators = None
+        self.indicator_scores = {}
+        
+    def create_technical_features(self, data: pd.DataFrame, selected_indicators: List[str] = None) -> pd.DataFrame:
+        """Создание технических индикаторов с возможностью выбора"""
         try:
             df = data.copy()
             
+            # Если не указаны индикаторы, используем все
+            if selected_indicators is None:
+                selected_indicators = self.get_all_available_indicators()
+            
             # Простые скользящие средние
-            df['sma_5'] = df['close'].rolling(window=5).mean()
-            df['sma_10'] = df['close'].rolling(window=10).mean()
-            df['sma_20'] = df['close'].rolling(window=20).mean()
-            df['sma_50'] = df['close'].rolling(window=50).mean()
+            if any('sma' in ind for ind in selected_indicators):
+                for period in [5, 10, 20, 50, 100, 200]:
+                    if f'sma_{period}' in selected_indicators:
+                        df[f'sma_{period}'] = df['close'].rolling(window=period).mean()
             
             # Экспоненциальные скользящие средние
-            df['ema_5'] = df['close'].ewm(span=5).mean()
-            df['ema_10'] = df['close'].ewm(span=10).mean()
-            df['ema_20'] = df['close'].ewm(span=20).mean()
+            if any('ema' in ind for ind in selected_indicators):
+                for period in [5, 10, 20, 50, 100]:
+                    if f'ema_{period}' in selected_indicators:
+                        df[f'ema_{period}'] = df['close'].ewm(span=period).mean()
             
-            # RSI
-            delta = df['close'].diff()
-            gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
-            loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
-            rs = gain / loss
-            df['rsi'] = 100 - (100 / (1 + rs))
+            # RSI (разные периоды)
+            if any('rsi' in ind for ind in selected_indicators):
+                for period in [14, 21, 30]:
+                    if f'rsi_{period}' in selected_indicators:
+                        delta = df['close'].diff()
+                        gain = (delta.where(delta > 0, 0)).rolling(window=period).mean()
+                        loss = (-delta.where(delta < 0, 0)).rolling(window=period).mean()
+                        rs = gain / loss
+                        df[f'rsi_{period}'] = 100 - (100 / (1 + rs))
             
-            # MACD
-            ema_12 = df['close'].ewm(span=12).mean()
-            ema_26 = df['close'].ewm(span=26).mean()
-            df['macd'] = ema_12 - ema_26
-            df['macd_signal'] = df['macd'].ewm(span=9).mean()
-            df['macd_histogram'] = df['macd'] - df['macd_signal']
+            # MACD (разные параметры)
+            if any('macd' in ind for ind in selected_indicators):
+                for fast, slow, signal in [(12, 26, 9), (5, 35, 5), (8, 21, 5)]:
+                    if f'macd_{fast}_{slow}_{signal}' in selected_indicators:
+                        ema_fast = df['close'].ewm(span=fast).mean()
+                        ema_slow = df['close'].ewm(span=slow).mean()
+                        df[f'macd_{fast}_{slow}_{signal}'] = ema_fast - ema_slow
+                        df[f'macd_signal_{fast}_{slow}_{signal}'] = df[f'macd_{fast}_{slow}_{signal}'].ewm(span=signal).mean()
+                        df[f'macd_hist_{fast}_{slow}_{signal}'] = df[f'macd_{fast}_{slow}_{signal}'] - df[f'macd_signal_{fast}_{slow}_{signal}']
             
-            # Bollinger Bands
-            df['bb_middle'] = df['close'].rolling(window=20).mean()
-            bb_std = df['close'].rolling(window=20).std()
-            df['bb_upper'] = df['bb_middle'] + (bb_std * 2)
-            df['bb_lower'] = df['bb_middle'] - (bb_std * 2)
-            df['bb_width'] = (df['bb_upper'] - df['bb_lower']) / df['bb_middle']
-            df['bb_position'] = (df['close'] - df['bb_lower']) / (df['bb_upper'] - df['bb_lower'])
+            # Bollinger Bands (разные периоды и стандартные отклонения)
+            if any('bb' in ind for ind in selected_indicators):
+                for period in [20, 30, 50]:
+                    for std_dev in [2, 2.5, 3]:
+                        if f'bb_{period}_{std_dev}' in selected_indicators:
+                            df[f'bb_middle_{period}'] = df['close'].rolling(window=period).mean()
+                            bb_std = df['close'].rolling(window=period).std()
+                            df[f'bb_upper_{period}_{std_dev}'] = df[f'bb_middle_{period}'] + (bb_std * std_dev)
+                            df[f'bb_lower_{period}_{std_dev}'] = df[f'bb_middle_{period}'] - (bb_std * std_dev)
+                            df[f'bb_width_{period}_{std_dev}'] = (df[f'bb_upper_{period}_{std_dev}'] - df[f'bb_lower_{period}_{std_dev}']) / df[f'bb_middle_{period}']
+                            df[f'bb_position_{period}_{std_dev}'] = (df['close'] - df[f'bb_lower_{period}_{std_dev}']) / (df[f'bb_upper_{period}_{std_dev}'] - df[f'bb_lower_{period}_{std_dev}'])
             
-            # Stochastic
-            low_14 = df['low'].rolling(window=14).min()
-            high_14 = df['high'].rolling(window=14).max()
-            df['stoch_k'] = 100 * ((df['close'] - low_14) / (high_14 - low_14))
-            df['stoch_d'] = df['stoch_k'].rolling(window=3).mean()
+            # Stochastic (разные периоды)
+            if any('stoch' in ind for ind in selected_indicators):
+                for k_period, d_period in [(14, 3), (21, 5), (30, 10)]:
+                    if f'stoch_{k_period}_{d_period}' in selected_indicators:
+                        low_k = df['low'].rolling(window=k_period).min()
+                        high_k = df['high'].rolling(window=k_period).max()
+                        df[f'stoch_k_{k_period}'] = 100 * ((df['close'] - low_k) / (high_k - low_k))
+                        df[f'stoch_d_{k_period}_{d_period}'] = df[f'stoch_k_{k_period}'].rolling(window=d_period).mean()
             
-            # Volume indicators
-            df['volume_sma'] = df['volume'].rolling(window=20).mean()
-            df['volume_ratio'] = df['volume'] / df['volume_sma']
+            # Williams %R
+            if any('williams' in ind for ind in selected_indicators):
+                for period in [14, 21, 30]:
+                    if f'williams_{period}' in selected_indicators:
+                        high_period = df['high'].rolling(window=period).max()
+                        low_period = df['low'].rolling(window=period).min()
+                        df[f'williams_{period}'] = -100 * ((high_period - df['close']) / (high_period - low_period))
             
-            # Price momentum
-            df['momentum_5'] = df['close'].pct_change(5)
-            df['momentum_10'] = df['close'].pct_change(10)
-            df['momentum_20'] = df['close'].pct_change(20)
+            # CCI (Commodity Channel Index)
+            if any('cci' in ind for ind in selected_indicators):
+                for period in [20, 30, 50]:
+                    if f'cci_{period}' in selected_indicators:
+                        typical_price = (df['high'] + df['low'] + df['close']) / 3
+                        sma_tp = typical_price.rolling(window=period).mean()
+                        mad = typical_price.rolling(window=period).apply(lambda x: np.mean(np.abs(x - x.mean())))
+                        df[f'cci_{period}'] = (typical_price - sma_tp) / (0.015 * mad)
             
-            # Volatility
-            df['volatility_5'] = df['close'].rolling(window=5).std()
-            df['volatility_20'] = df['close'].rolling(window=20).std()
-            df['volatility_ratio'] = df['volatility_5'] / df['volatility_20']
+            # ADX (Average Directional Index)
+            if any('adx' in ind for ind in selected_indicators):
+                for period in [14, 21, 30]:
+                    if f'adx_{period}' in selected_indicators:
+                        high_diff = df['high'].diff()
+                        low_diff = df['low'].diff()
+                        plus_dm = high_diff.where((high_diff > low_diff) & (high_diff > 0), 0)
+                        minus_dm = -low_diff.where((low_diff > high_diff) & (low_diff > 0), 0)
+                        
+                        atr = self._calculate_atr(df, period)
+                        plus_di = 100 * (plus_dm.rolling(window=period).mean() / atr)
+                        minus_di = 100 * (minus_dm.rolling(window=period).mean() / atr)
+                        
+                        dx = 100 * abs(plus_di - minus_di) / (plus_di + minus_di)
+                        df[f'adx_{period}'] = dx.rolling(window=period).mean()
             
-            # Price patterns
-            df['price_change'] = df['close'].pct_change()
-            df['price_change_abs'] = df['price_change'].abs()
-            df['high_low_ratio'] = df['high'] / df['low']
-            df['close_open_ratio'] = df['close'] / df['open']
+            # Volume indicators (расширенные)
+            if any('volume' in ind for ind in selected_indicators):
+                for period in [10, 20, 50]:
+                    if f'volume_sma_{period}' in selected_indicators:
+                        df[f'volume_sma_{period}'] = df['volume'].rolling(window=period).mean()
+                        df[f'volume_ratio_{period}'] = df['volume'] / df[f'volume_sma_{period}']
+                
+                # OBV (On Balance Volume)
+                if 'obv' in selected_indicators:
+                    df['obv'] = (df['volume'] * np.where(df['close'] > df['close'].shift(1), 1, 
+                                                         np.where(df['close'] < df['close'].shift(1), -1, 0))).cumsum()
+                
+                # Volume Price Trend
+                if 'vpt' in selected_indicators:
+                    df['vpt'] = (df['volume'] * df['close'].pct_change()).cumsum()
+            
+            # Price momentum (расширенные)
+            if any('momentum' in ind for ind in selected_indicators):
+                for period in [1, 3, 5, 10, 20, 50]:
+                    if f'momentum_{period}' in selected_indicators:
+                        df[f'momentum_{period}'] = df['close'].pct_change(period)
+                        df[f'momentum_abs_{period}'] = df[f'momentum_{period}'].abs()
+            
+            # Volatility indicators (расширенные)
+            if any('volatility' in ind for ind in selected_indicators):
+                for period in [5, 10, 20, 30, 50]:
+                    if f'volatility_{period}' in selected_indicators:
+                        df[f'volatility_{period}'] = df['close'].rolling(window=period).std()
+                        df[f'volatility_ratio_{period}'] = df[f'volatility_{period}'] / df[f'volatility_{period}'].rolling(window=period*2).mean()
+                
+                # ATR (Average True Range)
+                for period in [14, 21, 30]:
+                    if f'atr_{period}' in selected_indicators:
+                        df[f'atr_{period}'] = self._calculate_atr(df, period)
+                        df[f'atr_ratio_{period}'] = df[f'atr_{period}'] / df['close']
+            
+            # Price patterns (расширенные)
+            if any('pattern' in ind for ind in selected_indicators):
+                df['price_change'] = df['close'].pct_change()
+                df['price_change_abs'] = df['price_change'].abs()
+                df['high_low_ratio'] = df['high'] / df['low']
+                df['close_open_ratio'] = df['close'] / df['open']
+                df['body_size'] = abs(df['close'] - df['open']) / df['open']
+                df['upper_shadow'] = (df['high'] - df[['open', 'close']].max(axis=1)) / df['open']
+                df['lower_shadow'] = (df[['open', 'close']].min(axis=1) - df['low']) / df['open']
+            
+            # Trend indicators
+            if any('trend' in ind for ind in selected_indicators):
+                # Parabolic SAR
+                if 'psar' in selected_indicators:
+                    df['psar'] = self._calculate_psar(df)
+                
+                # Ichimoku Cloud
+                if 'ichimoku' in selected_indicators:
+                    df['tenkan_sen'] = (df['high'].rolling(window=9).max() + df['low'].rolling(window=9).min()) / 2
+                    df['kijun_sen'] = (df['high'].rolling(window=26).max() + df['low'].rolling(window=26).min()) / 2
+                    df['senkou_span_a'] = ((df['tenkan_sen'] + df['kijun_sen']) / 2).shift(26)
+                    df['senkou_span_b'] = ((df['high'].rolling(window=52).max() + df['low'].rolling(window=52).min()) / 2).shift(26)
+                    df['chikou_span'] = df['close'].shift(-26)
             
             return df
             
@@ -147,13 +597,149 @@ class AdvancedMLStrategies:
             logger.error(f"Ошибка создания технических индикаторов: {e}")
             return data
     
+    def get_all_available_indicators(self) -> List[str]:
+        """Получить список всех доступных индикаторов"""
+        return [
+            # Moving Averages
+            'sma_5', 'sma_10', 'sma_20', 'sma_50', 'sma_100', 'sma_200',
+            'ema_5', 'ema_10', 'ema_20', 'ema_50', 'ema_100',
+            
+            # RSI
+            'rsi_14', 'rsi_21', 'rsi_30',
+            
+            # MACD
+            'macd_12_26_9', 'macd_5_35_5', 'macd_8_21_5',
+            
+            # Bollinger Bands
+            'bb_20_2', 'bb_20_2.5', 'bb_20_3', 'bb_30_2', 'bb_50_2',
+            
+            # Stochastic
+            'stoch_14_3', 'stoch_21_5', 'stoch_30_10',
+            
+            # Williams %R
+            'williams_14', 'williams_21', 'williams_30',
+            
+            # CCI
+            'cci_20', 'cci_30', 'cci_50',
+            
+            # ADX
+            'adx_14', 'adx_21', 'adx_30',
+            
+            # Volume
+            'volume_sma_10', 'volume_sma_20', 'volume_sma_50', 'obv', 'vpt',
+            
+            # Momentum
+            'momentum_1', 'momentum_3', 'momentum_5', 'momentum_10', 'momentum_20', 'momentum_50',
+            
+            # Volatility
+            'volatility_5', 'volatility_10', 'volatility_20', 'volatility_30', 'volatility_50',
+            'atr_14', 'atr_21', 'atr_30',
+            
+            # Patterns
+            'pattern',
+            
+            # Trend
+            'psar', 'ichimoku'
+        ]
+    
+    def _calculate_atr(self, df: pd.DataFrame, period: int) -> pd.Series:
+        """Расчет Average True Range"""
+        high_low = df['high'] - df['low']
+        high_close = np.abs(df['high'] - df['close'].shift())
+        low_close = np.abs(df['low'] - df['close'].shift())
+        
+        true_range = np.maximum(high_low, np.maximum(high_close, low_close))
+        return true_range.rolling(window=period).mean()
+    
+    def _calculate_psar(self, df: pd.DataFrame, af_start: float = 0.02, af_increment: float = 0.02, af_maximum: float = 0.2) -> pd.Series:
+        """Расчет Parabolic SAR"""
+        psar = pd.Series(index=df.index, dtype=float)
+        af = af_start
+        ep = df['low'].iloc[0]
+        trend = 1
+        
+        for i in range(1, len(df)):
+            if trend == 1:
+                psar.iloc[i] = psar.iloc[i-1] + af * (ep - psar.iloc[i-1])
+                if df['low'].iloc[i] < psar.iloc[i]:
+                    trend = -1
+                    psar.iloc[i] = ep
+                    ep = df['high'].iloc[i]
+                    af = af_start
+                else:
+                    if df['high'].iloc[i] > ep:
+                        ep = df['high'].iloc[i]
+                        af = min(af + af_increment, af_maximum)
+            else:
+                psar.iloc[i] = psar.iloc[i-1] + af * (ep - psar.iloc[i-1])
+                if df['high'].iloc[i] > psar.iloc[i]:
+                    trend = 1
+                    psar.iloc[i] = ep
+                    ep = df['low'].iloc[i]
+                    af = af_start
+                else:
+                    if df['low'].iloc[i] < ep:
+                        ep = df['low'].iloc[i]
+                        af = min(af + af_increment, af_maximum)
+        
+        return psar
+    
+    def optimize_indicators_for_data(self, data: pd.DataFrame, symbol: str = None) -> List[str]:
+        """Оптимизация индикаторов для конкретных данных"""
+        if not self.optimize_indicators or not self.indicator_optimizer:
+            # Возвращаем базовые индикаторы если оптимизация отключена
+            return ['sma_20', 'ema_20', 'rsi_14', 'macd_12_26_9', 'bb_20_2', 'stoch_14_3']
+        
+        try:
+            logger.info(f"Оптимизация индикаторов для {symbol or 'данных'}...")
+            
+            # Оценка эффективности всех индикаторов
+            scores = self.indicator_optimizer.evaluate_indicators(data)
+            
+            if not scores:
+                logger.warning("Не удалось оценить индикаторы, используем базовые")
+                return ['sma_20', 'ema_20', 'rsi_14', 'macd_12_26_9', 'bb_20_2', 'stoch_14_3']
+            
+            # Выбор лучших индикаторов
+            best_indicators = self.indicator_optimizer.select_best_indicators(
+                scores, 
+                top_n=self.max_indicators,
+                min_correlation=0.05
+            )
+            
+            # Сохраняем результаты
+            self.indicator_scores[symbol or 'default'] = scores
+            self.optimized_indicators = best_indicators
+            
+            logger.info(f"Выбрано {len(best_indicators)} лучших индикаторов:")
+            for i, indicator in enumerate(best_indicators[:10], 1):
+                score = scores.get(indicator, 0)
+                logger.info(f"  {i}. {indicator}: {score:.4f}")
+            
+            return best_indicators
+            
+        except Exception as e:
+            logger.error(f"Ошибка оптимизации индикаторов: {e}")
+            return ['sma_20', 'ema_20', 'rsi_14', 'macd_12_26_9', 'bb_20_2', 'stoch_14_3']
+    
+    def get_optimized_indicators(self, symbol: str = None) -> List[str]:
+        """Получить оптимизированные индикаторы"""
+        if self.optimized_indicators:
+            return self.optimized_indicators
+        
+        # Если нет оптимизированных, возвращаем базовые
+        return ['sma_20', 'ema_20', 'rsi_14', 'macd_12_26_9', 'bb_20_2', 'stoch_14_3']
+    
     def arima_strategy(self, symbol: str, data: pd.DataFrame) -> Optional[Dict]:
         """ARIMA стратегия для прогнозирования цен"""
         try:
             logger.info(f"Тестирование ARIMA стратегии для {symbol}")
             
-            # Подготавливаем данные
-            df = self.create_technical_features(data)
+            # Оптимизируем индикаторы для данных
+            optimized_indicators = self.optimize_indicators_for_data(data, symbol)
+            
+            # Подготавливаем данные с оптимизированными индикаторами
+            df = self.create_technical_features(data, optimized_indicators)
             df = df.dropna()
             
             if len(df) < 50:
