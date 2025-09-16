@@ -94,17 +94,25 @@ class TradingReadinessChecker:
             'INITIAL_CAPITAL': (100000, 'Начальный капитал'),
             'MAX_RISK_PER_TRADE': (0.02, 'Максимальный риск на сделку'),
             'STOP_LOSS_PERCENTAGE': (0.05, 'Процент стоп-лосса'),
-            'TAKE_PROFIT_PERCENTAGE': (0.15, 'Процент тейк-профита')
+            'TAKE_PROFIT_PERCENTAGE': (0.15, 'Процент тейк-профита'),
+            'TRADING_SYMBOLS': ('GAZP,SBER,PIKK,IRAO,SGZH', 'Список инструментов для торговли'),
+            'TRADING_PERIOD': ('1Y', 'Период данных для анализа'),
+            'MIN_DATA_DAYS': (100, 'Минимальное количество дней данных')
         }
         
         for var, (default, description) in trading_vars.items():
             value = os.getenv(var)
             if value:
-                try:
-                    float_value = float(value)
-                    self.add_success(f"{var}: {float_value} ({description})")
-                except ValueError:
-                    self.add_issue(f"❌ Неверное значение {var}: {value}")
+                # Для числовых переменных проверяем, что это число
+                if var in ['INITIAL_CAPITAL', 'MAX_RISK_PER_TRADE', 'STOP_LOSS_PERCENTAGE', 'TAKE_PROFIT_PERCENTAGE', 'MIN_DATA_DAYS']:
+                    try:
+                        float_value = float(value)
+                        self.add_success(f"{var}: {float_value} ({description})")
+                    except ValueError:
+                        self.add_issue(f"❌ Неверное значение {var}: {value}")
+                else:
+                    # Для строковых переменных просто показываем значение
+                    self.add_success(f"{var}: {value} ({description})")
             else:
                 self.add_warning(f"⚠️ {var} не установлен, используется значение по умолчанию: {default}")
     
@@ -235,6 +243,53 @@ class TradingReadinessChecker:
             else:
                 self.add_issue(f"❌ Файл не найден: {file_path}")
     
+    def check_trading_instruments(self):
+        """Проверка доступности инструментов для торговли"""
+        logger.info("\n📈 Проверка инструментов для торговли...")
+        
+        try:
+            # Получаем настройки
+            trading_symbols = os.getenv('TRADING_SYMBOLS', 'GAZP,SBER,PIKK,IRAO,SGZH').split(',')
+            trading_period = os.getenv('TRADING_PERIOD', '1Y')
+            min_data_days = int(os.getenv('MIN_DATA_DAYS', '100'))
+            
+            self.add_success(f"Настроенные инструменты: {', '.join(trading_symbols)}")
+            self.add_success(f"Период данных: {trading_period}")
+            self.add_success(f"Минимум дней данных: {min_data_days}")
+            
+            # Проверяем доступность данных
+            data_dir = 'data/tbank_real'
+            if not os.path.exists(data_dir):
+                self.add_issue(f"❌ Директория с данными не найдена: {data_dir}")
+                return
+            
+            available_instruments = []
+            for symbol in trading_symbols:
+                filename = f"{symbol}_{trading_period}_tbank.csv"
+                filepath = os.path.join(data_dir, filename)
+                
+                if os.path.exists(filepath):
+                    try:
+                        import pandas as pd
+                        df = pd.read_csv(filepath, index_col='date', parse_dates=True)
+                        if len(df) >= min_data_days:
+                            available_instruments.append(symbol)
+                            self.add_success(f"✅ {symbol}: {len(df)} дней данных")
+                        else:
+                            self.add_warning(f"⚠️ {symbol}: недостаточно данных ({len(df)} < {min_data_days})")
+                    except Exception as e:
+                        self.add_issue(f"❌ Ошибка чтения данных {symbol}: {e}")
+                else:
+                    self.add_issue(f"❌ Файл данных не найден: {filename}")
+            
+            if available_instruments:
+                self.add_success(f"Доступно для торговли: {', '.join(available_instruments)}")
+            else:
+                self.add_issue("❌ Нет доступных инструментов для торговли")
+                
+        except Exception as e:
+            self.add_issue(f"❌ Ошибка проверки инструментов: {e}")
+    
     def check_logging_setup(self):
         """Проверка настройки логирования"""
         logger.info("\n📝 Проверка логирования...")
@@ -296,6 +351,7 @@ class TradingReadinessChecker:
         await self.check_telegram_notifications()
         self.check_dependencies()
         self.check_file_permissions()
+        self.check_trading_instruments()
         self.check_logging_setup()
         
         # Генерируем рекомендации
