@@ -313,9 +313,17 @@ class LiveTradingManager:
                 return
             
             # Выбираем стратегию
-            strategy_method = getattr(self.trading_session, f"{self.strategy}_strategy", None)
+            strategy_mapping = {
+                'ensemble': 'ensemble_ml_strategy',
+                'arima': 'arima_strategy',
+                'lstm': 'lstm_strategy',
+                'sarima': 'sarima_strategy'
+            }
+            
+            strategy_method_name = strategy_mapping.get(self.strategy, f"{self.strategy}_strategy")
+            strategy_method = getattr(self.trading_session, strategy_method_name, None)
             if not strategy_method:
-                logger.error(f"❌ Стратегия {self.strategy} не найдена")
+                logger.error(f"❌ Стратегия {self.strategy} не найдена (искали метод {strategy_method_name})")
                 return
             
             # Запускаем торговлю для каждого инструмента
@@ -325,7 +333,7 @@ class LiveTradingManager:
                 
                 try:
                     # Запускаем стратегию
-                    await strategy_method(data, symbol)
+                    result = strategy_method(symbol, data)
                     
                 except Exception as e:
                     logger.error(f"Ошибка торговли {symbol}: {e}")
