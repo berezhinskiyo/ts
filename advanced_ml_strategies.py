@@ -8,12 +8,13 @@ import pandas as pd
 import numpy as np
 import os
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 import logging
 import warnings
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 import asyncio
+import pytz
 
 # Импорт системы уведомлений
 try:
@@ -456,6 +457,86 @@ class AdvancedMLStrategies:
             except Exception as e:
                 logger.warning(f"Не удалось инициализировать Telegram уведомления: {e}")
                 self.enable_telegram = False
+    
+    def is_market_open(self) -> bool:
+        """Проверка, открыта ли Московская биржа"""
+        try:
+            # Московское время
+            moscow_tz = pytz.timezone('Europe/Moscow')
+            now_moscow = datetime.now(moscow_tz)
+            
+            # Текущее время и день недели
+            current_time = now_moscow.time()
+            current_weekday = now_moscow.weekday()  # 0 = понедельник, 6 = воскресенье
+            
+            # Биржа не работает в выходные (суббота = 5, воскресенье = 6)
+            if current_weekday >= 5:
+                return False
+            
+            # Время работы биржи: 10:00 - 18:45 (МСК)
+            market_open = time(10, 0)   # 10:00
+            market_close = time(18, 45) # 18:45
+            
+            # Проверяем, находимся ли в рабочем времени
+            is_open = market_open <= current_time <= market_close
+            
+            if not is_open:
+                logger.info(f"🕐 Биржа закрыта. Текущее время: {now_moscow.strftime('%H:%M:%S %Z')} "
+                           f"(рабочее время: 10:00-18:45 МСК)")
+            
+            return is_open
+            
+        except Exception as e:
+            logger.error(f"Ошибка проверки времени работы биржи: {e}")
+            # В случае ошибки считаем, что биржа открыта (безопасный режим)
+            return True
+    
+    def get_market_status(self) -> Dict[str, any]:
+        """Получение статуса биржи"""
+        try:
+            moscow_tz = pytz.timezone('Europe/Moscow')
+            now_moscow = datetime.now(moscow_tz)
+            
+            is_open = self.is_market_open()
+            
+            # Время до открытия/закрытия
+            if is_open:
+                market_close = now_moscow.replace(hour=18, minute=45, second=0, microsecond=0)
+                time_to_close = market_close - now_moscow
+                next_action = f"Закрытие через {time_to_close}"
+            else:
+                # Следующий рабочий день
+                if now_moscow.weekday() >= 5:  # Выходные
+                    days_until_monday = 7 - now_moscow.weekday()
+                    next_monday = now_moscow + timedelta(days=days_until_monday)
+                    next_open = next_monday.replace(hour=10, minute=0, second=0, microsecond=0)
+                else:
+                    # Будний день, но биржа закрыта
+                    if now_moscow.time() < time(10, 0):
+                        next_open = now_moscow.replace(hour=10, minute=0, second=0, microsecond=0)
+                    else:
+                        # Биржа уже закрылась, следующий день
+                        next_day = now_moscow + timedelta(days=1)
+                        next_open = next_day.replace(hour=10, minute=0, second=0, microsecond=0)
+                
+                time_to_open = next_open - now_moscow
+                next_action = f"Открытие через {time_to_open}"
+            
+            return {
+                'is_open': is_open,
+                'current_time': now_moscow.strftime('%Y-%m-%d %H:%M:%S %Z'),
+                'next_action': next_action,
+                'weekday': now_moscow.strftime('%A')
+            }
+            
+        except Exception as e:
+            logger.error(f"Ошибка получения статуса биржи: {e}")
+            return {
+                'is_open': True,  # Безопасный режим
+                'current_time': 'Ошибка получения времени',
+                'next_action': 'Неизвестно',
+                'weekday': 'Неизвестно'
+            }
         
     def create_technical_features(self, data: pd.DataFrame, selected_indicators: List[str] = None) -> pd.DataFrame:
         """Создание технических индикаторов с возможностью выбора"""
@@ -806,6 +887,12 @@ class AdvancedMLStrategies:
     def arima_strategy(self, symbol: str, data: pd.DataFrame) -> Optional[Dict]:
         """ARIMA стратегия для прогнозирования цен"""
         try:
+            # Проверяем время работы биржи
+            if not self.is_market_open():
+                market_status = self.get_market_status()
+                logger.info(f"🕐 Биржа закрыта для {symbol}. {market_status['next_action']}")
+                return None
+            
             logger.info(f"Тестирование ARIMA стратегии для {symbol}")
             
             # Оптимизируем индикаторы для данных
@@ -950,6 +1037,12 @@ class AdvancedMLStrategies:
             return None
         
         try:
+            # Проверяем время работы биржи
+            if not self.is_market_open():
+                market_status = self.get_market_status()
+                logger.info(f"🕐 Биржа закрыта для {symbol}. {market_status['next_action']}")
+                return None
+            
             logger.info(f"Тестирование LSTM стратегии для {symbol}")
             
             # Подготавливаем данные
@@ -1084,6 +1177,12 @@ class AdvancedMLStrategies:
     def ensemble_ml_strategy(self, symbol: str, data: pd.DataFrame) -> Optional[Dict]:
         """Ансамблевая ML стратегия с несколькими моделями"""
         try:
+            # Проверяем время работы биржи
+            if not self.is_market_open():
+                market_status = self.get_market_status()
+                logger.info(f"🕐 Биржа закрыта для {symbol}. {market_status['next_action']}")
+                return None
+            
             logger.info(f"Тестирование Ensemble ML стратегии для {symbol}")
             
             # Подготавливаем данные
@@ -1231,6 +1330,12 @@ class AdvancedMLStrategies:
     def sarima_strategy(self, symbol: str, data: pd.DataFrame) -> Optional[Dict]:
         """SARIMA стратегия с учетом сезонности"""
         try:
+            # Проверяем время работы биржи
+            if not self.is_market_open():
+                market_status = self.get_market_status()
+                logger.info(f"🕐 Биржа закрыта для {symbol}. {market_status['next_action']}")
+                return None
+            
             logger.info(f"Тестирование SARIMA стратегии для {symbol}")
             
             # Подготавливаем данные

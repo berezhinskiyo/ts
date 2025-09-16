@@ -305,6 +305,12 @@ class LiveTradingManager:
         try:
             logger.info("🔄 Запуск торгового цикла...")
             
+            # Проверяем время работы биржи
+            if not self.trading_session.is_market_open():
+                market_status = self.trading_session.get_market_status()
+                logger.info(f"🕐 Биржа закрыта. {market_status['next_action']}")
+                return
+            
             # Загружаем данные
             market_data = self.trading_session.load_tbank_data()
             
