@@ -88,8 +88,8 @@ class LiveTradingManager:
         
         # Настройки мониторинга
         self.check_interval = int(os.getenv('CHECK_INTERVAL', 300))  # 5 минут
-        self.performance_check_interval = int(os.getenv('PERFORMANCE_CHECK_INTERVAL', 3600))  # 1 час
-        self.retrain_interval = int(os.getenv('RETRAIN_INTERVAL', 86400))  # 24 часа
+        self.performance_check_interval = int(os.getenv('PERFORMANCE_CHECK_INTERVAL', 3*86400))  # 1 час
+        self.retrain_interval = int(os.getenv('RETRAIN_INTERVAL', 3*86400))  # 24 часа
         
         # Пороги для переобучения
         self.min_win_rate = float(os.getenv('MIN_WIN_RATE', 0.4))  # 40%

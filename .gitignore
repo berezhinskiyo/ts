@@ -5,3 +5,4 @@ __pycache__/
 *.log
 live_trading.log
 trading.log
+.DS_Store

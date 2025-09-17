@@ -1,0 +1,273 @@
+{
+  "rate_limit_0.1s": {
+    "success_count": 10,
+    "error_count": 0,
+    "success_rate": 100.0,
+    "elapsed_time": 1.7318880558013916
+  },
+  "rate_limit_0.2s": {
+    "success_count": 10,
+    "error_count": 0,
+    "success_rate": 100.0,
+    "elapsed_time": 2.562464714050293
+  },
+  "rate_limit_0.5s": {
+    "success_count": 10,
+    "error_count": 0,
+    "success_rate": 100.0,
+    "elapsed_time": 5.3056321144104
+  },
+  "rate_limit_1.0s": {
+    "success_count": 10,
+    "error_count": 0,
+    "success_rate": 100.0,
+    "elapsed_time": 10.283250093460083
+  },
+  "rate_limit_2.0s": {
+    "success_count": 10,
+    "error_count": 0,
+    "success_rate": 100.0,
+    "elapsed_time": 18.96033215522766
+  },
+  "data_limit_1d": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.07550191879272461,
+    "status_code": 200
+  },
+  "data_limit_7d": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.07696413993835449,
+    "status_code": 200
+  },
+  "data_limit_30d": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.07199788093566895,
+    "status_code": 200
+  },
+  "data_limit_90d": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.07347512245178223,
+    "status_code": 200
+  },
+  "data_limit_365d": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.07972288131713867,
+    "status_code": 200
+  },
+  "concurrent_1": {
+    "success_count": 1,
+    "total_count": 1,
+    "success_rate": 100.0,
+    "elapsed_time": 0.09598803520202637,
+    "results": [
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 0
+      }
+    ]
+  },
+  "concurrent_3": {
+    "success_count": 3,
+    "total_count": 3,
+    "success_rate": 100.0,
+    "elapsed_time": 0.14322304725646973,
+    "results": [
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 0
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 1
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 2
+      }
+    ]
+  },
+  "concurrent_5": {
+    "success_count": 5,
+    "total_count": 5,
+    "success_rate": 100.0,
+    "elapsed_time": 0.07735586166381836,
+    "results": [
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 0
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 1
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 2
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 3
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 4
+      }
+    ]
+  },
+  "concurrent_10": {
+    "success_count": 10,
+    "total_count": 10,
+    "success_rate": 100.0,
+    "elapsed_time": 0.26259374618530273,
+    "results": [
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 0
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 1
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 2
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 3
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 4
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 5
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 6
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 7
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 8
+      },
+      {
+        "success": true,
+        "records": 500,
+        "request_id": 9
+      }
+    ]
+  },
+  "endpoint_свечи_(candles)": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.07690882682800293,
+    "status_code": 200
+  },
+  "endpoint_история_(history)": {
+    "success": true,
+    "records_count": 1,
+    "response_time": 0.05543112754821777,
+    "status_code": 200
+  },
+  "endpoint_список_инструментов": {
+    "success": true,
+    "records_count": 258,
+    "response_time": 0.11567091941833496,
+    "status_code": 200
+  },
+  "endpoint_статистика_торгов": {
+    "success": true,
+    "records_count": 5000,
+    "response_time": 0.13414621353149414,
+    "status_code": 200
+  },
+  "historical_2024": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.14265179634094238,
+    "status_code": 200
+  },
+  "historical_2023": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.06734490394592285,
+    "status_code": 200
+  },
+  "historical_2022": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.10466504096984863,
+    "status_code": 200
+  },
+  "historical_2021": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.22126293182373047,
+    "status_code": 200
+  },
+  "historical_2020": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.08436989784240723,
+    "status_code": 200
+  },
+  "historical_2019": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.09486603736877441,
+    "status_code": 200
+  },
+  "historical_2018": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.17926406860351562,
+    "status_code": 200
+  },
+  "historical_2017": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.12370109558105469,
+    "status_code": 200
+  },
+  "historical_2016": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.08628296852111816,
+    "status_code": 200
+  },
+  "historical_2015": {
+    "success": true,
+    "records_count": 500,
+    "response_time": 0.06625509262084961,
+    "status_code": 200
+  }
+}

@@ -24,6 +24,14 @@ except ImportError:
     TELEGRAM_AVAILABLE = False
     print("Telegram notifications не доступны. Установите aiohttp для поддержки уведомлений.")
 
+# Импорт менеджера моделей
+try:
+    from model_manager import ModelManager
+    MODEL_MANAGER_AVAILABLE = True
+except ImportError:
+    MODEL_MANAGER_AVAILABLE = False
+    ModelManager = None
+
 # ML библиотеки
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
@@ -457,6 +465,15 @@ class AdvancedMLStrategies:
             except Exception as e:
                 logger.warning(f"Не удалось инициализировать Telegram уведомления: {e}")
                 self.enable_telegram = False
+        
+        # Менеджер моделей
+        self.model_manager = None
+        if MODEL_MANAGER_AVAILABLE:
+            try:
+                self.model_manager = ModelManager()
+                logger.info("Менеджер моделей инициализирован")
+            except Exception as e:
+                logger.warning(f"Не удалось инициализировать менеджер моделей: {e}")
     
     def is_market_open(self) -> bool:
         """Проверка, открыта ли Московская биржа"""
