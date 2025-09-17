@@ -1,0 +1,73 @@
+{
+  "robot": {
+    "name": "Trading Robot Pro",
+    "version": "1.0.0",
+    "description": "Конфигурируемый торговый робот с анализом новостей"
+  },
+  "strategy": {
+    "id": "ensemble",
+    "name": "Ensemble Strategy",
+    "use_news_analysis": true,
+    "parameters": {
+      "confidence_threshold": 0.3,
+      "risk_per_trade": 0.02,
+      "max_positions": 5,
+      "news_weight": 0.3,
+      "technical_weight": 0.7
+    }
+  },
+  "instruments": {
+    "symbols": ["SBER", "GAZP", "LKOH", "NVTK", "ROSN", "TATN", "PIKK", "IRAO", "SGZH"],
+    "timeframe": "1min",
+    "data_source": "tbank",
+    "primary_symbols": ["SBER", "GAZP", "PIKK"],
+    "secondary_symbols": ["LKOH", "NVTK", "ROSN", "TATN", "IRAO", "SGZH"]
+  },
+  "news": {
+    "enabled": true,
+    "sources": ["russian_media", "moex", "telegram"],
+    "update_interval": 300,
+    "sentiment_threshold": 0.2,
+    "confidence_threshold": 0.5,
+    "impact_weights": {
+      "very_high": 1.0,
+      "high": 0.8,
+      "medium": 0.6,
+      "low": 0.3
+    }
+  },
+  "risk_management": {
+    "max_drawdown": 0.15,
+    "stop_loss": 0.05,
+    "take_profit": 0.10,
+    "position_sizing": "fixed",
+    "max_daily_trades": 20,
+    "max_concurrent_positions": 3,
+    "emergency_stop_loss": 0.20
+  },
+  "monitoring": {
+    "telegram_notifications": true,
+    "log_level": "INFO",
+    "performance_check_interval": 3600,
+    "retrain_interval": 86400,
+    "alerts": {
+      "high_drawdown": true,
+      "low_win_rate": true,
+      "model_drift": true,
+      "news_anomalies": true
+    }
+  },
+  "data": {
+    "update_interval": 60,
+    "storage_path": "data/",
+    "backup_enabled": true,
+    "retention_days": 365,
+    "compression": true
+  },
+  "performance": {
+    "target_return": 0.20,
+    "target_sharpe": 1.5,
+    "max_volatility": 0.25,
+    "benchmark": "MOEX"
+  }
+}

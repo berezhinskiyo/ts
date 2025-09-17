@@ -14,6 +14,7 @@ import numpy as np
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple
 import warnings
+from tqdm import tqdm
 warnings.filterwarnings('ignore')
 
 # ML импорты
@@ -88,51 +89,74 @@ class TechnicalIndicators:
         """Создание основных технических индикаторов"""
         df = df.copy()
         
-        # Основные скользящие средние
-        for window in [5, 10, 20, 50]:
-            df[f'sma_{window}'] = TechnicalIndicators.sma(df['close'], window)
-            df[f'ema_{window}'] = TechnicalIndicators.ema(df['close'], window)
+        # Определяем количество этапов для прогресс-бара
+        total_steps = 8  # Основные этапы создания индикаторов
         
-        # RSI
-        df['rsi_14'] = TechnicalIndicators.rsi(df['close'], 14)
-        df['rsi_21'] = TechnicalIndicators.rsi(df['close'], 21)
-        
-        # MACD
-        macd, signal, histogram = TechnicalIndicators.macd(df['close'])
-        df['macd'] = macd
-        df['macd_signal'] = signal
-        df['macd_histogram'] = histogram
-        
-        # Полосы Боллинджера
-        bb_upper, bb_middle, bb_lower = TechnicalIndicators.bollinger_bands(df['close'])
-        df['bb_upper'] = bb_upper
-        df['bb_middle'] = bb_middle
-        df['bb_lower'] = bb_lower
-        df['bb_width'] = (bb_upper - bb_lower) / bb_middle
-        df['bb_position'] = (df['close'] - bb_lower) / (bb_upper - bb_lower)
-        
-        # ATR
-        df['atr'] = TechnicalIndicators.atr(df['high'], df['low'], df['close'])
-        
-        # Дополнительные признаки
-        df['price_change'] = df['close'].pct_change()
-        df['volume_change'] = df['volume'].pct_change()
-        df['high_low_ratio'] = df['high'] / df['low']
-        df['close_open_ratio'] = df['close'] / df['open']
-        df['body_size'] = abs(df['close'] - df['open']) / df['open']
-        
-        # Волатильность
-        df['volatility_5'] = df['close'].rolling(5).std()
-        df['volatility_20'] = df['close'].rolling(20).std()
-        
-        # Временные признаки
-        df['hour'] = df['begin'].dt.hour
-        df['day_of_week'] = df['begin'].dt.dayofweek
-        df['month'] = df['begin'].dt.month
-        
-        # Объемные индикаторы
-        df['volume_sma'] = df['volume'].rolling(20).mean()
-        df['volume_ratio'] = df['volume'] / df['volume_sma']
+        with tqdm(total=total_steps, desc="Создание индикаторов", 
+                 bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]',
+                 leave=False) as pbar:
+            
+            # Основные скользящие средние
+            pbar.set_description("Скользящие средние")
+            for window in [5, 10, 20, 50]:
+                df[f'sma_{window}'] = TechnicalIndicators.sma(df['close'], window)
+                df[f'ema_{window}'] = TechnicalIndicators.ema(df['close'], window)
+            pbar.update(1)
+            
+            # RSI
+            pbar.set_description("RSI индикаторы")
+            df['rsi_14'] = TechnicalIndicators.rsi(df['close'], 14)
+            df['rsi_21'] = TechnicalIndicators.rsi(df['close'], 21)
+            pbar.update(1)
+            
+            # MACD
+            pbar.set_description("MACD индикатор")
+            macd, signal, histogram = TechnicalIndicators.macd(df['close'])
+            df['macd'] = macd
+            df['macd_signal'] = signal
+            df['macd_histogram'] = histogram
+            pbar.update(1)
+            
+            # Полосы Боллинджера
+            pbar.set_description("Полосы Боллинджера")
+            bb_upper, bb_middle, bb_lower = TechnicalIndicators.bollinger_bands(df['close'])
+            df['bb_upper'] = bb_upper
+            df['bb_middle'] = bb_middle
+            df['bb_lower'] = bb_lower
+            df['bb_width'] = (bb_upper - bb_lower) / bb_middle
+            df['bb_position'] = (df['close'] - bb_lower) / (bb_upper - bb_lower)
+            pbar.update(1)
+            
+            # ATR
+            pbar.set_description("ATR индикатор")
+            df['atr'] = TechnicalIndicators.atr(df['high'], df['low'], df['close'])
+            pbar.update(1)
+            
+            # Дополнительные признаки
+            pbar.set_description("Дополнительные признаки")
+            df['price_change'] = df['close'].pct_change()
+            df['volume_change'] = df['volume'].pct_change()
+            df['high_low_ratio'] = df['high'] / df['low']
+            df['close_open_ratio'] = df['close'] / df['open']
+            df['body_size'] = abs(df['close'] - df['open']) / df['open']
+            pbar.update(1)
+            
+            # Волатильность
+            pbar.set_description("Волатильность")
+            df['volatility_5'] = df['close'].rolling(5).std()
+            df['volatility_20'] = df['close'].rolling(20).std()
+            pbar.update(1)
+            
+            # Временные и объемные признаки
+            pbar.set_description("Временные признаки")
+            df['hour'] = df['begin'].dt.hour
+            df['day_of_week'] = df['begin'].dt.dayofweek
+            df['month'] = df['begin'].dt.month
+            
+            # Объемные индикаторы
+            df['volume_sma'] = df['volume'].rolling(20).mean()
+            df['volume_ratio'] = df['volume'] / df['volume_sma']
+            pbar.update(1)
         
         return df
 
@@ -165,100 +189,143 @@ class FastMLTrainer:
         X = []
         y = []
         
-        for i in range(lookback, len(df) - forecast_horizon):
-            window_data = df[feature_columns].iloc[i-lookback:i].values
-            target_value = df[target_column].iloc[i]
+        # Определяем диапазон для прогресс-бара
+        data_range = range(lookback, len(df) - forecast_horizon)
+        total_windows = len(df) - lookback - forecast_horizon
+        
+        # Создаем прогресс-бар для создания окон данных
+        with tqdm(total=total_windows, desc="Создание окон данных", 
+                 bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]',
+                 leave=False) as window_pbar:
             
-            if not np.isnan(target_value):
-                X.append(window_data.flatten())
-                y.append(target_value)
+            for i in data_range:
+                window_data = df[feature_columns].iloc[i-lookback:i].values
+                target_value = df[target_column].iloc[i]
+                
+                if not np.isnan(target_value):
+                    X.append(window_data.flatten())
+                    y.append(target_value)
+                
+                # Обновляем прогресс каждые 1000 итераций для производительности
+                if i % 1000 == 0:
+                    window_pbar.update(1000)
+                    window_pbar.set_postfix({
+                        'Окон': len(X),
+                        'Признаков': len(feature_columns)
+                    })
+            
+            # Обновляем оставшиеся итерации
+            remaining = total_windows % 1000
+            if remaining > 0:
+                window_pbar.update(remaining)
         
         return np.array(X), np.array(y), feature_columns
     
     def train_models_fast(self, X: np.ndarray, y: np.ndarray, symbol: str, feature_columns: List[str]):
         """Быстрое обучение моделей с оптимизацией"""
-        logger.info(f"🤖 Быстрое обучение моделей для {symbol}...")
+        logger.info(f"[ML] Быстрое обучение моделей для {symbol}...")
         
         # Разделяем данные
+        logger.info(f"  [DATA] Подготовка данных для {symbol}...")
         X_train, X_test, y_train, y_test = train_test_split(
             X, y, test_size=0.2, random_state=42, shuffle=False
         )
         
         # Нормализация
+        logger.info(f"  [NORM] Нормализация данных для {symbol}...")
         scaler = StandardScaler()
         X_train_scaled = scaler.fit_transform(X_train)
         X_test_scaled = scaler.transform(X_test)
         
-        # Быстрый выбор признаков
-        feature_selector = SelectKBest(score_func=f_regression, k=min(30, X_train_scaled.shape[1]))
+        # Улучшенный выбор признаков
+        logger.info(f"  [FEAT] Выбор признаков для {symbol}...")
+        feature_selector = SelectKBest(score_func=f_regression, k=min(50, X_train_scaled.shape[1]))  # Увеличено с 30 до 50
         X_train_selected = feature_selector.fit_transform(X_train_scaled, y_train)
         X_test_selected = feature_selector.transform(X_test_scaled)
         
-        # Оптимизированные модели для быстрого обучения
+        # Улучшенные модели для лучшего качества предсказаний
         models_config = {
             'random_forest': RandomForestRegressor(
-                n_estimators=50,  # Уменьшено для скорости
-                max_depth=10,
-                min_samples_split=5,
+                n_estimators=100,  # Увеличено для лучшего качества
+                max_depth=15,      # Увеличено
+                min_samples_split=3,  # Уменьшено для большей гибкости
+                min_samples_leaf=1,   # Добавлено
                 random_state=42,
                 n_jobs=-1
             ),
             'gradient_boosting': GradientBoostingRegressor(
-                n_estimators=50,  # Уменьшено для скорости
-                learning_rate=0.1,
-                max_depth=6,
+                n_estimators=100,  # Увеличено для лучшего качества
+                learning_rate=0.05,  # Уменьшено для более стабильного обучения
+                max_depth=8,         # Увеличено
+                min_samples_split=3, # Добавлено
                 random_state=42
             ),
-            'ridge': Ridge(alpha=1.0),
+            'ridge': Ridge(alpha=0.1),  # Уменьшена регуляризация
             'linear_regression': LinearRegression()
         }
         
         results = {}
         
-        for name, model in models_config.items():
-            try:
-                logger.info(f"  🔄 Обучаем {name}...")
-                start_time = time.time()
+        # Создаем прогресс-бар для обучения моделей
+        model_names = list(models_config.keys())
+        with tqdm(total=len(model_names), desc=f"Обучение моделей {symbol}", 
+                 bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]') as pbar:
+            
+            for name, model in models_config.items():
+                try:
+                    pbar.set_description(f"Обучение {name} для {symbol}")
+                    start_time = time.time()
+                    
+                    # Обучение
+                    if name in ['ridge', 'linear_regression']:
+                        model.fit(X_train_selected, y_train)
+                        y_pred = model.predict(X_test_selected)
+                    else:
+                        model.fit(X_train, y_train)
+                        y_pred = model.predict(X_test)
+                    
+                    training_time = time.time() - start_time
+                    
+                    # Оценка
+                    mse = mean_squared_error(y_test, y_pred)
+                    r2 = r2_score(y_test, y_pred)
+                    mae = mean_absolute_error(y_test, y_pred)
+                    
+                    # Улучшенная кросс-валидация (больше фолдов)
+                    if name in ['ridge', 'linear_regression']:
+                        cv_scores = cross_val_score(model, X_train_selected, y_train, cv=5, scoring='r2')  # Увеличено с 3 до 5
+                    else:
+                        cv_scores = cross_val_score(model, X_train, y_train, cv=5, scoring='r2')  # Увеличено с 3 до 5
+                    
+                    results[name] = {
+                        'model': model,
+                        'mse': mse,
+                        'r2': r2,
+                        'mae': mae,
+                        'cv_mean': cv_scores.mean(),
+                        'cv_std': cv_scores.std(),
+                        'training_time': training_time,
+                        'predictions': y_pred,
+                        'actual': y_test
+                    }
+                    
+                    # Обновляем описание прогресс-бара с результатами
+                    pbar.set_postfix({
+                        'R2': f"{r2:.4f}",
+                        'MAE': f"{mae:.4f}",
+                        'Время': f"{training_time:.1f}с"
+                    })
+                    
+                    logger.info(f"    [OK] {name}: R2={r2:.4f}, MAE={mae:.4f}, CV={cv_scores.mean():.4f}, Время={training_time:.2f}с")
+                    
+                except Exception as e:
+                    logger.error(f"    [ERROR] Ошибка обучения {name}: {e}")
+                    pbar.set_postfix({'Ошибка': str(e)[:20]})
                 
-                # Обучение
-                if name in ['ridge', 'linear_regression']:
-                    model.fit(X_train_selected, y_train)
-                    y_pred = model.predict(X_test_selected)
-                else:
-                    model.fit(X_train, y_train)
-                    y_pred = model.predict(X_test)
-                
-                training_time = time.time() - start_time
-                
-                # Оценка
-                mse = mean_squared_error(y_test, y_pred)
-                r2 = r2_score(y_test, y_pred)
-                mae = mean_absolute_error(y_test, y_pred)
-                
-                # Быстрая кросс-валидация (меньше фолдов)
-                if name in ['ridge', 'linear_regression']:
-                    cv_scores = cross_val_score(model, X_train_selected, y_train, cv=3, scoring='r2')
-                else:
-                    cv_scores = cross_val_score(model, X_train, y_train, cv=3, scoring='r2')
-                
-                results[name] = {
-                    'model': model,
-                    'mse': mse,
-                    'r2': r2,
-                    'mae': mae,
-                    'cv_mean': cv_scores.mean(),
-                    'cv_std': cv_scores.std(),
-                    'training_time': training_time,
-                    'predictions': y_pred,
-                    'actual': y_test
-                }
-                
-                logger.info(f"    ✅ {name}: R²={r2:.4f}, MAE={mae:.4f}, CV={cv_scores.mean():.4f}, Время={training_time:.2f}с")
-                
-            except Exception as e:
-                logger.error(f"    ❌ Ошибка обучения {name}: {e}")
+                pbar.update(1)
         
         # Сохраняем результаты
+        logger.info(f"  [SAVE] Сохранение результатов для {symbol}...")
         self.models[symbol] = results
         self.scalers[symbol] = scaler
         self.feature_selectors[symbol] = feature_selector
@@ -277,7 +344,7 @@ class FastMLTrainer:
         for model_name, model_data in models.items():
             model_path = os.path.join(symbol_dir, f"{model_name}.joblib")
             joblib.dump(model_data['model'], model_path)
-            logger.info(f"  💾 Сохранена модель {model_name} для {symbol}")
+            logger.info(f"  [SAVE] Сохранена модель {model_name} для {symbol}")
         
         # Сохраняем scaler и feature_selector
         scaler_path = os.path.join(symbol_dir, "scaler.joblib")
@@ -357,31 +424,42 @@ class UnsupervisedTrainer:
     
     def train_unsupervised_models(self, df: pd.DataFrame):
         """Быстрое обучение моделей без учителя"""
-        logger.info("🤖 Быстрое обучение моделей без учителя...")
+        logger.info("[UNSUPERVISED] Быстрое обучение моделей без учителя...")
         
-        features = self.prepare_features(df)
-        if len(features) < 100:
-            logger.warning("⚠️ Недостаточно данных для обучения без учителя")
-            return
-        
-        # Нормализация
-        features_scaled = self.scaler.fit_transform(features)
-        
-        # PCA для снижения размерности
-        features_pca = self.pca.fit_transform(features_scaled)
-        
-        # Обучение детектора аномалий
-        self.anomaly_detector.fit(features_pca)
-        
-        # Обучение кластеризации
-        self.clusterer.fit(features_pca)
+        # Создаем прогресс-бар для обучения без учителя
+        with tqdm(total=5, desc="Обучение без учителя", 
+                 bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]') as pbar:
+            
+            pbar.set_description("Подготовка признаков")
+            features = self.prepare_features(df)
+            if len(features) < 100:
+                logger.warning("⚠️ Недостаточно данных для обучения без учителя")
+                return
+            pbar.update(1)
+            
+            pbar.set_description("Нормализация данных")
+            features_scaled = self.scaler.fit_transform(features)
+            pbar.update(1)
+            
+            pbar.set_description("PCA снижение размерности")
+            features_pca = self.pca.fit_transform(features_scaled)
+            pbar.update(1)
+            
+            pbar.set_description("Обучение детектора аномалий")
+            self.anomaly_detector.fit(features_pca)
+            pbar.update(1)
+            
+            pbar.set_description("Обучение кластеризации")
+            self.clusterer.fit(features_pca)
+            pbar.update(1)
         
         self.is_trained = True
         
         # Сохраняем модели
+        logger.info("[SAVE] Сохранение моделей без учителя...")
         self.save_models()
         
-        logger.info("✅ Модели без учителя обучены и сохранены")
+        logger.info("[OK] Модели без учителя обучены и сохранены")
     
     def save_models(self):
         """Сохранение моделей без учителя"""
@@ -398,41 +476,54 @@ class UnsupervisedTrainer:
             self.pca = joblib.load(os.path.join(self.models_dir, "pca.joblib"))
             self.scaler = joblib.load(os.path.join(self.models_dir, "scaler.joblib"))
             self.is_trained = True
-            logger.info("✅ Модели без учителя загружены")
+            logger.info("[OK] Модели без учителя загружены")
         except Exception as e:
-            logger.warning(f"⚠️ Не удалось загрузить модели без учителя: {e}")
+            logger.warning(f"[WARNING] Не удалось загрузить модели без учителя: {e}")
 
 def load_data_from_files(symbols: List[str], data_dir: str = "data/3year_minute_data") -> Dict[str, pd.DataFrame]:
     """Загрузка данных из файлов"""
-    logger.info("📥 Загружаем данные из файлов...")
+    logger.info("[LOAD] Загружаем данные из файлов...")
     
     all_data = {}
     
-    for symbol in symbols:
-        file_path = os.path.join(data_dir, f"{symbol}_3year_minute.csv")
+    # Создаем прогресс-бар для загрузки данных
+    with tqdm(total=len(symbols), desc="Загрузка данных", 
+             bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]') as pbar:
         
-        if os.path.exists(file_path):
-            try:
-                df = pd.read_csv(file_path)
-                df['begin'] = pd.to_datetime(df['begin'])
-                df['end'] = pd.to_datetime(df['end'])
-                
-                # Удаляем дубликаты
-                df = df.drop_duplicates(subset=['begin']).reset_index(drop=True)
-                
-                all_data[symbol] = df
-                logger.info(f"✅ {symbol}: Загружено {len(df)} записей")
-                
-            except Exception as e:
-                logger.error(f"❌ Ошибка загрузки {symbol}: {e}")
-        else:
-            logger.warning(f"⚠️ Файл {file_path} не найден")
+        for symbol in symbols:
+            pbar.set_description(f"Загрузка {symbol}")
+            file_path = os.path.join(data_dir, f"{symbol}_3year_minute.csv")
+            
+            if os.path.exists(file_path):
+                try:
+                    df = pd.read_csv(file_path)
+                    df['begin'] = pd.to_datetime(df['begin'])
+                    df['end'] = pd.to_datetime(df['end'])
+                    
+                    # Удаляем дубликаты
+                    df = df.drop_duplicates(subset=['begin']).reset_index(drop=True)
+                    
+                    all_data[symbol] = df
+                    pbar.set_postfix({
+                        'Записей': len(df),
+                        'Статус': 'OK'
+                    })
+                    logger.info(f"[OK] {symbol}: Загружено {len(df)} записей")
+                    
+                except Exception as e:
+                    pbar.set_postfix({'Статус': 'ERROR'})
+                    logger.error(f"[ERROR] Ошибка загрузки {symbol}: {e}")
+            else:
+                pbar.set_postfix({'Статус': 'WARNING'})
+                logger.warning(f"[WARNING] Файл {file_path} не найден")
+            
+            pbar.update(1)
     
     return all_data
 
 def main():
     """Основная функция обучения моделей"""
-    logger.info("🚀 ЗАПУСК ОБУЧЕНИЯ ML МОДЕЛЕЙ")
+    logger.info("[START] ЗАПУСК ОБУЧЕНИЯ ML МОДЕЛЕЙ")
     logger.info("=" * 50)
     
     # Инструменты для обучения
@@ -442,7 +533,7 @@ def main():
     all_data = load_data_from_files(symbols)
     
     if not all_data:
-        logger.error("❌ Не удалось загрузить данные. Завершение работы.")
+        logger.error("[ERROR] Не удалось загрузить данные. Завершение работы.")
         return
     
     # Инициализация
@@ -453,28 +544,47 @@ def main():
     # Обучение моделей для каждого символа
     trained_models = {}
     
-    for symbol, df in all_data.items():
-        logger.info(f"📊 Обрабатываем {symbol}...")
+    # Создаем прогресс-бар для обработки всех символов
+    symbols_list = list(all_data.keys())
+    with tqdm(total=len(symbols_list), desc="Обработка символов", 
+             bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]') as main_pbar:
         
-        # Создаем технические индикаторы
-        df_with_features = indicators.create_features(df)
-        
-        # Подготавливаем данные для обучения
-        X, y, feature_columns = trainer.prepare_data(df_with_features)
-        
-        if len(X) > 100:  # Минимум данных для обучения
-            # Обучаем модели
-            models = trainer.train_models_fast(X, y, symbol, feature_columns)
-            trained_models[symbol] = {
-                'models': models,
-                'data': df_with_features
-            }
-        else:
-            logger.warning(f"⚠️ {symbol}: Недостаточно данных для обучения ({len(X)} записей)")
+        for symbol, df in all_data.items():
+            main_pbar.set_description(f"Обработка {symbol}")
+            logger.info(f"[PROCESS] Обрабатываем {symbol}...")
+            
+            # Создаем технические индикаторы
+            logger.info(f"  [INDICATORS] Создание технических индикаторов для {symbol}...")
+            df_with_features = indicators.create_features(df)
+            
+            # Подготавливаем данные для обучения
+            logger.info(f"  [PREPARE] Подготовка данных для обучения {symbol}...")
+            X, y, feature_columns = trainer.prepare_data(df_with_features)
+            
+            if len(X) > 100:  # Минимум данных для обучения
+                # Обучаем модели
+                models = trainer.train_models_fast(X, y, symbol, feature_columns)
+                trained_models[symbol] = {
+                    'models': models,
+                    'data': df_with_features
+                }
+                main_pbar.set_postfix({
+                    'Модели': len(models),
+                    'Данных': f"{len(X)}",
+                    'Статус': 'OK'
+                })
+            else:
+                logger.warning(f"[WARNING] {symbol}: Недостаточно данных для обучения ({len(X)} записей)")
+                main_pbar.set_postfix({
+                    'Данных': f"{len(X)}",
+                    'Статус': 'WARNING'
+                })
+            
+            main_pbar.update(1)
     
     # Обучение моделей без учителя
     if trained_models:
-        logger.info("🤖 Обучение моделей без учителя...")
+        logger.info("[UNSUPERVISED] Обучение моделей без учителя...")
         all_training_data = []
         for model_data in trained_models.values():
             all_training_data.append(model_data['data'])
@@ -504,7 +614,7 @@ def main():
         results_df = pd.DataFrame(summary_data)
         results_df.to_csv('model_training_results.csv', index=False)
         
-        logger.info("\n📋 СВОДКА ОБУЧЕНИЯ МОДЕЛЕЙ:")
+        logger.info("\n[SUMMARY] СВОДКА ОБУЧЕНИЯ МОДЕЛЕЙ:")
         logger.info("=" * 50)
         print(results_df.to_string(index=False))
         
@@ -512,27 +622,27 @@ def main():
         r2_scores = [float(r['R2']) for r in summary_data]
         mae_scores = [float(r['MAE']) for r in summary_data]
         
-        logger.info(f"\n📊 ОБЩАЯ СТАТИСТИКА:")
-        logger.info(f"  Средний R²: {np.mean(r2_scores):.4f}")
+        logger.info(f"\n[STATS] ОБЩАЯ СТАТИСТИКА:")
+        logger.info(f"  Средний R2: {np.mean(r2_scores):.4f}")
         logger.info(f"  Средний MAE: {np.mean(mae_scores):.4f}")
-        logger.info(f"  Лучший R²: {np.max(r2_scores):.4f}")
-        logger.info(f"  Худший R²: {np.min(r2_scores):.4f}")
+        logger.info(f"  Лучший R2: {np.max(r2_scores):.4f}")
+        logger.info(f"  Худший R2: {np.min(r2_scores):.4f}")
         
         # Лучшие модели по символам
-        logger.info(f"\n🏆 ЛУЧШИЕ МОДЕЛИ ПО СИМВОЛАМ:")
+        logger.info(f"\n[BEST] ЛУЧШИЕ МОДЕЛИ ПО СИМВОЛАМ:")
         for symbol in symbols:
             symbol_results = [r for r in summary_data if r['Symbol'] == symbol]
             if symbol_results:
                 best_model = max(symbol_results, key=lambda x: float(x['R2']))
-                logger.info(f"  {symbol}: {best_model['Model']} (R²={best_model['R2']})")
+                logger.info(f"  {symbol}: {best_model['Model']} (R2={best_model['R2']})")
     
-    logger.info(f"\n💾 Модели сохранены в директории:")
-    logger.info(f"  📁 trained_models/ - обученные ML модели")
-    logger.info(f"  📁 unsupervised_models/ - модели без учителя")
-    logger.info(f"  📄 model_training_results.csv - сводка результатов")
-    logger.info(f"  📄 model_training.log - логи обучения")
+    logger.info(f"\n[SAVE] Модели сохранены в директории:")
+    logger.info(f"  [DIR] trained_models/ - обученные ML модели")
+    logger.info(f"  [DIR] unsupervised_models/ - модели без учителя")
+    logger.info(f"  [FILE] model_training_results.csv - сводка результатов")
+    logger.info(f"  [FILE] model_training.log - логи обучения")
     
-    logger.info("\n✅ ОБУЧЕНИЕ МОДЕЛЕЙ ЗАВЕРШЕНО!")
+    logger.info("\n[COMPLETE] ОБУЧЕНИЕ МОДЕЛЕЙ ЗАВЕРШЕНО!")
 
 if __name__ == "__main__":
     main()

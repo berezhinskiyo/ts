@@ -1,0 +1,121 @@
+{
+  "robot": {
+    "name": "Trading Robot Pro - Optimized",
+    "version": "1.0.0",
+    "description": "Оптимизированный торговый робот с наиболее прибыльными инструментами и стратегиями"
+  },
+  "strategy": {
+    "id": "ensemble",
+    "name": "Ensemble Strategy",
+    "use_news_analysis": true,
+    "parameters": {
+      "confidence_threshold": 0.3,
+      "risk_per_trade": 0.02,
+      "max_positions": 3,
+      "news_weight": 0.4,
+      "technical_weight": 0.6,
+      "aggressive_mode": true
+    }
+  },
+  "instruments": {
+    "symbols": ["PIKK", "SGZH", "SBER"],
+    "timeframe": "1min",
+    "data_source": "tbank",
+    "primary_symbols": ["PIKK"],
+    "secondary_symbols": ["SGZH", "SBER"],
+    "priority_weights": {
+      "PIKK": 0.5,
+      "SGZH": 0.3,
+      "SBER": 0.2
+    }
+  },
+  "news": {
+    "enabled": true,
+    "sources": ["russian_media", "moex", "telegram"],
+    "update_interval": 300,
+    "sentiment_threshold": 0.2,
+    "confidence_threshold": 0.5,
+    "impact_weights": {
+      "very_high": 1.0,
+      "high": 0.8,
+      "medium": 0.6,
+      "low": 0.3
+    },
+    "symbol_specific_weights": {
+      "PIKK": 1.0,
+      "SGZH": 0.8,
+      "SBER": 0.6
+    }
+  },
+  "risk_management": {
+    "max_drawdown": 0.12,
+    "stop_loss": 0.04,
+    "take_profit": 0.08,
+    "position_sizing": "dynamic",
+    "max_daily_trades": 15,
+    "max_concurrent_positions": 3,
+    "emergency_stop_loss": 0.15,
+    "symbol_limits": {
+      "PIKK": {
+        "max_position_size": 0.4,
+        "max_daily_trades": 8
+      },
+      "SGZH": {
+        "max_position_size": 0.3,
+        "max_daily_trades": 5
+      },
+      "SBER": {
+        "max_position_size": 0.3,
+        "max_daily_trades": 5
+      }
+    }
+  },
+  "monitoring": {
+    "telegram_notifications": true,
+    "log_level": "INFO",
+    "performance_check_interval": 1800,
+    "retrain_interval": 43200,
+    "alerts": {
+      "high_drawdown": true,
+      "low_win_rate": true,
+      "model_drift": true,
+      "news_anomalies": true,
+      "position_opened": true,
+      "position_closed": true,
+      "daily_summary": true,
+      "error_alerts": true
+    },
+    "notification_settings": {
+      "immediate_alerts": ["position_opened", "position_closed", "error_alerts"],
+      "periodic_reports": ["daily_summary", "performance_check"],
+      "threshold_alerts": ["high_drawdown", "low_win_rate"]
+    }
+  },
+  "data": {
+    "update_interval": 30,
+    "storage_path": "data/",
+    "backup_enabled": true,
+    "retention_days": 365,
+    "compression": true,
+    "real_time_priority": ["PIKK", "SGZH", "SBER"]
+  },
+  "performance": {
+    "target_return": 0.25,
+    "target_sharpe": 1.8,
+    "max_volatility": 0.20,
+    "benchmark": "MOEX",
+    "expected_improvement": {
+      "PIKK": 0.4666,
+      "SGZH": 0.1604,
+      "SBER": 0.0230
+    }
+  },
+  "trading_hours": {
+    "enabled": true,
+    "start_time": "09:00",
+    "end_time": "18:45",
+    "timezone": "Europe/Moscow",
+    "exclude_weekends": true,
+    "exclude_holidays": true
+  }
+}

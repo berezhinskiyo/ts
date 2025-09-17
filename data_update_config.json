@@ -1,0 +1,101 @@
+{
+  "service": {
+    "name": "Data Update Service Pro",
+    "version": "1.0.0",
+    "description": "Сервис обновления данных для торговых роботов с анализом новостей"
+  },
+  "schedule": {
+    "market_data_interval": 60,
+    "news_data_interval": 300,
+    "historical_data_interval": 3600,
+    "model_retrain_interval": 86400,
+    "retrain_check_interval": 3600,
+    "backup_interval": 21600,
+    "cleanup_interval": 604800
+  },
+  "data": {
+    "storage_path": "data/",
+    "backup_enabled": true,
+    "max_storage_size_gb": 10,
+    "compression_enabled": true,
+    "encryption_enabled": false,
+    "retention_policy": {
+      "real_time_data": 30,
+      "historical_data": 365,
+      "news_data": 1095,
+      "model_data": 30
+    }
+  },
+  "market_data": {
+    "sources": ["tbank", "moex"],
+    "symbols": ["SBER", "GAZP", "LKOH", "NVTK", "ROSN", "TATN", "MGNT", "MTSS", "PIKK", "IRAO", "SGZH"],
+    "timeframes": ["1min", "5min", "1hour", "1day"],
+    "update_priority": {
+      "SBER": "high",
+      "GAZP": "high",
+      "PIKK": "high",
+      "LKOH": "medium",
+      "NVTK": "medium",
+      "ROSN": "medium",
+      "TATN": "medium",
+      "MGNT": "low",
+      "MTSS": "low",
+      "IRAO": "low",
+      "SGZH": "low"
+    }
+  },
+  "news_data": {
+    "sources": ["russian_media", "moex", "telegram", "newsapi"],
+    "languages": ["ru", "en"],
+    "update_frequency": "high",
+    "sentiment_analysis": true,
+    "impact_classification": true,
+    "duplicate_detection": true,
+    "quality_filtering": true
+  },
+  "model_retraining": {
+    "enabled": true,
+    "trigger_threshold": 0.1,
+    "performance_threshold": 0.05,
+    "data_threshold": 1000,
+    "time_threshold": 86400,
+    "backup_models": true,
+    "rollback_enabled": true
+  },
+  "monitoring": {
+    "log_level": "INFO",
+    "performance_metrics": true,
+    "alerts_enabled": true,
+    "health_checks": true,
+    "metrics_export": {
+      "enabled": true,
+      "format": "json",
+      "interval": 300
+    }
+  },
+  "alerts": {
+    "email": {
+      "enabled": false,
+      "recipients": [],
+      "smtp_server": "",
+      "smtp_port": 587
+    },
+    "telegram": {
+      "enabled": true,
+      "bot_token": "",
+      "chat_id": ""
+    },
+    "webhook": {
+      "enabled": false,
+      "url": "",
+      "timeout": 30
+    }
+  },
+  "security": {
+    "api_key_rotation": true,
+    "rate_limiting": true,
+    "data_encryption": false,
+    "access_logging": true,
+    "audit_trail": true
+  }
+}

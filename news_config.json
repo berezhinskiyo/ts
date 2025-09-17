@@ -1,0 +1,45 @@
+{
+  "providers": {
+    "newsapi": {
+      "enabled": false,
+      "api_key": "YOUR_NEWSAPI_KEY_HERE",
+      "description": "NewsAPI - 1000 запросов/день бесплатно, от $449/месяц"
+    },
+    "alphavantage": {
+      "enabled": false,
+      "api_key": "YOUR_ALPHA_VANTAGE_KEY_HERE",
+      "description": "Alpha Vantage - 5 запросов/минуту бесплатно, от $49.99/месяц"
+    },
+    "yahoofinance": {
+      "enabled": true,
+      "api_key": "",
+      "description": "Yahoo Finance - бесплатно, неофициальный API"
+    },
+    "polygon": {
+      "enabled": false,
+      "api_key": "YOUR_POLYGON_KEY_HERE",
+      "description": "Polygon.io - 5 запросов/минуту бесплатно, от $99/месяц"
+    },
+    "finnhub": {
+      "enabled": false,
+      "api_key": "YOUR_FINNHUB_KEY_HERE",
+      "description": "Finnhub - 60 запросов/минуту бесплатно, от $9/месяц"
+    }
+  },
+  "cache": {
+    "enabled": true,
+    "ttl_hours": 1,
+    "description": "Кэширование новостей для оптимизации запросов"
+  },
+  "sentiment": {
+    "use_financial_model": true,
+    "confidence_threshold": 0.3,
+    "description": "Использование FinBERT для анализа финансовых новостей"
+  },
+  "performance": {
+    "max_concurrent_requests": 5,
+    "request_delay_seconds": 0.1,
+    "timeout_seconds": 30,
+    "description": "Настройки производительности для продуктивной работы"
+  }
+}

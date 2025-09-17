@@ -82,14 +82,14 @@ class ModelTester:
             models['clusterer'] = joblib.load(os.path.join(self.unsupervised_dir, "clusterer.joblib"))
             models['pca'] = joblib.load(os.path.join(self.unsupervised_dir, "pca.joblib"))
             models['scaler'] = joblib.load(os.path.join(self.unsupervised_dir, "scaler.joblib"))
-            logger.info("✅ Модели без учителя загружены")
+            logger.info("[OK] Модели без учителя загружены")
         except Exception as e:
-            logger.warning(f"⚠️ Не удалось загрузить модели без учителя: {e}")
+            logger.warning(f"[WARNING] Не удалось загрузить модели без учителя: {e}")
         
         return models
     
     def prepare_features(self, df: pd.DataFrame) -> np.ndarray:
-        """Подготовка признаков для предсказания"""
+        """Подготовка признаков для предсказания в формате окон"""
         feature_columns = [
             'sma_5', 'sma_10', 'sma_20', 'sma_50', 'ema_5', 'ema_10', 'ema_20', 'ema_50',
             'rsi_14', 'rsi_21', 'macd', 'macd_signal', 'macd_histogram',
@@ -102,11 +102,16 @@ class ModelTester:
         # Фильтруем доступные колонки
         available_columns = [col for col in feature_columns if col in df.columns]
         
-        if not available_columns:
+        if not available_columns or len(df) < 30:
             return np.array([])
         
-        features = df[available_columns].fillna(0).values
-        return features
+        # Берем последние 30 строк и создаем окно
+        window_data = df[available_columns].tail(30).fillna(0).values
+        
+        # Преобразуем в плоский массив (как ожидают модели)
+        features = window_data.flatten()
+        
+        return features.reshape(1, -1)  # Возвращаем в формате (1, features)
     
     def generate_signal(self, df: pd.DataFrame, symbol: str, model_data: Dict, 
                        unsupervised_models: Dict) -> Dict[str, any]:
@@ -191,16 +196,21 @@ class ModelTester:
             # Объединяем сигналы
             final_signal = avg_prediction + anomaly_signal + regime_signal
             
-            # Определяем действие
-            if final_signal > 0.5:
+            # Определяем действие (снижены пороги для более активной торговли)
+            if final_signal > 0.1:  # Было 0.5
                 action = 'buy'
-                confidence = min(final_signal, 1.0)
-            elif final_signal < -0.5:
+                confidence = min(final_signal * 2, 1.0)  # Увеличиваем уверенность
+            elif final_signal < -0.1:  # Было -0.5
                 action = 'sell'
-                confidence = min(abs(final_signal), 1.0)
+                confidence = min(abs(final_signal) * 2, 1.0)  # Увеличиваем уверенность
             else:
                 action = 'hold'
                 confidence = 0.0
+            
+            # Отладочная информация (логируем только каждые 1000 итераций для производительности)
+            if len(df) % 1000 == 0:
+                logger.info(f"[DEBUG] {symbol} - Signal: {final_signal:.4f}, Action: {action}, Confidence: {confidence:.4f}")
+                logger.info(f"[DEBUG] Predictions: {[f'{p:.4f}' for p in predictions]}, Avg: {avg_prediction:.4f}")
             
             return {
                 'action': action,
@@ -210,7 +220,8 @@ class ModelTester:
                     'prediction': avg_prediction,
                     'anomaly': anomaly_signal,
                     'regime': regime_signal
-                }
+                },
+                'predictions': predictions
             }
             
         except Exception as e:
@@ -235,15 +246,15 @@ class ModelTester:
     def test_strategy(self, df: pd.DataFrame, symbol: str, model_data: Dict, 
                      unsupervised_models: Dict) -> Dict:
         """Тестирование торговой стратегии"""
-        logger.info(f"📊 Тестируем стратегию для {symbol}...")
+        logger.info(f"[TEST] Тестируем стратегию для {symbol}...")
         
         capital = self.initial_capital
         position = 0
         trades = []
         equity_history = []
         
-        # Параметры стратегии
-        confidence_threshold = 0.6
+        # Параметры стратегии (снижены для более активной торговли)
+        confidence_threshold = 0.3
         
         for i in range(60, len(df)):  # Начинаем с 60-го элемента
             current_data = df.iloc[:i+1]
@@ -251,6 +262,10 @@ class ModelTester:
             
             # Генерируем сигнал
             signal = self.generate_signal(current_data, symbol, model_data, unsupervised_models)
+            
+            # Отладочная информация для первых нескольких итераций
+            if i < 70:  # Логируем первые 10 итераций
+                logger.info(f"[DEBUG] {symbol} i={i}: Signal={signal['action']}, Confidence={signal['confidence']:.3f}, Final={signal['final_signal']:.4f}")
             
             # Выполняем торговлю
             if signal['action'] == 'buy' and position == 0 and signal['confidence'] > confidence_threshold:
@@ -348,7 +363,7 @@ class ModelTester:
             'equity_history': equity_history
         }
         
-        logger.info(f"  ✅ {symbol}: Доходность={total_return:.2f}%, Просадка={max_drawdown:.2f}%, Sharpe={sharpe_ratio:.2f}, Win Rate={win_rate:.1f}%")
+        logger.info(f"  [OK] {symbol}: Доходность={total_return:.2f}%, Просадка={max_drawdown:.2f}%, Sharpe={sharpe_ratio:.2f}, Win Rate={win_rate:.1f}%")
         
         return result
     
@@ -388,13 +403,13 @@ class ModelTester:
             'total_trades': 1
         }
         
-        logger.info(f"  ✅ {symbol} Buy & Hold: Доходность={total_return:.2f}%, Просадка={max_drawdown:.2f}%")
+        logger.info(f"  [OK] {symbol} Buy & Hold: Доходность={total_return:.2f}%, Просадка={max_drawdown:.2f}%")
         
         return result
 
 def load_data_from_files(symbols: List[str], data_dir: str = "data/3year_minute_data") -> Dict[str, pd.DataFrame]:
     """Загрузка данных из файлов"""
-    logger.info("📥 Загружаем данные из файлов...")
+    logger.info("[LOAD] Загружаем данные из файлов...")
     
     all_data = {}
     
@@ -411,18 +426,18 @@ def load_data_from_files(symbols: List[str], data_dir: str = "data/3year_minute_
                 df = df.drop_duplicates(subset=['begin']).reset_index(drop=True)
                 
                 all_data[symbol] = df
-                logger.info(f"✅ {symbol}: Загружено {len(df)} записей")
+                logger.info(f"[OK] {symbol}: Загружено {len(df)} записей")
                 
             except Exception as e:
-                logger.error(f"❌ Ошибка загрузки {symbol}: {e}")
+                logger.error(f"[ERROR] Ошибка загрузки {symbol}: {e}")
         else:
-            logger.warning(f"⚠️ Файл {file_path} не найден")
+            logger.warning(f"[WARNING] Файл {file_path} не найден")
     
     return all_data
 
 def main():
     """Основная функция тестирования моделей"""
-    logger.info("🚀 ЗАПУСК ТЕСТИРОВАНИЯ ML МОДЕЛЕЙ")
+    logger.info("[START] ЗАПУСК ТЕСТИРОВАНИЯ ML МОДЕЛЕЙ")
     logger.info("=" * 50)
     
     # Инструменты для тестирования
@@ -432,7 +447,7 @@ def main():
     all_data = load_data_from_files(symbols)
     
     if not all_data:
-        logger.error("❌ Не удалось загрузить данные. Завершение работы.")
+        logger.error("[ERROR] Не удалось загрузить данные. Завершение работы.")
         return
     
     # Инициализация тестера
@@ -451,7 +466,7 @@ def main():
         model_data = tester.load_models(symbol)
         
         if not model_data['models']:
-            logger.warning(f"⚠️ Модели для {symbol} не найдены, пропускаем")
+            logger.warning(f"[WARNING] Модели для {symbol} не найдены, пропускаем")
             continue
         
         # Тестируем ML стратегию
@@ -512,7 +527,7 @@ def main():
         json.dump(clean_results, f, ensure_ascii=False, indent=2)
     
     # Выводим сводку
-    logger.info("\n📋 СВОДКА РЕЗУЛЬТАТОВ ТЕСТИРОВАНИЯ:")
+    logger.info("\n[SUMMARY] СВОДКА РЕЗУЛЬТАТОВ ТЕСТИРОВАНИЯ:")
     logger.info("=" * 50)
     print(results_df.to_string(index=False))
     
@@ -522,7 +537,7 @@ def main():
     ml_sharpe = [float(r['ML_Sharpe']) for r in summary_data]
     ml_win_rates = [float(r['ML_Win_Rate'].replace('%', '')) for r in summary_data]
     
-    logger.info(f"\n📊 ОБЩАЯ СТАТИСТИКА:")
+    logger.info(f"\n[STATS] ОБЩАЯ СТАТИСТИКА:")
     logger.info(f"  Средняя доходность ML: {np.mean(ml_returns):.2f}%")
     logger.info(f"  Средняя доходность Buy & Hold: {np.mean(bh_returns):.2f}%")
     logger.info(f"  Превышение ML над Buy & Hold: {np.mean(ml_returns) - np.mean(bh_returns):.2f}%")
@@ -534,17 +549,17 @@ def main():
     best_sharpe_idx = np.argmax(ml_sharpe)
     best_winrate_idx = np.argmax(ml_win_rates)
     
-    logger.info(f"\n🏆 ЛУЧШИЕ РЕЗУЛЬТАТЫ:")
+    logger.info(f"\n[BEST] ЛУЧШИЕ РЕЗУЛЬТАТЫ:")
     logger.info(f"  Лучшая доходность: {summary_data[best_return_idx]['Symbol']} ({summary_data[best_return_idx]['ML_Return']})")
     logger.info(f"  Лучший Sharpe: {summary_data[best_sharpe_idx]['Symbol']} ({summary_data[best_sharpe_idx]['ML_Sharpe']})")
     logger.info(f"  Лучший Win Rate: {summary_data[best_winrate_idx]['Symbol']} ({summary_data[best_winrate_idx]['ML_Win_Rate']})")
     
-    logger.info(f"\n💾 Результаты сохранены:")
-    logger.info(f"  📄 Сводка: model_testing_results.csv")
-    logger.info(f"  📄 Детали: model_testing_detailed_results.json")
-    logger.info(f"  📄 Логи: model_testing.log")
+    logger.info(f"\n[SAVE] Результаты сохранены:")
+    logger.info(f"  [FILE] Сводка: model_testing_results.csv")
+    logger.info(f"  [FILE] Детали: model_testing_detailed_results.json")
+    logger.info(f"  [FILE] Логи: model_testing.log")
     
-    logger.info("\n✅ ТЕСТИРОВАНИЕ МОДЕЛЕЙ ЗАВЕРШЕНО!")
+    logger.info("\n[COMPLETE] ТЕСТИРОВАНИЕ МОДЕЛЕЙ ЗАВЕРШЕНО!")
 
 if __name__ == "__main__":
     main()

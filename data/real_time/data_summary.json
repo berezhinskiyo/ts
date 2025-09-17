@@ -1,151 +1,72 @@
 {
-  "timestamp": "2025-09-12T15:48:15.734668",
-  "data_source": "T-Bank API",
-  "instruments": {
+  "updated_at": "2025-09-17T19:40:29.909349",
+  "symbols": {
     "SBER": {
-      "figi": "BBG004730N88",
-      "data_points": 219,
-      "date_range": {
-        "start": "2025-01-03T00:00:00",
-        "end": "2025-09-12T00:00:00"
-      },
-      "price_range": {
-        "min": 270.0,
-        "max": 329.0,
-        "last": 303.0
-      },
-      "volume_avg": 34309779
+      "price": 204.7255064879278,
+      "change": 2.3627532439638914,
+      "volume": 1902040,
+      "updated_at": "2025-09-17T19:40:29.909349"
     },
     "GAZP": {
-      "figi": "BBG004730ZJ9",
-      "data_points": 219,
-      "date_range": {
-        "start": "2025-01-03T00:00:00",
-        "end": "2025-09-12T00:00:00"
-      },
-      "price_range": {
-        "min": 66.0,
-        "max": 109.0,
-        "last": 75.0
-      },
-      "volume_avg": 71182812
+      "price": 143.626566003921,
+      "change": -4.248955997385998,
+      "volume": 9257396,
+      "updated_at": "2025-09-17T19:40:29.909349"
     },
     "LKOH": {
-      "figi": "BBG004730JJ5",
-      "data_points": 219,
-      "date_range": {
-        "start": "2025-01-03T00:00:00",
-        "end": "2025-09-12T00:00:00"
-      },
-      "price_range": {
-        "min": 165.0,
-        "max": 244.0,
-        "last": 173.0
-      },
-      "volume_avg": 718120
-    },
-    "ROSN": {
-      "figi": "BBG0047315Y7",
-      "data_points": 219,
-      "date_range": {
-        "start": "2025-01-03T00:00:00",
-        "end": "2025-09-12T00:00:00"
-      },
-      "price_range": {
-        "min": 270.0,
-        "max": 326.0,
-        "last": 303.0
-      },
-      "volume_avg": 2820989
+      "price": 6291.342725000742,
+      "change": 4.855712083345703,
+      "volume": 7593607,
+      "updated_at": "2025-09-17T19:40:29.909349"
     },
     "NVTK": {
-      "figi": "BBG00475KKY8",
-      "data_points": 217,
-      "date_range": {
-        "start": "2025-01-03T00:00:00",
-        "end": "2025-09-12T00:00:00"
-      },
-      "price_range": {
-        "min": 927.0,
-        "max": 1350.0,
-        "last": 1197.0
-      },
-      "volume_avg": 3256491
+      "price": 1230.383634850236,
+      "change": 2.5319695708529975,
+      "volume": 1025351,
+      "updated_at": "2025-09-17T19:40:29.909349"
+    },
+    "ROSN": {
+      "price": 404.484564539252,
+      "change": 1.1211411348130016,
+      "volume": 1485920,
+      "updated_at": "2025-09-17T19:40:29.909349"
     },
     "TATN": {
-      "figi": "BBG004RVFFC0",
-      "data_points": 217,
-      "date_range": {
-        "start": "2025-01-03T00:00:00",
-        "end": "2025-09-12T00:00:00"
-      },
-      "price_range": {
-        "min": 581.0,
-        "max": 769.0,
-        "last": 644.0
-      },
-      "volume_avg": 1963141
-    },
-    "MTSS": {
-      "figi": "BBG004730N88",
-      "data_points": 219,
-      "date_range": {
-        "start": "2025-01-03T00:00:00",
-        "end": "2025-09-12T00:00:00"
-      },
-      "price_range": {
-        "min": 270.0,
-        "max": 329.0,
-        "last": 303.0
-      },
-      "volume_avg": 34309779
+      "price": 2901.2379982171674,
+      "change": -3.292066726094425,
+      "volume": 4525078,
+      "updated_at": "2025-09-17T19:40:29.909349"
     },
     "MGNT": {
-      "figi": "BBG004RVFFC0",
-      "data_points": 217,
-      "date_range": {
-        "start": "2025-01-03T00:00:00",
-        "end": "2025-09-12T00:00:00"
-      },
-      "price_range": {
-        "min": 581.0,
-        "max": 769.0,
-        "last": 644.0
-      },
-      "volume_avg": 1963141
+      "price": 828.4045123758908,
+      "change": 3.5505640469863473,
+      "volume": 4213963,
+      "updated_at": "2025-09-17T19:40:29.909349"
     },
-    "RTKM": {
-      "figi": "BBG004RVFFC0",
-      "data_points": 217,
-      "date_range": {
-        "start": "2025-01-03T00:00:00",
-        "end": "2025-09-12T00:00:00"
-      },
-      "price_range": {
-        "min": 581.0,
-        "max": 769.0,
-        "last": 644.0
-      },
-      "volume_avg": 1963141
+    "MTSS": {
+      "price": 304.03099033194434,
+      "change": 1.343663443981455,
+      "volume": 6187279,
+      "updated_at": "2025-09-17T19:40:29.909349"
     },
-    "FIVE": {
-      "figi": "BBG004RVFFC0",
-      "data_points": 217,
-      "date_range": {
-        "start": "2025-01-03T00:00:00",
-        "end": "2025-09-12T00:00:00"
-      },
-      "price_range": {
-        "min": 581.0,
-        "max": 769.0,
-        "last": 644.0
-      },
-      "volume_avg": 1963141
+    "PIKK": {
+      "price": 101.20943499310214,
+      "change": 1.20943499310213,
+      "volume": 5040257,
+      "updated_at": "2025-09-17T19:40:29.909349"
+    },
+    "IRAO": {
+      "price": 49.4503077694846,
+      "change": -1.0993844610307981,
+      "volume": 3296588,
+      "updated_at": "2025-09-17T19:40:29.909349"
+    },
+    "SGZH": {
+      "price": 25.279409946840058,
+      "change": 1.1176397873602293,
+      "volume": 2147352,
+      "updated_at": "2025-09-17T19:40:29.909349"
     }
   },
-  "summary": {
-    "total_instruments": 10,
-    "successful_downloads": 10,
-    "total_data_points": 2180
-  }
+  "total_symbols": 11
 }

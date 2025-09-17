@@ -1,0 +1,78 @@
+# Российский анализатор новостей - зависимости
+
+# Основные библиотеки
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# Telegram интеграция
+telethon>=1.24.0
+
+# NLP для русского языка
+transformers>=4.20.0
+torch>=1.12.0
+tokenizers>=0.12.0
+
+# Дополнительные NLP библиотеки
+nltk>=3.7
+spacy>=3.4.0
+textblob>=0.17.0
+
+# Асинхронные HTTP запросы
+aiohttp>=3.8.0
+requests>=2.28.0
+
+# Работа с данными
+sqlite3  # Встроенная в Python
+hashlib  # Встроенная в Python
+
+# Утилиты
+tqdm>=4.64.0
+joblib>=1.1.0
+python-dotenv>=0.19.0
+
+# Визуализация
+plotly>=5.10.0
+
+# Для работы с датами
+python-dateutil>=2.8.0
+
+# Для работы с JSON
+ujson>=5.1.0
+
+# Для работы с регулярными выражениями
+regex>=2022.1.18
+
+# Для работы с кодировками
+chardet>=4.0.0
+
+# Для работы с URL
+urllib3>=1.26.0
+
+# Для работы с файлами
+pathlib  # Встроенная в Python
+
+# Для работы с типами
+typing-extensions>=4.0.0
+
+# Для работы с dataclasses
+dataclasses  # Встроенная в Python 3.7+
+
+# Для работы с абстрактными классами
+abc  # Встроенная в Python
+
+# Для работы с логированием
+logging  # Встроенная в Python
+
+# Для работы с временем
+time  # Встроенная в Python
+datetime  # Встроенная в Python
+
+# Для работы с системой
+os  # Встроенная в Python
+sys  # Встроенная в Python
+json  # Встроенная в Python
+re  # Встроенная в Python
+asyncio  # Встроенная в Python

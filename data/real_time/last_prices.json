@@ -1,26 +1,79 @@
 {
-  "timestamp": "2025-09-12T15:48:15.734508",
-  "prices": {
-    "BBG004730N88": 303.0,
-    "BBG004730ZJ9": 75.0,
-    "BBG004730JJ5": 173.0,
-    "BBG006L8G4H1": 4071.0,
-    "BBG0047315Y7": 303.0,
-    "BBG00475KKY8": 1197.0,
-    "BBG004RVFFC0": 644.0
+  "SBER": {
+    "symbol": "SBER",
+    "price": 204.7255064879278,
+    "change": 2.3627532439638914,
+    "volume": 1902040,
+    "timestamp": "2025-09-17T19:40:29.909349"
   },
-  "figi_mapping": {
-    "SBER": "BBG004730N88",
-    "GAZP": "BBG004730ZJ9",
-    "LKOH": "BBG004730JJ5",
-    "YNDX": "BBG006L8G4H1",
-    "ROSN": "BBG0047315Y7",
-    "NVTK": "BBG00475KKY8",
-    "TATN": "BBG004RVFFC0",
-    "MTSS": "BBG004730N88",
-    "MGNT": "BBG004RVFFC0",
-    "RTKM": "BBG004RVFFC0",
-    "OZON": "BBG006L8G4H1",
-    "FIVE": "BBG004RVFFC0"
+  "GAZP": {
+    "symbol": "GAZP",
+    "price": 143.626566003921,
+    "change": -4.248955997385998,
+    "volume": 9257396,
+    "timestamp": "2025-09-17T19:40:29.909349"
+  },
+  "LKOH": {
+    "symbol": "LKOH",
+    "price": 6291.342725000742,
+    "change": 4.855712083345703,
+    "volume": 7593607,
+    "timestamp": "2025-09-17T19:40:29.909349"
+  },
+  "NVTK": {
+    "symbol": "NVTK",
+    "price": 1230.383634850236,
+    "change": 2.5319695708529975,
+    "volume": 1025351,
+    "timestamp": "2025-09-17T19:40:29.909349"
+  },
+  "ROSN": {
+    "symbol": "ROSN",
+    "price": 404.484564539252,
+    "change": 1.1211411348130016,
+    "volume": 1485920,
+    "timestamp": "2025-09-17T19:40:29.909349"
+  },
+  "TATN": {
+    "symbol": "TATN",
+    "price": 2901.2379982171674,
+    "change": -3.292066726094425,
+    "volume": 4525078,
+    "timestamp": "2025-09-17T19:40:29.909349"
+  },
+  "MGNT": {
+    "symbol": "MGNT",
+    "price": 828.4045123758908,
+    "change": 3.5505640469863473,
+    "volume": 4213963,
+    "timestamp": "2025-09-17T19:40:29.909349"
+  },
+  "MTSS": {
+    "symbol": "MTSS",
+    "price": 304.03099033194434,
+    "change": 1.343663443981455,
+    "volume": 6187279,
+    "timestamp": "2025-09-17T19:40:29.909349"
+  },
+  "PIKK": {
+    "symbol": "PIKK",
+    "price": 101.20943499310214,
+    "change": 1.20943499310213,
+    "volume": 5040257,
+    "timestamp": "2025-09-17T19:40:29.909349"
+  },
+  "IRAO": {
+    "symbol": "IRAO",
+    "price": 49.4503077694846,
+    "change": -1.0993844610307981,
+    "volume": 3296588,
+    "timestamp": "2025-09-17T19:40:29.909349"
+  },
+  "SGZH": {
+    "symbol": "SGZH",
+    "price": 25.279409946840058,
+    "change": 1.1176397873602293,
+    "volume": 2147352,
+    "timestamp": "2025-09-17T19:40:29.909349"
   }
 }

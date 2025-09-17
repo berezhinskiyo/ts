@@ -1,0 +1,53 @@
+{
+  "sources": {
+    "moex": {
+      "enabled": true,
+      "description": "Новости Московской биржи (парсинг сайта)"
+    },
+    "russian_media": {
+      "enabled": true,
+      "description": "Российские финансовые СМИ (РБК, Ведомости, Коммерсант, ТАСС)"
+    },
+    "telegram": {
+      "enabled": false,
+      "api_id": "YOUR_TELEGRAM_API_ID",
+      "api_hash": "YOUR_TELEGRAM_API_HASH",
+      "phone": "+7XXXXXXXXXX",
+      "description": "Telegram каналы с финансовыми новостями"
+    }
+  },
+  "telegram_channels": {
+    "rbc_finance": "@rbc_finance",
+    "vedomosti": "@vedomosti", 
+    "kommersant": "@kommersant",
+    "tass_economics": "@tass_economics",
+    "moex_official": "@moex_official",
+    "investing_ru": "@investing_ru",
+    "finam_ru": "@finam_ru",
+    "bcs_express": "@bcs_express",
+    "sber_investments": "@sber_investments",
+    "tinkoff_investments": "@tinkoff_investments"
+  },
+  "russian_symbols": {
+    "blue_chips": ["SBER", "GAZP", "LKOH", "NVTK", "ROSN", "TATN", "MGNT", "MTSS"],
+    "second_tier": ["PIKK", "IRAO", "SGZH", "AFLT", "YNDX", "OZON", "QIWI"],
+    "etfs": ["FXRU", "FXRB", "FXRL", "FXWO", "FXIT"]
+  },
+  "sentiment": {
+    "use_russian_model": true,
+    "confidence_threshold": 0.3,
+    "fallback_to_keywords": true,
+    "description": "Анализ настроений на русском языке с fallback на ключевые слова"
+  },
+  "cache": {
+    "enabled": true,
+    "ttl_hours": 2,
+    "description": "Кэширование новостей на 2 часа"
+  },
+  "performance": {
+    "max_concurrent_requests": 3,
+    "request_delay_seconds": 0.5,
+    "timeout_seconds": 30,
+    "description": "Настройки производительности для российских источников"
+  }
+}
